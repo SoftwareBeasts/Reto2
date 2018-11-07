@@ -1,0 +1,6 @@
+/*Maquetacion*/
+#contenedor-principal{
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}
