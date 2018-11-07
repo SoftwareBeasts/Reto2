@@ -3,7 +3,7 @@
     <head>
         <title>Aergibide S.L</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="Web/css/grid-general.css">
+        <link href="css/grid-general.css">
     </head>
     <body>
       <!--  <header id="menu-cabecera">
