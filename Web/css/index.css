@@ -1,0 +1,10 @@
+section#contenedor-preguntas-index{
+    display: flex;
+    grid-area: 1 / 2 / 5 / 8;
+    background-color: black;
+}
+aside#barra-lateral-index{
+    display: flex;
+    grid-area: 1 / 8 / 5 / 10;
+    background-color: red;
+}
