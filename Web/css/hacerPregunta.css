@@ -1,0 +1,41 @@
+body {
+    display: grid;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(5, 20%);
+}
+
+#contenedor {
+    grid-column-start: 3;
+    grid-column-end: 8;
+}
+
+form ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+form ul li {
+    display: flex;
+    flex-direction: column;
+}
+
+form ul li + li {
+    margin-top: 25px;
+}
+
+form ul li label {
+    font-size: large;
+    font-weight: bold;
+}
+
+form ul li:last-child {
+    align-items: flex-end;
+}
+
+form ul li:last-child input {
+    font-size: large;
+    padding: 5px;
+}
