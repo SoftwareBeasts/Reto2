@@ -1,6 +1,58 @@
 /*Maquetacion*/
+*{
+    box-sizing: border-box;
+}
+body,html{
+    min-height: 100vh;
+    width: 98.67vw;
+    margin: 0px;
+    padding: 0px;
+}
 #contenedor-principal{
+    margin-top: 50px;
     display: grid;
-    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-    grid-template-rows: 20% 20% 20% 20% 20%;
+    grid-template-columns: repeat(10,1fr);
+    grid-template-rows: repeat(5,1fr);
+    width: 98.67vw;
+    min-height: 100vh;
+}
+
+/*Barra Superior*/
+nav#menu-cabecera{
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    background-color: #247ba0;
+}
+img#logo-foro{
+
+}
+a#link-pregunta{
+
+}
+form#formulario-busqueda{
+
+}
+a#link-inicio-sesion{
+
+}
+form#formulario-usuario{
+
+}
+
+/*Footer*/
+footer#pie-pagina{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    background-color: #0d1321;
+    grid-area: 5 / 1 / 6 / 11;
 }
