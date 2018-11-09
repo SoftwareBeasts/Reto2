@@ -1,3 +1,6 @@
+<?php
+    require "php/generar-nav-footer.php";
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,27 +12,19 @@
     <body>
 
         <main id="contenedor-principal">
-            <nav id="menu-cabecera">
-                <img alt="Logo-Foro" id="logo-foro">
-                <a href="#" id="link-pregunta"><button>Pregunta</button></a>
-                <form id="formulario-busqueda" method="get" action="#">
-                    <label for="caja-busqueda" id="label-caja-busqueda">Buscar</label>
-                    <input type="text" name="busqueda" id="caja-busqueda" placeholder="Buscar">
-                </form>
-                <a href="#" id="link-inicio-sesion"><button>Iniciar Sesi&oacuten</button></a>
-                <form id="formulario-usuario" method="get" action="#" hidden>
-                    <select name="usuario-opciones" id="opciones-usuario-select">
-                        <option value="#">Perfil</option>
-                        <option value="#">Configuracion</option>
-                    </select>
-                </form>
-            </nav>
+            <?php
+                generarNav();
+            ?>
+
             <section id="contenedor-preguntas-index">
 
             </section>
             <aside id="barra-lateral-index">
 
             </aside>
+            <?php
+                generarFooter();
+            ?>
         </main>
     </body>
 </html>
