@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `nombreusu` VARCHAR(15) NOT NULL,
   `correo` VARCHAR(50) NOT NULL,
-  `pass` VARCHAR(60) NOT NULL,
+  `pass` VARCHAR(255) NOT NULL,
   `desc` VARCHAR(256) NULL,
   `img` VARCHAR(256) NULL,
   PRIMARY KEY (`idUsuario`))
