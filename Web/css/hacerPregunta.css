@@ -1,50 +1,47 @@
 #contenedor-hacer-preguntas {
-    display:flex;
-    flex-direction: column;
-    padding: 10px;
-    background-color: #e8f1f2;
+    margin-top: 50px;
+    padding: 0 10px 10px 10px;
+    border: 1px solid #0D1321;
     grid-column-start: 3;
     grid-column-end: 8;
 }
 
-form ul {
+#contenedor-hacer-preguntas ul {
     list-style: none;
-    display: flex;
-    flex-direction: column;
     margin: 0;
     padding: 0;
 }
 
-form ul li {
-    display: flex;
+#contenedor-hacer-preguntas ul li:first-child input, #contenedor-hacer-preguntas ul li textarea {
+    width: 100%;
 }
 
-form ul li + li {
+#contenedor-hacer-preguntas ul li:first-child + li:nth-of-type(2) {
+    margin-top: 0;
+}
+
+#contenedor-hacer-preguntas ul li:nth-of-type(2) + li:last-child {
     margin-top: 25px;
 }
 
-form ul li label {
-    font-size: large;
-    font-weight: bold;
-    flex-basis: 10%;
+#contenedor-hacer-preguntas ul li:first-child input {
+    font-size: 1.5em;
 }
 
-form ul li label + input {
-    margin-left: 15px;
-    flex-basis: 90%;
+#contenedor-hacer-preguntas ul li:last-child {
+    display: flex;
 }
 
-form ul li textarea {
-    flex-basis: 100%;
+#contenedor-hacer-preguntas ul li:last-child {
+    justify-content: space-between;
 }
 
-form ul li:last-child {
-    justify-content: center;
+#contenedor-hacer-preguntas ul li:nth-of-type(2) textarea, #contenedor-hacer-preguntas ul li:last-child input {
+    font-size: 1.10em;
 }
 
-form ul li:last-child input {
+#contenedor-hacer-preguntas ul li:last-child input:last-child {
     background-color: #247ba0;
     color: #e8f1f2;
-    font-size: large;
-    padding: 10px 40px;
+    padding: 0 40px;
 }

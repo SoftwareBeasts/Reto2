@@ -1,90 +1,91 @@
 #contenedor-perfil {
-    padding-top: 10px;
-    border: 1px solid #000000;
+    margin-top: 50px;
+    border: 1px solid #0D1321;
     grid-column-start: 3;
     grid-column-end: 8;
     display:flex;
     flex-direction: column;
 }
 
-#perfilUsuario {
+#contenedor-perfil > div {
     padding: 10px;
     margin-top: -1em;
 }
 
-ul {
+#contenedor-perfil ul {
     list-style-type: none;
+    display: flex;
     margin: 0;
     padding: 0;
 }
 
-ul li {
-    float: left;
+#contenedor-perfil ul li {
     text-align: center;
     padding: 10px;
     background-color: #1d2d44;
     color: #e8f1f2;
 }
 
-ul li:hover {
+#contenedor-perfil ul li:hover {
     background-color: #748CAB;
 }
 
-.listaPreguntas {
+#contenedor-perfil article {
     width: 100%;
+    border-top: 1px solid #0D1321;
 }
 
-.listaPreguntas tr:nth-of-type(odd) {
-    background-color: #f1f1f1;
+#contenedor-perfil article:nth-of-type(odd) {
+    background-color: #FFFFFF;
 }
 
-.listaPreguntas tr:nth-of-type(even) {
-    background-color: #cccccc;
+#contenedor-perfil article:nth-of-type(even) {
+    background-color: #e8f1f2;
 }
 
-.listaPreguntas td {
+#contenedor-perfil article {
     padding: 0 10px;
 }
 
-.listaPreguntas td p:first-child span, td h3 {
+#contenedor-perfil article p:first-child span, article h3 {
     color: #247ba0;
 }
 
-.listaPreguntas td > div {
+#contenedor-perfil article > div {
     display: flex;
     justify-content: space-between;
 }
 
-.listaPreguntas td div div:first-child, td div div:last-child {
+#contenedor-perfil article div div:first-child, #contenedor-perfil article div div:last-child {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.listaPreguntas td div div:last-child {
+#contenedor-perfil article div div:last-child {
     justify-content: flex-end;
 }
 
-.listaPreguntas td div div:first-child p {
+#contenedor-perfil article div div:first-child p {
     background-color: #748CAB;
     color: #e8f1f2;
     padding: 5px;
     text-align: center;
 }
 
-.listaPreguntas td div div:first-child p + p {
+#contenedor-perfil article div div:first-child p + p {
     margin-left: 10px;
 }
 
-.listaPreguntas td div div:last-child p {
+#contenedor-perfil article div div:last-child p {
     padding: 5px;
 }
 
-.listaPreguntas td div div:last-child p:before {
+#contenedor-perfil article div div:last-child p:before {
     content: url(../media/pulgar-hacia-arriba.png);
 }
 
-.listaPreguntas td div div:last-child p:after {
+#contenedor-perfil article div div:last-child p:after {
     content: url(../media/pulgar-hacia-abajo.png);
 }
 
