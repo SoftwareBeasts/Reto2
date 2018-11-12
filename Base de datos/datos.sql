@@ -1,0 +1,2 @@
+/*Datos tabla usuario*/
+INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`) VALUES ('admin', 'admin@softwarebeasts.com', '$2y$10$ZAdQGxOcGBNCRm9NRhgfp.XTdih9jj4rGQlLmOmofrfkKrM3jE5e2', 'Soy el administrador de todo esto :)');
