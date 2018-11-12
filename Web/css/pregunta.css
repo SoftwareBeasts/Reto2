@@ -1,0 +1,9 @@
+/*general*/
+/*Principal*/
+section#contenedor-preguntas-respuestas {
+    display: flex;
+    flex-flow: column nowrap;
+    grid-area: 1 / 2 / 5 / 8;
+}
+
+/*Efectos*/

@@ -1,5 +1,8 @@
 <?php
 require "php/generar-nav-footer.php";
+if(session_id() == '') {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +16,7 @@ require "php/generar-nav-footer.php";
 
 <main id="contenedor-principal">
     <?php
-    generarNav();
+    generarNav('./');
     ?>
 
     <section id="contenedor-selectores-preguntas-index">
@@ -24,36 +27,21 @@ require "php/generar-nav-footer.php";
             <button class="boton-selector">Respondidas</button>
         </div>
         <div id="contenedor-preguntas-index">
-            <article class="pregunta-index" >
+            <!--<article class="pregunta-index" >
                 <span class="informacion-usuario-fecha-pregunta">por <a href="#" class="link-perfil-usuario">Unai Puelles</a> a 11 noviembre 2018</span>
-                <h2 class="titulo-pregunta">Como usar PHP</h2>
+                <h2 class="titulo-pregunta"><a href="#">Como usar PHP</a></h2>
                 <div class="contenedor-categorias-pregunta">
-                    <label><a href="#">PHP</a></label>
+                    <a href="#"><label>PHP</label></a>
                 </div>
                 <div class="contenedor-likes-preguntas">
                     <span class="puntuacion-pregunta-index">11</span>
                 </div>
-            </article>
+            </article>-->
         </div>
     </section>
-    <aside id="barra-lateral-index">
-        <div id="placeholder-aside-index"></div>
-        <div id="contenedor-principal-categorias-index">
-            <h3 id="titulo-categoria">Categor&iacute;as</h3>
-            <div id="contenedor-secundario-categorias-index">
-                <label><a href="#">PHP</a></label>
-                <label><a href="#">PHP</a></label>
-                <label><a href="#">PHP</a></label>
-                <label><a href="#">PHP</a></label>
-                <label><a href="#">PHP</a></label>
-                <label><a href="#">PHP</a></label>
-                <label><a href="#">PHP</a></label>
-                <label><a href="#">PHP</a></label>
-                <label><a href="#">PHP</a></label>
-            </div>
-        </div>
-    </aside>
+
     <?php
+    generarAside();
     generarFooter();
     ?>
 </main>
