@@ -1,10 +1,8 @@
-body {
-    display: grid;
-    grid-template-columns: repeat(10, 10%);
-    grid-template-rows: repeat(5, 20%);
-}
-
-#contenedor {
+#contenedor-hacer-preguntas {
+    display:flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #e8f1f2;
     grid-column-start: 3;
     grid-column-end: 8;
 }
@@ -19,7 +17,6 @@ form ul {
 
 form ul li {
     display: flex;
-    flex-direction: column;
 }
 
 form ul li + li {
@@ -29,13 +26,25 @@ form ul li + li {
 form ul li label {
     font-size: large;
     font-weight: bold;
+    flex-basis: 10%;
+}
+
+form ul li label + input {
+    margin-left: 15px;
+    flex-basis: 90%;
+}
+
+form ul li textarea {
+    flex-basis: 100%;
 }
 
 form ul li:last-child {
-    align-items: flex-end;
+    justify-content: center;
 }
 
 form ul li:last-child input {
+    background-color: #247ba0;
+    color: #e8f1f2;
     font-size: large;
-    padding: 5px;
+    padding: 10px 40px;
 }
