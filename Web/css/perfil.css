@@ -1,10 +1,10 @@
 #contenedor-perfil {
-    display:flex;
-    flex-direction: column;
-    padding: 10px 10px 0 10px;
-    background-color: #e8f1f2;
+    padding-top: 10px;
+    border: 1px solid #000000;
     grid-column-start: 3;
     grid-column-end: 8;
+    display:flex;
+    flex-direction: column;
 }
 
 #perfilUsuario {
@@ -16,36 +16,76 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 ul li {
     float: left;
     text-align: center;
     padding: 10px;
-    background-color: #247ba0;
+    background-color: #1d2d44;
     color: #e8f1f2;
-    opacity: 0.5;
 }
 
 ul li:hover {
-    opacity: 1;
+    background-color: #748CAB;
 }
 
-td p:first-child span:first-child, td h3 {
-    color:#247BA0;
+.listaPreguntas {
+    width: 100%;
 }
 
-td p:last-child {
+.listaPreguntas tr:nth-of-type(odd) {
+    background-color: #f1f1f1;
+}
+
+.listaPreguntas tr:nth-of-type(even) {
+    background-color: #cccccc;
+}
+
+.listaPreguntas td {
+    padding: 0 10px;
+}
+
+.listaPreguntas td p:first-child span, td h3 {
+    color: #247ba0;
+}
+
+.listaPreguntas td > div {
     display: flex;
+    justify-content: space-between;
 }
 
-td p:last-child span:first-child {
-    
+.listaPreguntas td div div:first-child, td div div:last-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-td p:last-child span:last-child {
+.listaPreguntas td div div:last-child {
+    justify-content: flex-end;
+}
 
+.listaPreguntas td div div:first-child p {
+    background-color: #748CAB;
+    color: #e8f1f2;
+    padding: 5px;
+    text-align: center;
+}
+
+.listaPreguntas td div div:first-child p + p {
+    margin-left: 10px;
+}
+
+.listaPreguntas td div div:last-child p {
+    padding: 5px;
+}
+
+.listaPreguntas td div div:last-child p:before {
+    content: url(../media/pulgar-hacia-arriba.png);
+}
+
+.listaPreguntas td div div:last-child p:after {
+    content: url(../media/pulgar-hacia-abajo.png);
 }
 
 

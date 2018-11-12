@@ -26,12 +26,35 @@ require "../php/generar-nav-footer.php";
             <li>Preguntas</li>
             <li>Respuestas</li>
         </ul>
-        <table>
+        <table class="listaPreguntas">
             <tr>
                 <td>
-                    <p><span>@usuario</span>&nbsp;&nbsp;<span>@fecha</span></p>
+                    <p>Por <span>@usuario</span>&nbsp;el <span>@fecha</span></p>
                     <h3>Pregunta</h3>
-                    <p><span>Categor&iacute;a</span><span>-5</span></p>
+                    <div>
+                        <div>
+                            <p>Categor&iacute;a</p>
+                            <p>Categor&iacute;a</p>
+                        </div>
+                        <div>
+                            <p>&nbsp;-5&nbsp;</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Por <span>@usuario</span>&nbsp;el <span>@fecha</span></p>
+                    <h3>Pregunta</h3>
+                    <div>
+                        <div>
+                            <p>Categor&iacute;a</p>
+                            <p>Categor&iacute;a</p>
+                        </div>
+                        <div>
+                            <p>&nbsp;-5&nbsp;</p>
+                        </div>
+                    </div>
                 </td>
             </tr>
         </table>
