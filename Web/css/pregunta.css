@@ -7,3 +7,12 @@ section#contenedor-preguntas-respuestas {
 }
 
 /*Efectos*/
+a.link-dislike-pregunta img{
+    transform: rotate(180deg);
+    height: 20px;
+    width: 20px;
+}
+a.link-like-pregunta img{
+    height: 20px;
+    width: 20px;
+}

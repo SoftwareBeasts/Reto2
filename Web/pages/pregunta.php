@@ -20,22 +20,31 @@ if(session_id() == '') {
     ?>
     <section id="contenedor-preguntas-respuestas">
         <div id="contenedor-pregunta">
-            <span> por<a id="informacion-usuario-pregunta">Unai Puelles</a> a 11 de noviembre de 2018</span>
+            <span>por <a class="informacion-usuario-pregunta">Unai Puelles</a> a 11 de noviembre de 2018</span>
             <h2 id="titulo-pregunta">Como usar PHP</h2>
             <p id="contenido-pregunta">No se usar php, ayuda por favor</p>
             <div id="contenedor-categorias-pregunta">
 
             </div>
             <div id="contenedor-likes-pregunta">
-                <button></button>
+                <a href="#" class="link-like-pregunta"><img src="../media/like.png" alt="imagen-like"></a>
+                <span>11</span>
+                <a href="#" class="link-dislike-pregunta"><img src="../media/like.png" alt="imagen-like"></a>
             </div>
         </div>
         <article class="contenedor-respuesta">
-
+            <span>por <a class="informacion-usuario-pregunta">Unai Puelles</a> a 11 de noviembre de 2018</span>
+            <p class="respuesta-pregunta">Ya encontré la solucion en StackOverflow, muchas gracias btw</p>
+            <div class="contenedor-likes-respuesta">
+                <a href="#" class="link-like-pregunta"><img src="../media/like.png" alt="imagen-like"></a>
+                <span>11</span>
+                <a href="#" class="link-dislike-pregunta"><img src="../media/like.png" alt="imagen-like"></a>
+            </div>
         </article>
         <div id="contenedor-responder-pregunta">
             <form action="#" method="post">
-                <textarea></textarea>
+                <textarea id="texto-respuesta"></textarea>
+                <input type="submit"  id="boton-responder" value="Responder">
             </form>
         </div>
     </section>
