@@ -1,74 +1,51 @@
-body {
-    display: grid;
-    grid-template-columns: repeat(10, 10%);
-    grid-template-rows: repeat(5, 20%);
-}
-
-#contenedor {
+#contenedor-perfil {
+    display:flex;
+    flex-direction: column;
+    padding: 10px 10px 0 10px;
+    background-color: #e8f1f2;
     grid-column-start: 3;
     grid-column-end: 8;
 }
 
 #perfilUsuario {
-    display: flex;
-    background-color: #cccccc;
     padding: 10px;
-}
-
-#datosPerfilUsuario {
-    margin-left: 25px;
     margin-top: -1em;
 }
 
-#contenedor ul {
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border-bottom: 1px #000000 solid;
 }
 
-#contenedor ul li {
+ul li {
     float: left;
     text-align: center;
-    padding: 16px;
+    padding: 10px;
+    background-color: #247ba0;
+    color: #e8f1f2;
+    opacity: 0.5;
 }
 
-#contenedor ul li:hover {
-    float: left;
-    text-align: center;
-    padding: 16px;
-    border-top: 1px #000000 solid;
-    border-left: 1px #000000 solid;
-    border-right: 1px #000000 solid;
+ul li:hover {
+    opacity: 1;
 }
 
-#listaPreguntasRespuestasPerfilUsuario {
+td p:first-child span:first-child, td h3 {
+    color:#247BA0;
+}
+
+td p:last-child {
     display: flex;
-    margin: 10px 0;
 }
 
-#listaPreguntasRespuestasPerfilUsuario div {
-    padding: 0 5px;
+td p:last-child span:first-child {
+    
 }
 
-#listaPreguntasRespuestasPerfilUsuario div:first-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex-basis: 10%;
-    background-color: green;
-    color: white;
-}
+td p:last-child span:last-child {
 
-#listaPreguntasRespuestasPerfilUsuario div:last-child {
-    flex-basis: 90%;
-}
-
-#listaPreguntasRespuestasPerfilUsuario div:first-child span:first-child {
-    font-size: 20pt;
-    margin-bottom: 5px;
 }
 
 

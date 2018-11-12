@@ -16,11 +16,26 @@
                 generarNav();
             ?>
 
-            <section id="contenedor-preguntas-index">
-
+            <section id="contenedor-selectores-preguntas-index">
+                <div id="contenedor-selectores-index">
+                    <button class="boton-selector">Recientes</button>
+                    <button class="boton-selector">M&aacutes votadas</button>
+                    <button class="boton-selector">Sin Responder</button>
+                    <button class="boton-selector">Respondidas</button>
+                </div>
+                <div id="contenedor-preguntas-index">
+                    <article class="pregunta-index">
+                        <span class="informacion-usuario-fecha-pregunta"><a href="#" class="link-perfil-usuario">Unai Puelles</a></span>
+                        <h2 class="titulo-pregunta">Como usar PHP</h2>
+                        <div class="contenedor-likes-preguntas">
+                            <button class="boton-like-pregunta"><img class="boton-like-imagen"></button>
+                            <
+                        </div>
+                    </article>
+                </div>
             </section>
             <aside id="barra-lateral-index">
-
+                <div></div>
             </aside>
             <?php
                 generarFooter();
