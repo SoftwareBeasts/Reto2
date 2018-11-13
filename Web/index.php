@@ -1,8 +1,9 @@
 <?php
+session_start();
 require "php/generar-nav-footer.php";
-if(session_id() == '') {
-    session_start();
-}
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
