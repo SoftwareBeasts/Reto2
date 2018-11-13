@@ -1,10 +1,109 @@
+
+/*General*/
 section#contenedor-selectores-preguntas-index{
     display: flex;
+    flex-flow: column nowrap;
     grid-area: 1 / 2 / 5 / 8;
-    background-color: black;
+
 }
-aside#barra-lateral-index{
+
+/*Botones de seleccion*/
+div#contenedor-selectores-index{
+    width: 100%;
+    height: 10vh;
     display: flex;
-    grid-area: 1 / 8 / 5 / 10;
-    background-color: red;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+button.boton-selector{
+    align-self: center;
+    height: 25px;
+    background-color: #1d2d44;
+    color: #e8f1f2;
+    border: none;
+
+}
+button.boton-selector:first-child{
+    margin-left:3vw;
+}
+/*Preguntas*/
+div#contenedor-preguntas-index{
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+span.informacion-usuario-fecha-pregunta{
+    width: 100%;
+    text-align: start;
+    margin-left: 15px;
+    margin-top: 5px;
+}
+h2.titulo-pregunta{
+    width: 100%;
+    text-align: start;
+    margin-left: 20px;
+}
+/*Preguntas individuales*/
+
+article.pregunta-index:nth-child(2n){
+    background-color: #e8f1f2;
+
+}
+article.pregunta-index{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    border:0.5px solid #0d1321;
+}
+article.pregunta-index h2.titulo-pregunta a{
+    text-decoration: none;
+    color:#1d2d44;
+    transition: color 1s;
+    -webkit-transition: color 1s;
+}
+div.contenedor-categorias-pregunta{
+    width: 75%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 30px;
+}
+div.contenedor-categorias-pregunta a{
+    background-color: #748cab;
+    height: 20px;
+    min-width:50px;
+    text-align: center;
+    color: #e8f1f2;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: #0d1321;
+    transition: background-color 1s;
+    -webkit-transition: background-color 1s;
+}
+
+/*Likes*/
+div.contenedor-likes-preguntas{
+    width: 25%;
+    display: flex;
+}
+span.puntuacion-pregunta-index::before{
+    content: 'Puntuacion ';
+}
+span.puntuacion-pregunta-index{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+/*Barra Lateral*/
+
+/*Efectos*/
+div.contenedor-categorias-pregunta a:hover{
+    background-color: #247ba0;
+}
+article.pregunta-index h2.titulo-pregunta a:hover{
+    color: #247ba0;
 }
