@@ -13,7 +13,6 @@ require "../php/generar-nav-footer.php";
 <body>
 
 <main id="contenedor-principal">
-
     <?php
         generarNav('../')
     ?>
