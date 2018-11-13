@@ -17,6 +17,26 @@ session_start();
     <link rel="stylesheet" type="text/css" href="../css/perfil.css" />
 </head>
 <body>
+<script language="JavaScript">
+    // Para editar el nombre y la descripción del usuario
+    $(document).ready(function()
+    {
+        $("#nombrePerfil").click(function()
+        {
+            var data = $(this).text();
+            $(this).remove();
+
+            $('<input id="nombrePerfilInput" type="text" value="'+data+'" />').appendTo('#nombrePerfilDiv');
+        });
+        $("#descripcionPerfil").click(function()
+        {
+            var data = $(this).text();
+            $(this).remove();
+
+            $('<input id="descripcionPerfilInput" type="text" value="'+data+'" />').appendTo('#descripcionPerfilDiv');
+        });
+    });
+</script>
 <main id="contenedor-principal">
     <?php
     generarNav("../");
