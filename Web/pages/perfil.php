@@ -1,25 +1,31 @@
 <?php
 require "../php/generar-nav-footer.php";
+
+session_start();
+
+/*if(!isset($_SESSION['userLogged'])){header('Location: login.php');}*/
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Perfil de @usuario &#124; Aergibide S.L.</title>
+    <title>Perfil de usuario &#124; Aergibide S.L.</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css" />
     <link rel="stylesheet" type="text/css" href="../css/perfil.css" />
 </head>
 <body>
 <main id="contenedor-principal">
     <?php
-    generarNav();
+    generarNav("../");
     ?>
     <section id="contenedor-perfil">
         <div>
-            <h3>Nombre y apellidos</h3>
+            <h3 id="nombrePerfilDiv"><span id="nombrePerfil"><?= $_SESSION["userLogged"]["nombreusu"]," " ?>Usuario</span></h3>
             <p>Preguntas realizadas: 1 &#124; Respuestas proporcionadas: 1</p>
-            <p>Su descripción del perfil va aquí. Puede editarse desde el enlace del perfil de edición en su panel de control.</p>
+            <p id="descripcionPerfilDiv"><span id="descripcionPerfil"><?= $_SESSION["userLogged"]["desc"]," " ?>Descripci&oacute;n</span></p>
         </div>
         <ul>
             <li>Preguntas</li>
