@@ -5,7 +5,7 @@
  * Date: 08/11/2018
  * Time: 13:53
  */
-session_start();
+
 function generarNav($ruta){
     ?>
     <nav id="menu-cabecera">
@@ -21,7 +21,7 @@ function generarNav($ruta){
             <?php
                 if (isset($_SESSION['userLogged'])){
                     ?>
-                    <form id="formulario-usuario" method="get" action="#" hidden>
+                    <form id="formulario-usuario" method="get" action="#">
                         <select name="usuario-opciones" id="opciones-usuario-select">
                             <option value="#">Perfil</option>
                             <option value="#">Configuracion</option>
