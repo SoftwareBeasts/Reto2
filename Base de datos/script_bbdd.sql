@@ -22,10 +22,32 @@ CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
   `nombreusu` VARCHAR(15) NOT NULL,
   `correo` VARCHAR(50) NOT NULL,
-  `pass` VARCHAR(255) NOT NULL,
+  `pass` VARCHAR(60) NOT NULL,
   `desc` VARCHAR(256) NULL,
   `img` VARCHAR(256) NULL,
   PRIMARY KEY (`idUsuario`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `reto2_bbdd`.`Pregunta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `reto2_bbdd`.`Pregunta` ;
+
+CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Pregunta` (
+  `idPregunta` INT NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(100) NOT NULL,
+  `cuerpo` VARCHAR(256) NOT NULL,
+  `fecha` DATE NOT NULL,
+  `archivos` VARCHAR(256) NULL,
+  `Usuario_idUsuario` INT NOT NULL,
+  PRIMARY KEY (`idPregunta`),
+  INDEX `fk_Pregunta_Usuario_idx` (`Usuario_idUsuario` ASC) VISIBLE,
+  CONSTRAINT `fk_Pregunta_Usuario`
+    FOREIGN KEY (`Usuario_idUsuario`)
+    REFERENCES `reto2_bbdd`.`Usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -42,37 +64,18 @@ CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Respuesta` (
   `archivos` VARCHAR(256) NULL,
   `aprobado` TINYINT NOT NULL DEFAULT 0,
   `Usuario_idUsuario` INT NOT NULL,
+  `Pregunta_idPregunta` INT NOT NULL,
   PRIMARY KEY (`idRespuesta`),
+  INDEX `fk_Respuesta_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
+  INDEX `fk_Respuesta_Pregunta1_idx` (`Pregunta_idPregunta` ASC) VISIBLE,
   CONSTRAINT `fk_Respuesta_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `reto2_bbdd`.`Usuario` (`idUsuario`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `reto2_bbdd`.`Pregunta`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `reto2_bbdd`.`Pregunta` ;
-
-CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Pregunta` (
-  `idPregunta` INT NOT NULL AUTO_INCREMENT,
-  `titulo` VARCHAR(100) NOT NULL,
-  `cuerpo` VARCHAR(256) NOT NULL,
-  `fecha` DATE NOT NULL,
-  `archivos` VARCHAR(256) NULL,
-  `Usuario_idUsuario` INT NOT NULL,
-  `Respuesta_idRespuesta` INT NOT NULL,
-  PRIMARY KEY (`idPregunta`),
-  CONSTRAINT `fk_Pregunta_Usuario`
-    FOREIGN KEY (`Usuario_idUsuario`)
-    REFERENCES `reto2_bbdd`.`Usuario` (`idUsuario`)
-    ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Pregunta_Respuesta1`
-    FOREIGN KEY (`Respuesta_idRespuesta`)
-    REFERENCES `reto2_bbdd`.`Respuesta` (`idRespuesta`)
+  CONSTRAINT `fk_Respuesta_Pregunta1`
+    FOREIGN KEY (`Pregunta_idPregunta`)
+    REFERENCES `reto2_bbdd`.`Pregunta` (`idPregunta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -101,6 +104,8 @@ CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Voto` (
   `Usuario_idUsuario` INT NOT NULL,
   `Respuesta_idRespuesta` INT NOT NULL,
   PRIMARY KEY (`idVoto`),
+  INDEX `fk_Voto_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
+  INDEX `fk_Voto_Respuesta1_idx` (`Respuesta_idRespuesta` ASC) VISIBLE,
   CONSTRAINT `fk_Voto_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `reto2_bbdd`.`Usuario` (`idUsuario`)
@@ -122,6 +127,8 @@ DROP TABLE IF EXISTS `reto2_bbdd`.`Pregunta_has_Tema` ;
 CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Pregunta_has_Tema` (
   `Pregunta_idPregunta` INT NOT NULL,
   `Tema_idTema` INT NOT NULL,
+  INDEX `fk_Pregunta_has_Tema_Tema1_idx` (`Tema_idTema` ASC) VISIBLE,
+  INDEX `fk_Pregunta_has_Tema_Pregunta1_idx` (`Pregunta_idPregunta` ASC) VISIBLE,
   PRIMARY KEY (`Pregunta_idPregunta`, `Tema_idTema`),
   CONSTRAINT `fk_Pregunta_has_Tema_Pregunta1`
     FOREIGN KEY (`Pregunta_idPregunta`)
