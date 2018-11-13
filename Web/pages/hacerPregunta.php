@@ -11,28 +11,23 @@ require "../php/generar-nav-footer.php";
     <link rel="stylesheet" type="text/css" href="../css/hacerPregunta.css" />
 </head>
 <body>
-
 <main id="contenedor-principal">
     <?php
     generarNav();
     ?>
     <section id="contenedor-hacer-preguntas">
         <h1>Haz tu pregunta</h1>
-        <form action="" method="post">
+        <form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
             <ul>
                 <li>
-                    <label for="tituloPregunta">T&iacute;tulo:</label>
-                    <input type="text" id="tituloPregunta" name="tituloPregunta" value="" />
+                    <input type="text" name="tituloPregunta" value="" placeholder="T&iacute;tulo" />
                 </li>
                 <li>
-                    <textarea id="descripcionPregunta" name="descripcionPregunta" rows="15"></textarea>
+                    <textarea name="descripcionPregunta" rows="15" placeholder="Descripci&oacute;n"></textarea>
                 </li>
                 <li>
-                    <label for="categoriasPregunta">Categor&iacute;as:</label>
-                    <input type="text" id="categoriasPregunta" name="categoriasPregunta" value="" />
-                </li>
-                <li>
-                    <input type="submit" id="enviarPregunta" value="Enviar" />
+                    <input type="text" name="categoriasPregunta" value="" placeholder="Categor&iacute;as (separadas por comas)" />
+                    <input type="submit" value="Enviar" />
                 </li>
             </ul>
         </form>
@@ -44,6 +39,5 @@ require "../php/generar-nav-footer.php";
     generarFooter();
     ?>
 </main>
-
 </body>
 </html>
