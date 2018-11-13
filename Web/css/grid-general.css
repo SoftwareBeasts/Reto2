@@ -24,25 +24,55 @@ nav#menu-cabecera{
     top: 0;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 50px;
     overflow: hidden;
     background-color: #1d2d44;
     box-shadow: 0px 1px 5px 1px black;
+    color: #e8f1f2;
+}
+nav#menu-cabecera div#contenido-izquierda-nav{
+    display:flex ;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10px;
+}
+nav#menu-cabecera div#contenido-derecha-nav{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 10px;
 }
 img#logo-foro{
 
 }
 a#link-pregunta{
-
+    margin-left: 20px;
+    background-color: #247ba0;
+    border-radius: 10%;
+    text-decoration: none;
+    padding: 5px;
 }
 form#formulario-busqueda{
-
+    margin-left: 20px;
+    display: flex;
+    align-self: center;
 }
 a#link-inicio-sesion{
-
+    background-color: #247ba0;
+    padding: 5px;
+    border-radius: 10%;
+    text-decoration: none;
+}
+nav#menu-cabecera a{
+    color: #e8f1f2;
+}
+nav#menu-cabecera a:visited{
+    color: #e8f1f2;
 }
 form#formulario-usuario{
 
@@ -51,12 +81,58 @@ form#formulario-usuario{
 /*Footer*/
 footer#pie-pagina{
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
+    flex-flow: column nowrap;
+    align-items: center;
+    color: #e8f1f2;
     width: 100%;
     overflow: hidden;
     background-color: #1d2d44;
     grid-area: 5 / 1 / 6 / 11;
+}
+footer#pie-pagina a{
+    color: #e8f1f2;
+}
+footer#pie-pagina a:visited{
+    color: #e8f1f2;
+}
+/*Aside*/
+aside#barra-lateral-aside{
+    display: flex;
+    grid-area: 1 / 8 / 5 / 10;
+    flex-flow: column nowrap;
+}
+div#placeholder-aside-aside{
+    height: 10vh;
+    width: 100%;
+}
+div#contenedor-principal-categorias-aside{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+h3#titulo-categoria{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+div#contenedor-secundario-categorias-aside{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items:center;
+}
+div#contenedor-secundario-categorias-aside a{
+    min-width: 25%;
+    text-align: center;
+    background-color: #748cab;
+    margin: 2px 2px;
+    text-decoration: none;
+    color: #0d1321;
+    transition: background-color 1s;
+    -webkit-transition: background-color 1s;
+}
+div#contenedor-secundario-categorias-aside a:hover{
+    background-color: #247ba0;
 }
 /*Fuentes*/
 /* cyrillic-ext */

@@ -1,0 +1,18 @@
+/*general*/
+/*Principal*/
+section#contenedor-preguntas-respuestas {
+    display: flex;
+    flex-flow: column nowrap;
+    grid-area: 1 / 2 / 5 / 8;
+}
+
+/*Efectos*/
+a.link-dislike-pregunta img{
+    transform: rotate(180deg);
+    height: 20px;
+    width: 20px;
+}
+a.link-like-pregunta img{
+    height: 20px;
+    width: 20px;
+}
