@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 2gdaw08
- * Date: 08/11/2018
- * Time: 13:53
- */
 
 function generarNav($ruta){
     ?>
@@ -21,16 +15,18 @@ function generarNav($ruta){
             <?php
                 if (isset($_SESSION['userLogged'])){
                     ?>
-                    <form id="formulario-usuario" method="get" action="#">
-                        <select name="usuario-opciones" id="opciones-usuario-select">
-                            <option value="#">Perfil</option>
-                            <option value="#">Configuracion</option>
-                        </select>
-                    </form>
+                    <div class="dropdown">
+                        <a class="dropbtn"><?= $_SESSION['userLogged']['nombreusu'] ?></a>
+                        <div class="dropdown-content">
+                            <a href="<?= $ruta ?>pages/perfil.php">Perfil</a>
+                            <a href="<?= $ruta ?>pages/perfil.php">Configuración</a>
+                            <a href="<?= $ruta ?>index.php?logout=true">Log out</a>
+                        </div>
+                    </div>
                     <?php
                 }else{
                     ?>
-                    <a href="<?=$ruta?>pages/login.php"  id="link-inicio-sesion">Iniciar Sesi&oacuten</a>
+                    <a href="<?=$ruta?>pages/login.php" id="link-inicio-sesion">Iniciar Sesi&oacuten</a>
                     <?php
                 }
             ?>
