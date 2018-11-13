@@ -1,7 +1,14 @@
 <?php
 session_start();
-require "php/generar-nav-footer.php";
+if(isset($_GET['logout'])){
+    if($_GET['logout']){
+        session_destroy();
+        session_start();
+        header("location:index.php");
+    }
+}
 
+require "php/generar-nav-footer.php";
 
 
 ?>
