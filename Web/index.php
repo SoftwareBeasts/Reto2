@@ -1,14 +1,21 @@
 <?php
-require "php/generar-nav-footer.php";
-if(session_id() == '') {
-    session_start();
+session_start();
+if(isset($_GET['logout'])){
+    if($_GET['logout']){
+        session_destroy();
+        session_start();
+        header("location:index.php");
+    }
 }
+require "php/generar-nav-footer.php";
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Aergibide S.L</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery-3.3.1.min.js"></script>
     <link href="css/grid-general.css" type="text/css" rel="stylesheet">
     <link href="css/index.css" type="text/css" rel="stylesheet">
 </head>
@@ -21,10 +28,12 @@ if(session_id() == '') {
 
     <section id="contenedor-selectores-preguntas-index">
         <div id="contenedor-selectores-index">
-            <button class="boton-selector">Recientes</button>
-            <button class="boton-selector">M&aacute;s votadas</button>
-            <button class="boton-selector">Sin Responder</button>
-            <button class="boton-selector">Respondidas</button>
+            <button name="recientes" class="boton-selector">Recientes</button>
+            <?php
+            ?>
+            <button name="masvotadas" class="boton-selector">M&aacute;s votadas</button>
+            <button name="sinresponder" class="boton-selector">Sin Responder</button>
+            <button name="respondidas" class="boton-selector">Respondidas</button>
         </div>
         <div id="contenedor-preguntas-index">
             <!--<article class="pregunta-index" >
@@ -38,6 +47,7 @@ if(session_id() == '') {
                 </div>
             </article>-->
         </div>
+        <hr>
     </section>
 
     <?php
@@ -47,3 +57,4 @@ if(session_id() == '') {
 </main>
 </body>
 </html>
+<script src="js/index.js" type="text/javascript"></script>
