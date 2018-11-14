@@ -15,7 +15,7 @@ $cargar = new DOMNodeList();
 
 switch ($temp){
     case "recientes":
-        
+
         break;
     case "masvotadas":
 
