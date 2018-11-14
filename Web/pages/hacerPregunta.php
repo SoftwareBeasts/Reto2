@@ -1,5 +1,10 @@
 <?php
 require "../php/generar-nav-footer.php";
+
+session_start();
+
+/*if(!isset($_SESSION['userLogged'])){header('Location: login.php');}*/
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,17 +12,48 @@ require "../php/generar-nav-footer.php";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Haz tu pregunta &#124; Aergibide S.L.</title>
+    <script src="../js/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css" />
     <link rel="stylesheet" type="text/css" href="../css/hacerPregunta.css" />
 </head>
 <body>
+<script language="JavaScript">
+    function validarDatos() {
+        try
+        {
+            var titulo=$("input[name='tituloPregunta']").val();
+            if(titulo==="")
+            {
+                throw "Hacer pregunta: No has introducido el título.";
+            }
+            var descripcion=$("textarea").val();
+            if(descripcion==="")
+            {
+                throw "Hacer pregunta: No has introducido la descripción.";
+            }
+            var categorias=$("input[name='categoriasPregunta']").val();
+            if(categorias==="")
+            {
+                throw "Hacer pregunta: No has introducido ninguna categoría.";
+            }
+            // Separar categorias por comas y meterlo en un array (Hacerlo con PHP)
+            /*$("input[name='categoriasPregunta']").val(categorias.split(","));*/
+            return true;
+        }
+        catch(err)
+        {
+            console.log(err);
+            return false;
+        }
+    }
+</script>
 <main id="contenedor-principal">
     <?php
-    generarNav();
+    generarNav("../");
     ?>
     <section id="contenedor-hacer-preguntas">
         <h1>Haz tu pregunta</h1>
-        <form action="<?=$_SERVER['PHP_SELF'];?>" method="post">
+        <form action="hacerPregunta.php" method="post" onsubmit="return validarDatos();">
             <ul>
                 <li>
                     <input type="text" name="tituloPregunta" value="" placeholder="T&iacute;tulo" />
@@ -26,7 +62,7 @@ require "../php/generar-nav-footer.php";
                     <textarea name="descripcionPregunta" rows="15" placeholder="Descripci&oacute;n"></textarea>
                 </li>
                 <li>
-                    <input type="text" name="categoriasPregunta" value="" placeholder="Categor&iacute;as (separadas por comas)" />
+                    <input type="text" name="categoriasPregunta" value="" placeholder="Categor&iacute;as" />
                     <input type="submit" value="Enviar" />
                 </li>
             </ul>
