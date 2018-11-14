@@ -56,6 +56,10 @@
     justify-content: space-between;
 }
 
+#contenedor-perfil article > div * {
+    display: flex;
+}
+
 #contenedor-perfil article div div:first-child, #contenedor-perfil article div div:last-child {
     display: flex;
     flex-wrap: wrap;
