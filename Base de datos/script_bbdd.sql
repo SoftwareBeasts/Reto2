@@ -42,7 +42,6 @@ CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Pregunta` (
   `archivos` VARCHAR(256) NULL,
   `Usuario_idUsuario` INT NOT NULL,
   PRIMARY KEY (`idPregunta`),
-  INDEX `fk_Pregunta_Usuario_idx` (`Usuario_idUsuario` ASC) VISIBLE,
   CONSTRAINT `fk_Pregunta_Usuario`
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `reto2_bbdd`.`Usuario` (`idUsuario`)
@@ -66,8 +65,6 @@ CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Respuesta` (
   `Usuario_idUsuario` INT NOT NULL,
   `Pregunta_idPregunta` INT NOT NULL,
   PRIMARY KEY (`idRespuesta`),
-  INDEX `fk_Respuesta_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
-  INDEX `fk_Respuesta_Pregunta1_idx` (`Pregunta_idPregunta` ASC) VISIBLE,
   CONSTRAINT `fk_Respuesta_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `reto2_bbdd`.`Usuario` (`idUsuario`)
@@ -104,8 +101,6 @@ CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Voto` (
   `Usuario_idUsuario` INT NOT NULL,
   `Respuesta_idRespuesta` INT NOT NULL,
   PRIMARY KEY (`idVoto`),
-  INDEX `fk_Voto_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
-  INDEX `fk_Voto_Respuesta1_idx` (`Respuesta_idRespuesta` ASC) VISIBLE,
   CONSTRAINT `fk_Voto_Usuario1`
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `reto2_bbdd`.`Usuario` (`idUsuario`)
@@ -127,8 +122,6 @@ DROP TABLE IF EXISTS `reto2_bbdd`.`Pregunta_has_Tema` ;
 CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Pregunta_has_Tema` (
   `Pregunta_idPregunta` INT NOT NULL,
   `Tema_idTema` INT NOT NULL,
-  INDEX `fk_Pregunta_has_Tema_Tema1_idx` (`Tema_idTema` ASC) VISIBLE,
-  INDEX `fk_Pregunta_has_Tema_Pregunta1_idx` (`Pregunta_idPregunta` ASC) VISIBLE,
   PRIMARY KEY (`Pregunta_idPregunta`, `Tema_idTema`),
   CONSTRAINT `fk_Pregunta_has_Tema_Pregunta1`
     FOREIGN KEY (`Pregunta_idPregunta`)
