@@ -16,6 +16,7 @@ require "php/generar-nav-footer.php";
     <title>Aergibide S.L</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="./js/pagnav.js" type="text/javascript"></script>
     <link href="css/grid-general.css" type="text/css" rel="stylesheet">
     <link href="css/index.css" type="text/css" rel="stylesheet">
 </head>
