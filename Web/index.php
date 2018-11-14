@@ -29,8 +29,6 @@ require "php/generar-nav-footer.php";
     <section id="contenedor-selectores-preguntas-index">
         <div id="contenedor-selectores-index">
             <button name="recientes" class="boton-selector">Recientes</button>
-            <?php
-            ?>
             <button name="masvotadas" class="boton-selector">M&aacute;s votadas</button>
             <button name="sinresponder" class="boton-selector">Sin Responder</button>
             <button name="respondidas" class="boton-selector">Respondidas</button>

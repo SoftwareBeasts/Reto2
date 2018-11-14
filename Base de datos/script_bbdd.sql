@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS `reto2_bbdd`.`Pregunta` ;
 CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Pregunta` (
   `idPregunta` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NOT NULL,
-  `cuerpo` VARCHAR(256) NOT NULL,
+  `cuerpo` TEXT(65000) NOT NULL,
   `fecha` DATE NOT NULL,
   `archivos` VARCHAR(256) NULL,
   `Usuario_idUsuario` INT NOT NULL,
@@ -58,7 +58,7 @@ DROP TABLE IF EXISTS `reto2_bbdd`.`Respuesta` ;
 CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Respuesta` (
   `idRespuesta` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NOT NULL,
-  `cuerpo` VARCHAR(256) NOT NULL,
+  `cuerpo` TEXT(65000) NOT NULL,
   `fecha` DATE NOT NULL,
   `archivos` VARCHAR(256) NULL,
   `aprobado` TINYINT NOT NULL DEFAULT 0,
