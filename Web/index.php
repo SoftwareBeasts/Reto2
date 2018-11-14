@@ -30,7 +30,6 @@ require "php/generar-nav-footer.php";
         <div id="contenedor-selectores-index">
             <button name="recientes" class="boton-selector">Recientes</button>
             <?php
-            echo $_POST['modoBusqueda'];
             ?>
             <button name="masvotadas" class="boton-selector">M&aacute;s votadas</button>
             <button name="sinresponder" class="boton-selector">Sin Responder</button>

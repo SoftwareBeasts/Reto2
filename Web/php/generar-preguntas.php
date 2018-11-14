@@ -9,8 +9,26 @@ require "db/generar-preguntasDB.php";
 if(session_id()==''){
     session_start();
 }
-$temp = $_POST['modoBusqueda'];
-echo $temp;
+
+$temp = $_GET['modoBusqueda'];
+$cargar = new DOMNodeList();
+
+switch ($temp){
+    case "recientes":
+        
+        break;
+    case "masvotadas":
+
+        break;
+    case "sinresponder":
+
+        break;
+    case "respondidas":
+
+        break;
+
+}
+
 ?>
 <!DOCTYPE html>
 <html>
