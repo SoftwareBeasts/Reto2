@@ -1,0 +1,71 @@
+form label.login,
+form label.registro,
+form a {
+    color:  #c2c2c5;
+    display: block;
+    font-size: 14px;
+    height: 16px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+form label.registro{
+    color: #247ba0;
+}
+
+form input.transparent {
+    background: transparent;
+    opacity: 0.5;
+    border: 0;
+    border-bottom: 2px solid #c2c2c5 ;
+    color: #f2f2f2;
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    outline: none !important;
+    width: 100%;
+    padding: 2%;
+}
+
+form input.transparent.registro:valid {
+    border-bottom: 2px solid #00cb00;
+}
+
+form input.transparent.registro:invalid {
+    /*Para firefox*/
+    box-shadow:none;
+    border-bottom: 2px solid red !important;
+}
+
+form input.transparent.registro{
+    border-bottom: 2px solid #0d1321;
+    color: #1d2d44;
+    width: 50%;
+}
+
+input.error {
+    border-bottom: 1px solid red !important;
+}
+
+.submit {
+    background-color: #247ba0;
+    border: 0;
+    color: white;
+    border-radius: 28px;
+    display: block;
+    font-size: 16px;
+    height: 50px;
+    max-width: 100px;
+    outline: none !important;
+    top: 560px;
+    transition: box-shadow 150ms;
+    width: 100%;
+}
+
+.submit:hover {
+    background-color: #1d2d44;
+}
+
+input.limit {
+    background-color: #1d2d44;
+}

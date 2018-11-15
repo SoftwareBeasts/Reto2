@@ -1,6 +1,6 @@
 <?php
     require '../php/generar-nav-footer.php';
-    require '../php/db/usuarioDB.php';
+    require '../php/db/dbUtils.php';
 
     session_start();
 
@@ -21,13 +21,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css">
     <link rel="stylesheet" type="text/css" href="../css/login.css">
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/login.js"></script>
 </head>
 <body>
-    <main id="contenedor-principal" onload="">
+    <main id="contenedor-principal">
         <?php generarNav("../"); ?>
     <?php
     if(isset($_POST['usem']) && isset($_POST['pass'])){
-        $usuario = findUsuario($_POST['usem']);
+        //Consulta a BBDD
+        $usuario = encontrarUsuario($_POST['usem']);
         if($usuario != null){
             if(password_verify($_POST['pass'], $usuario['pass']))
                 $_SESSION['userLogged'] = $usuario;
@@ -38,53 +42,46 @@
             $datosIncorrectos = true;
         }
     }
-
-    if(isset($_SESSION['userLogged']) || $_SESSION['contador'] == 0){
+    ?>
+    <div class="center">
+        <form method="post" action="login.php">
+    <?php
+    if($_SESSION['userLogged'] == null){
         ?>
-        <div class="center">
-            <form method="post" action="login.php">
+        <div>
+            <label class="login" for="usem">Usuario o Email</label>
+            <input class="transparent" type="text" name="usem" id="usem" autofocus placeholder="ejemplo@ejemplo.com">
+        </div>
+        <div>
+            <label class="login" for="pass">Contraseña</label>
+            <input class="transparent" type="password" id="pass" name="pass" placeholder="···············">
+            <a href="./registro.php">Aún no estoy registrado</a>
+        </div>
         <?php
-        if($_SESSION['userLogged'] == null){
+        if($_SESSION['contador'] > 3){
             ?>
-                    <div>
-                        <label class="top" for="usem">Usuario o Email</label>
-                        <input class="top" type="text" name="usem" id="usem" placeholder="Usuario o Email">
-                    </div>
-                    <div>
-                        <label class="align center" for="pass">Contraseña</label>
-                        <input class="align center" type="password" id="pass" name="pass" placeholder="···············">
-                        <a href="#">Aún no estoy registrado</a>
-                    </div>
-                    <?php
-                    if($_SESSION['contador'] > 2){
-                        ?>
-                        <input type="submit" value="Login" disabled="disabled">
-                        <?php
-                    }
-                    elseif ($datosIncorrectos){
-                        echo "Incorrecto";
-                        ?>
-                        <?php
-                    }
-                    else{
-                        ?>
-                        <input type="submit" value="Login">
-                        <?php
-                    }
-                    ?>
+            <input class="submit limit" type="submit" value="Login" title="Límite de fallos excedido" disabled="disabled">
             <?php
         }
         else{
-            header("location:/index.php");
+            ?>
+            <input class="submit" type="submit" value="Login">
+            <?php
+            if($datosIncorrectos){
+                ?>
+                <input type="hidden" id="error" value="<?= $datosIncorrectos ?>">
+                <?php
+            }
         }
-        ?>
-            </form>
-        </div>
-        <?php
     }
+    else
+        header("location:../index.php");
     ?>
-
-        <?php generarFooter(); ?>
+        </form>
+    </div>
+    <?php
+    generarFooter(); ?>
     </main>
     </body>
+
 </html>
