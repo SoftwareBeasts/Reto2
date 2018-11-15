@@ -9,7 +9,7 @@
 function selectRespuestabyPreguntaID($conexion,$id){
     try{
 
-        $consulta = $conexion->prepare("SELECT * FROM pregunta WHERE Pregunta_idPregunta = :id");
+        $consulta = $conexion->prepare("SELECT  * FROM pregunta WHERE Pregunta_idPregunta = :id LIMIT 1");
         $consulta ->setFetchMode(PDO::FETCH_ASSOC);
         $consulta ->bindValue(':id',"$id");
         $consulta ->execute();
