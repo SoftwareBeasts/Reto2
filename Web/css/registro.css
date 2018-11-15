@@ -1,0 +1,4 @@
+main div.pos {
+    grid-area: 1/8/4/2;
+    opacity: 0.5;
+}
