@@ -27,7 +27,7 @@
         <?php generarNav("../"); ?>
     <?php
     if(isset($_POST['usem']) && isset($_POST['pass'])){
-        $usuario = findUsuario($_POST['usem']);
+        $usuario = findUsuario($_POST['usem'], "");
         if($usuario != null){
             if(password_verify($_POST['pass'], $usuario['pass']))
                 $_SESSION['userLogged'] = $usuario;

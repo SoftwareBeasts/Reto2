@@ -1,6 +1,6 @@
 <?php
 
-require 'dbUtils.php';
+require_once 'dbUtils.php';
 
 function findTema($nombre){
     $conexion = getConnection();
