@@ -7,9 +7,7 @@ if(isset($_GET['logout'])){
         header("location:index.php");
     }
 }
-
 require "php/generar-nav-footer.php";
-
 
 ?>
 <!DOCTYPE html>
@@ -17,6 +15,8 @@ require "php/generar-nav-footer.php";
 <head>
     <title>Aergibide S.L</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="./js/pagnav.js" type="text/javascript"></script>
     <link href="css/grid-general.css" type="text/css" rel="stylesheet">
     <link href="css/index.css" type="text/css" rel="stylesheet">
 </head>
@@ -29,10 +29,10 @@ require "php/generar-nav-footer.php";
 
     <section id="contenedor-selectores-preguntas-index">
         <div id="contenedor-selectores-index">
-            <button class="boton-selector">Recientes</button>
-            <button class="boton-selector">M&aacute;s votadas</button>
-            <button class="boton-selector">Sin Responder</button>
-            <button class="boton-selector">Respondidas</button>
+            <button name="recientes" class="boton-selector">Recientes</button>
+            <button name="masvotadas" class="boton-selector">M&aacute;s votadas</button>
+            <button name="sinresponder" class="boton-selector">Sin Responder</button>
+            <button name="respondidas" class="boton-selector">Respondidas</button>
         </div>
         <div id="contenedor-preguntas-index">
             <!--<article class="pregunta-index" >
@@ -46,6 +46,7 @@ require "php/generar-nav-footer.php";
                 </div>
             </article>-->
         </div>
+        <hr>
     </section>
 
     <?php
@@ -55,3 +56,4 @@ require "php/generar-nav-footer.php";
 </main>
 </body>
 </html>
+<script src="js/index.js" type="text/javascript"></script>

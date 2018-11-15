@@ -26,6 +26,9 @@ button.boton-selector{
 button.boton-selector:first-child{
     margin-left:3vw;
 }
+button#boton-seleccion-seleccionado{
+    background-color: #748CAB;
+}
 /*Preguntas*/
 div#contenedor-preguntas-index{
     width: 100%;

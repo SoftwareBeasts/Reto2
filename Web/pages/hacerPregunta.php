@@ -3,8 +3,10 @@ require "../php/generar-nav-footer.php";
 
 session_start();
 
-/*if(!isset($_SESSION['userLogged'])){header('Location: login.php');}*/
-
+    /*if(!isset($_SESSION['userLogged']))
+    {
+        header('Location: login.php');
+    }*/
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,8 +38,6 @@ session_start();
             {
                 throw "Hacer pregunta: No has introducido ninguna categoría.";
             }
-            // Separar categorias por comas y meterlo en un array (Hacerlo con PHP)
-            /*$("input[name='categoriasPregunta']").val(categorias.split(","));*/
             return true;
         }
         catch(err)
@@ -53,7 +53,7 @@ session_start();
     ?>
     <section id="contenedor-hacer-preguntas">
         <h1>Haz tu pregunta</h1>
-        <form action="hacerPregunta.php" method="post" onsubmit="return validarDatos();">
+        <form action="../php/hacerPregunta.php" method="post" onsubmit="return validarDatos();">
             <ul>
                 <li>
                     <input type="text" name="tituloPregunta" value="" placeholder="T&iacute;tulo" />
@@ -68,10 +68,8 @@ session_start();
             </ul>
         </form>
     </section>
-    <aside id="barra-lateral-index">
-
-    </aside>
     <?php
+    generarAside();
     generarFooter();
     ?>
 </main>

@@ -2,16 +2,22 @@
 
 require 'dbUtils.php';
 
-function findUsuario($correo){
+function findUsuario($correo,$id){
     $conexion = getConnection();
 
     try{
-        $datos = array('correo' => $correo);
-        $consulta = $conexion -> prepare('SELECT * FROM usuario WHERE correo = :correo');
+        if($correo == "no"){
+            $datos = array('id'=>$id);
+            $consulta = $conexion -> prepare('SELECT * FROM usuario WHERE id = :id');
+        }else {
+            $datos = array('correo' => $correo);
+            $consulta = $conexion->prepare('SELECT * FROM usuario WHERE correo = :correo');
+        }
         $consulta -> setFetchMode(PDO::FETCH_ASSOC);
         $consulta -> execute($datos);
 
         $usuario = $consulta -> fetch();
+
 
         if($usuario == null){
             echo "NULL";
