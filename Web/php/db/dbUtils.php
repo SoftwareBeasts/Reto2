@@ -57,3 +57,9 @@ function seleccionarSinResponder($id=null){
 
     return $listaPreguntas;
 }
+
+function verificarNombreUsuario($nombreusu){
+    $conexion = getConnection();
+    $encontrado = findUsuarioByNombreUsu($conexion, $nombreusu);
+    return $encontrado;
+}

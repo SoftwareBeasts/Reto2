@@ -22,3 +22,21 @@ function findUsuario($conexion,$correo,$id=null){
         return null;
     }
 }
+
+function findUsuarioByNombreUsu($conexion, $nombreusu){
+    $encontrado = false;
+    try {
+        $consulta = $conexion->prepare('SELECT nombreusu FROM usuario WHERE nombreusu = :nombreusu');
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
+        $consulta->bindValue(':nombreusu', "$nombreusu");
+        $consulta->execute();
+        $usuario = $consulta -> fetch();
+        if(!$usuario == null)
+            $encontrado = true;
+        else
+            $encontrado = false;
+    }
+    catch (Exception $e){
+    }
+    return $encontrado;
+}
