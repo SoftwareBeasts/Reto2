@@ -2,6 +2,12 @@
 require "preguntasDB.php";
 require "usuarioDB.php";
 require "respuestaDB.php";
+
+if(isset($_POST['nombreusu'])){
+    $resultado = verificarNombreUsuario($_POST['nombreusu']);
+    echo($resultado);
+}
+
 function getConnection(){
     $bbdd = "mysql:host=localhost;dbname=reto2_bbdd;charset=utf8";
     $usuario = "root";
