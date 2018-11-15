@@ -49,7 +49,32 @@ function seleccionarSinResponder($id=null){
         $conexion = getConnection();
         $respuesta = selectRespuestabyPreguntaID($conexion,$id);
         if($respuesta['Pregunta_idPregunta']==null){
-            $listaPreguntas[$id]=$pregunta;
+            if($pregunta!=null) {
+                $listaPreguntas[$id] = $pregunta;
+            }
+        }
+
+        $id++;
+    }
+
+    return $listaPreguntas;
+}
+
+function seleccionarRespondidas($id=null){
+    if($id==null){
+        $id=1;
+    }
+    $pregunta=" ";
+    $listaPreguntas=array();
+    while(sizeof($listaPreguntas)<10&&$pregunta!=null){
+        $conexion = getConnection();
+        $pregunta = selectPreguntabyID($conexion,$id);
+        $conexion = getConnection();
+        $respuesta = selectRespuestabyPreguntaID($conexion,$id);
+        if($respuesta['Pregunta_idPregunta']!=null){
+            if($pregunta!=null) {
+                $listaPreguntas[$id] = $pregunta;
+            }
         }
 
         $id++;

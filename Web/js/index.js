@@ -5,12 +5,19 @@ $(function () {
     }
     ;
 });
-
+/*EVENTOS*/
 $(".boton-selector").click(cambiarBusqueda);
 
+
+/*FUNCIONES*/
 function cambiarBusqueda() {
     $("#boton-seleccion-seleccionado").removeAttr('id');
     $(this).attr("id", "boton-seleccion-seleccionado");
     $("#contenedor-preguntas-index").load("php/generar-preguntas.php?modoBusqueda="+$("#boton-seleccion-seleccionado").attr("name"));
 }
 
+
+function cargarMasPreguntas(){
+    $("#contenedor-preguntas-index").load("php/generar-preguntas.php?modoBusqueda="+$("#botonCargarMasPreguntas").val()
+        +"&cargarMas="+$("#botonCargarMasPreguntas").attr("name"));
+}

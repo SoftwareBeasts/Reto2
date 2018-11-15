@@ -17,13 +17,14 @@ if(!isset($_SESSION['botonMasModo'])){
 if (!isset($_SESSION['almacenPreguntas'])){
     $_SESSION['almacenPreguntas']=array();
 }
-
 $modoBusqueda = $_GET['modoBusqueda'];
-$temp = " ";
+ if($modoBusqueda!=$_SESSION['botonMasModo']){
+     $_SESSION['botonMasModo']=$modoBusqueda;
+     $_SESSION['almacenPreguntas']=array();
+ }
 
-if(isset($_GET['cargarMas'])){
-    $temp = $_GET['cargarMas'];
-}
+
+
 
 switch ($modoBusqueda){
     case "recientes":
@@ -39,17 +40,39 @@ switch ($modoBusqueda){
         }
         break;
     case "sinresponder":
-        $listaPreguntas = seleccionarSinResponder();
-        foreach ($listaPreguntas as $clave=>$valor){
+        if(isset($_GET['cargarMas'])){
+            $id = $_GET['cargarMas'];
+        }
+        else{
+            $id=null;
+        }
+        $listaPreguntas = seleccionarSinResponder($id);
+        $preguntasTemp = $_SESSION['almacenPreguntas'];
+        $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
+        foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
             htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
         }
         if(sizeof($listaPreguntas)==10){
-            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
+            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda,$listaPreguntas);
         }
 
         break;
     case "respondidas":
-
+        if(isset($_GET['cargarMas'])){
+            $id = $_GET['cargarMas'];
+        }
+        else{
+            $id=null;
+        }
+        $listaPreguntas = seleccionarRespondidas($id);
+        $preguntasTemp = $_SESSION['almacenPreguntas'];
+        $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
+        foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        }
+        if(sizeof($listaPreguntas)==10){
+            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda,$listaPreguntas);
+        }
         break;
 
 }
@@ -71,10 +94,12 @@ function htmlPreguntaPre($id,$usuario,$fecha,$titulo)
 }
 
 function htmlBotonMas($id,$modoBusqueda){
+    $_SESSION['botonMasModo']=$modoBusqueda;
+
 
     ?>
 
-        <button id="botonCargarMasPreguntas" value="<?=$modoBusqueda?>" name="<?=$id?>">Cargar M&aacute;s</button>
+        <button id="botonCargarMasPreguntas" value="<?=$modoBusqueda?>" name="<?=$id?>" onclick="cargarMasPreguntas()">Cargar M&aacute;s</button>
 
     <?php
 
