@@ -6,16 +6,19 @@
  * Time: 12:51
  */
 require "db/generar-preguntasDB.php";
+require "db/usuarioDB.php";
 if(session_id()==''){
     session_start();
 }
-
 $temp = $_GET['modoBusqueda'];
-$cargar = new DOMNodeList();
+
 
 switch ($temp){
     case "recientes":
-
+        $listaPreguntas = seleccionarRecientes();
+        foreach ($listaPreguntas as $clave=>$valor){
+            htmlPreguntaPre($valor['idPregunta'],findUsuario("no",$valor['Usuario_idUsuario']),$valor['fecha'],$valor['titulo']);
+        }
         break;
     case "masvotadas":
 
@@ -29,16 +32,12 @@ switch ($temp){
 
 }
 
-?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-    <article class="pregunta-index" >
-        <span class="informacion-usuario-fecha-pregunta">por <a href="#" class="link-perfil-usuario">Unai Puelles</a> a 11 noviembre 2018</span>
-        <h2 class="titulo-pregunta"><a href="#">Como usar PHP</a></h2>
+function htmlPreguntaPre($id,$usuario,$fecha,$titulo)
+{
+    ?>
+    <article class="pregunta-index" id="<?=$id?>">
+        <span class="informacion-usuario-fecha-pregunta">por <a href="#" class="link-perfil-usuario"><?=$usuario?></a> a <?=$fecha?></span>
+        <h2 class="titulo-pregunta"><a href="#"><?=$titulo?></a></h2>
         <div class="contenedor-categorias-pregunta">
             <a href="#"><label>PHP</label></a>
         </div>
@@ -46,10 +45,13 @@ switch ($temp){
             <span class="puntuacion-pregunta-index">11</span>
         </div>
     </article>
-    </body>
-</html>
+    <?php
+}
 
-<?php
+
+
 
 
 ?>
+
+

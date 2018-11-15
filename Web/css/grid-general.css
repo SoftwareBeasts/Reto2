@@ -13,7 +13,7 @@ body,html{
     margin-top: 50px;
     display: grid;
     grid-template-columns: repeat(10,1fr);
-    grid-template-rows: repeat(5,1fr);
+    grid-template-rows: repeat(4,1fr) 200px;
     width: 98.673vw;
     min-height: 100vh;
 }
