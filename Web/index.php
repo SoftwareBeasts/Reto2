@@ -26,7 +26,6 @@ require "php/generar-nav-footer.php";
     <?php
     generarNav('./');
     ?>
-
     <section id="contenedor-selectores-preguntas-index">
         <div id="contenedor-selectores-index">
             <button name="recientes" class="boton-selector">Recientes</button>

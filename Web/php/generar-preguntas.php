@@ -5,29 +5,74 @@
  * Date: 12/11/2018
  * Time: 12:51
  */
-require "db/generar-preguntasDB.php";
-require "db/usuarioDB.php";
+require "db/dbUtils.php";
 if(session_id()==''){
     session_start();
 }
-$temp = $_GET['modoBusqueda'];
+
+if(!isset($_SESSION['botonMasModo'])){
+    $_SESSION['botonMasModo']="ninguno";
+}
+
+if (!isset($_SESSION['almacenPreguntas'])){
+    $_SESSION['almacenPreguntas']=array();
+}
+$modoBusqueda = $_GET['modoBusqueda'];
+ if($modoBusqueda!=$_SESSION['botonMasModo']){
+     $_SESSION['botonMasModo']=$modoBusqueda;
+     $_SESSION['almacenPreguntas']=array();
+ }
 
 
-switch ($temp){
+
+
+switch ($modoBusqueda){
     case "recientes":
         $listaPreguntas = seleccionarRecientes();
         foreach ($listaPreguntas as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],findUsuario("no",$valor['Usuario_idUsuario']),$valor['fecha'],$valor['titulo']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
         }
         break;
     case "masvotadas":
-
+        $listaPreguntas = seleccionarMasVotadas();
+        foreach ($listaPreguntas as $clave=>$valor){
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        }
         break;
     case "sinresponder":
+        if(isset($_GET['cargarMas'])){
+            $id = $_GET['cargarMas'];
+        }
+        else{
+            $id=null;
+        }
+        $listaPreguntas = seleccionarSinResponder($id);
+        $preguntasTemp = $_SESSION['almacenPreguntas'];
+        $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
+        foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        }
+        if(sizeof($listaPreguntas)==10){
+            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda,$listaPreguntas);
+        }
 
         break;
     case "respondidas":
-
+        if(isset($_GET['cargarMas'])){
+            $id = $_GET['cargarMas'];
+        }
+        else{
+            $id=null;
+        }
+        $listaPreguntas = seleccionarRespondidas($id);
+        $preguntasTemp = $_SESSION['almacenPreguntas'];
+        $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
+        foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        }
+        if(sizeof($listaPreguntas)==10){
+            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda,$listaPreguntas);
+        }
         break;
 
 }
@@ -48,6 +93,17 @@ function htmlPreguntaPre($id,$usuario,$fecha,$titulo)
     <?php
 }
 
+function htmlBotonMas($id,$modoBusqueda){
+    $_SESSION['botonMasModo']=$modoBusqueda;
+
+
+    ?>
+
+        <button id="botonCargarMasPreguntas" value="<?=$modoBusqueda?>" name="<?=$id?>" onclick="cargarMasPreguntas()">Cargar M&aacute;s</button>
+
+    <?php
+
+}
 
 
 
