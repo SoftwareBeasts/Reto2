@@ -5,10 +5,15 @@
  * Date: 12/11/2018
  * Time: 12:51
  */
-require "db/generar-preguntasDB.php";
-require "db/usuarioDB.php";
+require "db/dbUtils.php";
 if(session_id()==''){
     session_start();
+}
+if(!isset($_SESSION['botonMasModo'])){
+    $_SESSION['botonMasModo']="ninguno";
+}
+if (!isset($_SESSION['almacenPreguntas'])){
+    $_SESSION['almacenPreguntas']=array();
 }
 $temp = $_GET['modoBusqueda'];
 
@@ -17,13 +22,20 @@ switch ($temp){
     case "recientes":
         $listaPreguntas = seleccionarRecientes();
         foreach ($listaPreguntas as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],findUsuario("no",$valor['Usuario_idUsuario']),$valor['fecha'],$valor['titulo']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
         }
         break;
     case "masvotadas":
-
+        $listaPreguntas = seleccionarMasVotadas();
+        foreach ($listaPreguntas as $clave=>$valor){
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        }
         break;
     case "sinresponder":
+        $listaPreguntas = seleccionarSinResponder();
+        foreach ($listaPreguntas as $clave=>$valor){
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        }
 
         break;
     case "respondidas":
@@ -47,7 +59,14 @@ function htmlPreguntaPre($id,$usuario,$fecha,$titulo)
     </article>
     <?php
 }
+function htmlBotonMas($id){
+    ?>
 
+
+
+    <?php
+
+}
 
 
 
