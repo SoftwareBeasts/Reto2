@@ -38,23 +38,22 @@ function seleccionarMasVotadas(){
 }
 
 function seleccionarSinResponder($id=null){
-    $contador = 1;
-    if ($id!=null){
-        $contador = $id;
+    if ($id==null){
+        $id = 1;
     }
-
+    $pregunta = " ";
     $listaPreguntas=array();
-    while(sizeof($listaPreguntas)<10){
+    while(sizeof($listaPreguntas)<10&&$pregunta!=null){
         $conexion = getConnection();
-        $respuesta = selectRespuestabyPreguntaID($conexion,$contador);
+        $pregunta = selectPreguntabyID($conexion,$id);
+        $conexion = getConnection();
+        $respuesta = selectRespuestabyPreguntaID($conexion,$id);
         if($respuesta['Pregunta_idPregunta']==null){
-            $conexion = getConnection();
-            $pregunta = selectPreguntabyID($conexion,$contador);
-            $listaPreguntas[$contador] = $pregunta;
+            $listaPreguntas[$id]=$pregunta;
         }
-        $contador++;
+
+        $id++;
     }
+
     return $listaPreguntas;
-
-
 }
