@@ -9,16 +9,23 @@ require "db/dbUtils.php";
 if(session_id()==''){
     session_start();
 }
+
 if(!isset($_SESSION['botonMasModo'])){
     $_SESSION['botonMasModo']="ninguno";
 }
+
 if (!isset($_SESSION['almacenPreguntas'])){
     $_SESSION['almacenPreguntas']=array();
 }
-$temp = $_GET['modoBusqueda'];
 
+$modoBusqueda = $_GET['modoBusqueda'];
+$temp = " ";
 
-switch ($temp){
+if(isset($_GET['cargarMas'])){
+    $temp = $_GET['cargarMas'];
+}
+
+switch ($modoBusqueda){
     case "recientes":
         $listaPreguntas = seleccionarRecientes();
         foreach ($listaPreguntas as $clave=>$valor){
@@ -35,6 +42,9 @@ switch ($temp){
         $listaPreguntas = seleccionarSinResponder();
         foreach ($listaPreguntas as $clave=>$valor){
             htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        }
+        if(sizeof($listaPreguntas)==10){
+            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
         }
 
         break;
@@ -59,10 +69,12 @@ function htmlPreguntaPre($id,$usuario,$fecha,$titulo)
     </article>
     <?php
 }
-function htmlBotonMas($id){
+
+function htmlBotonMas($id,$modoBusqueda){
+
     ?>
 
-
+        <button id="botonCargarMasPreguntas" value="<?=$modoBusqueda?>" name="<?=$id?>">Cargar M&aacute;s</button>
 
     <?php
 
