@@ -26,6 +26,7 @@ if(isset($_POST["tituloPregunta"])&&isset($_POST["descripcionPregunta"])&&isset(
         }
         insertPreguntaTema($pregunta["idPregunta"],$categoria["idTema"]);
     }
+    header("Location: ../index.php");
 }
 
 ?>
