@@ -3,7 +3,10 @@ require "../php/generar-nav-footer.php";
 
 session_start();
 
-/*if(!isset($_SESSION['userLogged'])){header('Location: login.php');}*/
+    if(!isset($_SESSION['userLogged']))
+    {
+        header('Location: login.php');
+    }
 
 ?>
 <!DOCTYPE html>
@@ -26,14 +29,14 @@ session_start();
             var data = $(this).text();
             $(this).remove();
 
-            $('<input id="nombrePerfilInput" type="text" value="'+data+'" />').appendTo('#nombrePerfilDiv');
+            $('<form action="perfil.php" method="post"><input id="nombrePerfil" name="nombrePerfil" type="text" value="'+data+'" /><input type="submit" value="Enviar"></form>').appendTo('#nombrePerfilDiv');
         });
         $("#descripcionPerfil").click(function()
         {
             var data = $(this).text();
             $(this).remove();
 
-            $('<input id="descripcionPerfilInput" type="text" value="'+data+'" />').appendTo('#descripcionPerfilDiv');
+            $('<form action="perfil.php" method="post"><input id="descripcionPerfil" name="descripcionPerfil" type="text" value="'+data+'" /><input type="submit" value="Enviar"></form>').appendTo('#descripcionPerfilDiv');
         });
     });
 </script>
@@ -43,9 +46,9 @@ session_start();
     ?>
     <section id="contenedor-perfil">
         <div>
-            <h3 id="nombrePerfilDiv"><span id="nombrePerfil"><?= $_SESSION["userLogged"]["nombreusu"]," " ?>Usuario</span></h3>
+            <h3 id="nombrePerfilDiv"><span id="nombrePerfil"><?= $_SESSION["userLogged"]["nombreusu"] ?>Usuario</span></h3>
             <p>Preguntas realizadas: 1 &#124; Respuestas proporcionadas: 1</p>
-            <p id="descripcionPerfilDiv"><span id="descripcionPerfil"><?= $_SESSION["userLogged"]["desc"]," " ?>Descripci&oacute;n</span></p>
+            <p id="descripcionPerfilDiv"><span id="descripcionPerfil"><?= $_SESSION["userLogged"]["desc"] ?>Descripci&oacute;n</span></p>
         </div>
         <ul>
             <li>Preguntas</li>
@@ -78,9 +81,8 @@ session_start();
             </div>
         </article>
     </section>
-    <aside id="barra-lateral-index">
-    </aside>
     <?php
+    generarAside();
     generarFooter();
     ?>
 </main>
