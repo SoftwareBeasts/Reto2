@@ -1,4 +1,6 @@
 <?php
+require_once "preguntaDB.php";
+require_once "temaDB.php";
 require "preguntasDB.php";
 require "usuarioDB.php";
 require "respuestaDB.php";
@@ -93,4 +95,41 @@ function verificarNombreUsuario($nombreusu){
     $conexion = getConnection();
     $encontrado = findUsuarioByNombreUsu($conexion, $nombreusu);
     return $encontrado;
+}
+
+function insertarPregunta($titulo, $descripcion, $categorias, $usuario){
+    $conexion = getConnection();
+    insertPregunta($conexion, $titulo, $descripcion, $usuario);
+    $pregunta=findPregunta($conexion, $titulo, $descripcion, $usuario);
+
+    foreach($categorias as $elements)
+    {
+        $categoria=findTema($conexion, $elements);
+
+        if($categoria == null)
+        {
+            insertTema($conexion, $elements);
+            $categoria=findTema($conexion, $elements);
+        }
+        insertPreguntaTema($conexion, $pregunta["idPregunta"],$categoria["idTema"]);
+    }
+    $conexion=null;
+}
+
+function buscarPreguntasRespuestasUsuario($tipo, $usuario){
+    $conexion = getConnection();
+    switch ($tipo){
+        case "Preguntas":
+            $preguntas=findPreguntasByUsuario($conexion, $usuario);
+            break;
+        case "Respuestas":
+            $respuestas=findRespuestasByUsuario($conexion, $usuario);
+            foreach ($respuestas as $clave=>$valor)
+            {
+                $preguntas[]=findPreguntaById($conexion, $valor["idRespuesta"]);
+            }
+            break;
+    }
+    $conexion=null;
+    return $preguntas;
 }

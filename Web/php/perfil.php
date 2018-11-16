@@ -1,21 +1,32 @@
 <?php
 
-require_once "db/preguntaDB.php";
-require_once "db/respuestaDB.php";
-require_once "db/temaDB.php";
-require_once "db/usuarioDB.php";
+require_once "db/dbUtils.php";
 
 session_start();
 
 function listaPreguntasUsuario() {
 
-    $preguntas=findPreguntasByUsuario($_SESSION["userLogged"]["idUsuario"]);
+    $preguntas=buscarPreguntasRespuestasUsuario("Preguntas", $_SESSION["userLogged"]["idUsuario"]);
     foreach($preguntas as $clave=>$valor)
     {
+        preguntaRespuestaUsuario($valor["Usuario_idUsuario"], $valor["fecha"],$valor["titulo"]);
+    }
+}
+
+function listaRespuestasUsuario() {
+
+    $preguntas=buscarPreguntasRespuestasUsuario("Respuestas", $_SESSION["userLogged"]["idUsuario"]);
+    foreach($preguntas as $clave=>$valor)
+    {
+        preguntaRespuestaUsuario($valor["Usuario_idUsuario"], $valor["fecha"],$valor["titulo"]);
+    }
+}
+
+function preguntaRespuestaUsuario($usuario, $fecha, $titulo) {
     ?>
-    <article class="preguntasUsuario">
-        <p>Por <span><?= $valor["Usuario_idUsuario"] ?></span>&nbsp;el <span><?= $valor["fecha"] ?></span></p>
-        <h3><?= $valor["titulo"] ?></h3>
+    <article>
+        <p>Por <span><?= $usuario ?></span>&nbsp;el <span><?= $fecha ?></span></p>
+        <h3><?= $titulo ?></h3>
         <div>
             <div>
                 <p>PHP</p>
@@ -26,33 +37,5 @@ function listaPreguntasUsuario() {
         </div>
     </article>
     <?php
-    }
 }
-
-function listaRespuestasUsuario() {
-
-    $respuestas=findRespuestasByUsuario($_SESSION["userLogged"]["idUsuario"]);
-    foreach ($respuestas as $clave=>$valor)
-    {
-        $preguntas[]=findPreguntaById($valor["idRespuesta"]);
-    }
-    foreach($preguntas as $clave=>$valor)
-    {
-        ?>
-        <article class="respuestasUsuario">
-            <p>Por <span><?= $valor["Usuario_idUsuario"] ?></span>&nbsp;el <span><?= $valor["fecha"] ?></span></p>
-            <h3><?= $valor["titulo"] ?></h3>
-            <div>
-                <div>
-                    <p>PHP</p>
-                </div>
-                <div>
-                    <p>&nbsp;-5&nbsp;</p>
-                </div>
-            </div>
-        </article>
-        <?php
-    }
-}
-
 ?>

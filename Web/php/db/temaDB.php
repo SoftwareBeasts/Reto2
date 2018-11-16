@@ -1,10 +1,6 @@
 <?php
 
-require_once 'dbUtils.php';
-
-function findTema($nombre){
-    $conexion = getConnection();
-
+function findTema($conexion, $nombre){
     try{
         $datos = array('nombre' => $nombre);
 
@@ -13,8 +9,6 @@ function findTema($nombre){
         $consulta -> execute($datos);
 
         $tema = $consulta -> fetch();
-
-        $conexion = null;
         return $tema;
     }
     catch (Exception $e){
@@ -22,15 +16,11 @@ function findTema($nombre){
     }
 }
 
-function insertTema($nombre){
-    $conexion = getConnection();
-
+function insertTema($conexion, $nombre){
     try{
         $datos = array('nombre' => $nombre);
         $consulta = $conexion -> prepare('INSERT INTO Tema (nombre) VALUES (:nombre)');
         $consulta -> execute($datos);
-
-        $conexion = null;
     }
     catch (Exception $e){
         return null;

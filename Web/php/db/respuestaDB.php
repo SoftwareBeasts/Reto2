@@ -1,10 +1,6 @@
 <?php
 
-require_once 'dbUtils.php';
-
-function findRespuestasByUsuario($usuario){
-    $conexion = getConnection();
-
+function findRespuestasByUsuario($conexion, $usuario){
     try{
         $datos = array('usuario' => $usuario);
 
@@ -16,8 +12,6 @@ function findRespuestasByUsuario($usuario){
         {
             $respuestas[]=$respuesta;
         }
-
-        $conexion = null;
         return $respuestas;
     }
     catch (Exception $e){
