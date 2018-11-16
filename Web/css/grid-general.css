@@ -225,7 +225,7 @@ div#contenedor-secundario-categorias-aside a:hover{
 @media screen and (min-width: 400px) and (max-width: 800px) {
 
     #contenedor-principal {
-        grid-template-columns: repeat(8,1fr);
+        display: block;
     }
 
     form#formulario-busqueda, aside#barra-lateral-aside {
@@ -236,9 +236,10 @@ div#contenedor-secundario-categorias-aside a:hover{
 @media screen and (max-width: 400px) {
 
     #contenedor-principal {
+        display: block;
     }
 
-    form#formulario-busqueda, aside#barra-lateral-aside {
+    img#logo-foro, form#formulario-busqueda, aside#barra-lateral-aside {
         display: none;
     }
 }
