@@ -39,3 +39,16 @@ function findUsuarioByNombreUsu($conexion, $nombreusu){
     }
     return $encontrado;
 }
+
+function altaUsuario($conexion, $datos){
+    $correcto = false;
+    try{
+        $consulta = $conexion -> prepare('INSERT INTO usuario (nombreusu, correo, pass, "desc", img) 
+                                          VALUES (:nombreusu, :correo, :pass, :desc, :img)');
+        $consulta -> execute($datos);
+        $correcto = true;
+    }
+    catch (Exception $e){
+    }
+    return $correcto;
+}
