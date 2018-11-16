@@ -1,6 +1,6 @@
 main div.center {
-    grid-area: 2/4/4/8;
-    background-color: #748cab;
+    grid-area: 2/5/4/7;
+    background-image: linear-gradient(to bottom right, #748cab,  #1d2d44);
     /*box-shadow: 2px 3px 5px 1px black;*/
     border-radius: 5px;
     animation: fadein 2s;

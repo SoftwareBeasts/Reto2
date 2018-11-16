@@ -1,10 +1,29 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 2gdaw08
- * Date: 15/11/2018
- * Time: 9:47
- */
+
+require_once 'dbUtils.php';
+
+function findRespuestasByUsuario($usuario){
+    $conexion = getConnection();
+
+    try{
+        $datos = array('usuario' => $usuario);
+
+        $consulta = $conexion -> prepare('SELECT * FROM Respuesta WHERE Usuario_idUsuario = :usuario');
+        $consulta -> setFetchMode(PDO::FETCH_ASSOC);
+        $consulta -> execute($datos);
+
+        while($respuesta = $consulta -> fetch())
+        {
+            $respuestas[]=$respuesta;
+        }
+
+        $conexion = null;
+        return $respuestas;
+    }
+    catch (Exception $e){
+        return null;
+    }
+}
 
 function selectRespuestabyPreguntaID($conexion,$id){
     try{
@@ -22,3 +41,4 @@ function selectRespuestabyPreguntaID($conexion,$id){
         echo $e;
     }
 }
+?>

@@ -1,5 +1,6 @@
 <?php
 
+require_once 'dbUtils.php';
 
 function findUsuario($conexion,$correo,$id=null){
 
@@ -39,4 +40,17 @@ function findUsuarioByNombreUsu($conexion, $nombreusu){
     catch (Exception $e){
     }
     return $encontrado;
+}
+
+function altaUsuario($conexion, $datos){
+    $correcto = false;
+    try{
+        $consulta = $conexion -> prepare('INSERT INTO usuario (nombreusu, correo, pass, "desc", img) 
+                                          VALUES (:nombreusu, :correo, :pass, :desc, :img)');
+        $consulta -> execute($datos);
+        $correcto = true;
+    }
+    catch (Exception $e){
+    }
+    return $correcto;
 }

@@ -1,5 +1,6 @@
 <?php
 require "../php/generar-nav-footer.php";
+require "../php/perfil.php";
 
 session_start();
 
@@ -7,7 +8,6 @@ session_start();
     {
         header('Location: login.php');
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,43 +46,20 @@ session_start();
     ?>
     <section id="contenedor-perfil">
         <div>
-            <h3 id="nombrePerfilDiv"><span id="nombrePerfil"><?= $_SESSION["userLogged"]["nombreusu"] ?>Usuario</span></h3>
+            <h3 id="nombrePerfilDiv"><span id="nombrePerfil"><?= $_SESSION["userLogged"]["nombreusu"] ?></span></h3>
             <p>Preguntas realizadas: 1 &#124; Respuestas proporcionadas: 1</p>
-            <p id="descripcionPerfilDiv"><span id="descripcionPerfil"><?= $_SESSION["userLogged"]["desc"] ?>Descripci&oacute;n</span></p>
+            <p id="descripcionPerfilDiv"><span id="descripcionPerfil"><?= $_SESSION["userLogged"]["desc"] ?></span></p>
         </div>
         <ul>
             <li>Preguntas</li>
             <li>Respuestas</li>
         </ul>
-        <article>
-            <p>Por <span>@usuario</span>&nbsp;el <span>@fecha</span></p>
-            <h3>Pregunta</h3>
-            <div>
-                <div>
-                    <p>Categor&iacute;a</p>
-                    <p>Categor&iacute;a</p>
-                </div>
-                <div>
-                    <p>&nbsp;-5&nbsp;</p>
-                </div>
-            </div>
-        </article>
-        <article>
-            <p>Por <span>@usuario</span>&nbsp;el <span>@fecha</span></p>
-            <h3>Pregunta</h3>
-            <div>
-                <div>
-                    <p>Categor&iacute;a</p>
-                    <p>Categor&iacute;a</p>
-                </div>
-                <div>
-                    <p>&nbsp;-5&nbsp;</p>
-                </div>
-            </div>
-        </article>
+        <?php
+            listaPreguntasUsuario();
+            listaRespuestasUsuario();
+        ?>
     </section>
     <?php
-    generarAside();
     generarFooter();
     ?>
 </main>

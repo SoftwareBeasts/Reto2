@@ -1,7 +1,13 @@
 <?php
-require "preguntasDB.php";
-require "usuarioDB.php";
-require "respuestaDB.php";
+require_once "preguntasDB.php";
+require_once "usuarioDB.php";
+require_once "respuestaDB.php";
+
+if(isset($_POST['nombreusu'])){
+    $resultado = verificarNombreUsuario($_POST['nombreusu']);
+    die($resultado);
+}
+
 function getConnection(){
     $bbdd = "mysql:host=localhost;dbname=reto2_bbdd;charset=utf8";
     $usuario = "root";
@@ -22,6 +28,13 @@ function encontrarUsuario($correo,$id=null){
     $usuario = findUsuario($conexion,$correo,$id);
     return $usuario;
 }
+
+function registrarUsuario($datos){
+    $conexion = getConnection();
+    $correcto = altaUsuario($conexion, $datos);
+    return $correcto;
+}
+
 function seleccionarRecientes(){
     $conexion = getConnection();
     $listaPreguntas = selectRecientes($conexion);
