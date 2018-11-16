@@ -23,6 +23,7 @@ div#contenedor-pregunta>span{
 }
 div#contenedor-pregunta>span>a{
     font-size: larger;
+    text-transform: capitalize;
 }
 div#contenedor-pregunta h2#titulo-pregunta{
     width: 100%;
@@ -75,13 +76,22 @@ div#contenedor-respuestas article.contenedor-respuesta:nth-child(2n){
     background-color: #e8f1f2;
 }
 article.contenedor-respuesta{
-    border:0.5px solid #0d1321;
+    border-width: 0px 0.5px 0.5px 0.5px;
+    border-color: #0D1321;
+    border-style: solid;
     display: flex;
     flex-flow: row wrap;
+}
+div#contenedor-respuestas article.contenedor-respuesta:first-of-type{
+    border-top-width: 0.5px;
 }
 article.contenedor-respuesta>span{
     margin-top: 3px;
     margin-left:15px;
+    width: 100%;
+}
+article.contenedor-respuesta h3.titulo-respuesta-pregunta{
+    margin-left: 20px;
     width: 100%;
 }
 article.contenedor-respuesta p.respuesta-pregunta{
@@ -113,22 +123,30 @@ div#contenedor-responder-pregunta form{
     display: flex;
     flex-flow: column wrap;
 }
+div#contenedor-responder-pregunta form input#titulo-respuesta{
+    width: 50%;
+    align-self: center;
+    color: #0D1321;
+}
 div#contenedor-responder-pregunta form textarea{
     min-width: 75%;
     max-width: 94%;
-    min-height: 50px;
+    min-height: 200px;
     margin-right: 3%;
     margin-left: 3%;
+    color: #0D1321;
 }
-div#contenedor-responder-pregunta form input{
+div#contenedor-responder-pregunta form input#archivo-respuesta{
+    width: 75%;
+    align-self: center;
+    color: #0D1321;
+}
+
+div#contenedor-responder-pregunta form input#boton-responder{
     width: 15%;
     align-self: center;
     margin-top: 10px;
     margin-bottom: 5px;
-    border: 0.5px solid #0d1321;
-    color: #e8f1f2;
-    border-radius: 10%;
-    background-color: #247ba0;
     transition: background-color 1s;
     -webkit-transition: background-color 1s;
 }
@@ -149,7 +167,7 @@ img.imagen-dislike{
 img.imagen-dislike:hover,img.imagen-like:hover{
     filter: blur(1px);
 }
-div#contenedor-responder-pregunta form input:hover{
+div#contenedor-responder-pregunta form input#boton-responder:hover{
     background-color: #748CAB;
 }
 div#contenedor-categorias-pregunta a:hover{

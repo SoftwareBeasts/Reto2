@@ -1,6 +1,5 @@
 <?php
 
-require_once 'dbUtils.php';
 
 function findRespuestasByUsuario($usuario){
     $conexion = getConnection();
@@ -28,7 +27,7 @@ function findRespuestasByUsuario($usuario){
 function selectRespuestabyPreguntaID($conexion,$id){
     try{
 
-        $consulta = $conexion->prepare("SELECT  * FROM pregunta WHERE Pregunta_idPregunta = :id LIMIT 1");
+        $consulta = $conexion->prepare("SELECT  * FROM respuesta WHERE Pregunta_idPregunta = :id LIMIT 1");
         $consulta ->setFetchMode(PDO::FETCH_ASSOC);
         $consulta ->bindValue(':id',"$id");
         $consulta ->execute();
@@ -37,6 +36,29 @@ function selectRespuestabyPreguntaID($conexion,$id){
         $conexion=null;
 
         return $respuesta;
+    }catch(Exception $e){
+        echo $e;
+    }
+}
+
+function selectAllRespuestabyPreguntaID($conexion,$id){
+    try{
+
+        $consulta = $conexion->prepare("SELECT * FROM respuesta WHERE Pregunta_idPregunta = :id");
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
+        $consulta->bindValue(':id',"$id");
+        $consulta->execute();
+
+        $listarespuestas = array();
+        $contador = 0;
+        while($respuesta = $consulta->fetch()){
+            $listarespuestas[$contador] = $respuesta;
+            $contador++;
+        }
+
+        $conexion=null;
+
+        return $listarespuestas;
     }catch(Exception $e){
         echo $e;
     }
