@@ -40,10 +40,28 @@ function findUsuarioByNombreUsu($conexion, $nombreusu){
     return $encontrado;
 }
 
+function findUsuarioByEmail($conexion, $correo){
+    $encontrado = false;
+    try {
+        $consulta = $conexion->prepare('SELECT nombreusu FROM usuario WHERE correo = :correo');
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
+        $consulta->bindValue(':correo', "$correo");
+        $consulta->execute();
+        $usuario = $consulta -> fetch();
+        if(!$usuario == null)
+            $encontrado = true;
+        else
+            $encontrado = false;
+    }
+    catch (Exception $e){
+    }
+    return $encontrado;
+}
+
 function altaUsuario($conexion, $datos){
     $correcto = false;
     try{
-        $consulta = $conexion -> prepare('INSERT INTO usuario (nombreusu, correo, pass, "desc", img) 
+        $consulta = $conexion -> prepare('INSERT INTO usuario (`nombreusu`, `correo`, `pass`, `desc`, `img`) 
                                           VALUES (:nombreusu, :correo, :pass, :desc, :img)');
         $consulta -> execute($datos);
         $correcto = true;
