@@ -1,7 +1,7 @@
 /*Maquetacion*/
 *{
     box-sizing: border-box;
-    font-family: Ubuntu;
+    font-family: Ubuntu,Calibri,Verdana,sans-serif;
 }
 body,html{
     min-height: 100vh;
