@@ -2,7 +2,9 @@
 require "../php/generar-nav-footer.php";
 require "../php/perfil.php";
 
-session_start();
+    if(session_id()==''){
+        session_start();
+    }
 
     if(!isset($_SESSION['userLogged']))
     {

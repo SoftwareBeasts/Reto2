@@ -1,7 +1,5 @@
 <?php
 
-require_once 'dbUtils.php';
-
 function findUsuario($conexion,$correo,$id=null){
 
     try{
