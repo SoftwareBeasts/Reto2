@@ -1,8 +1,7 @@
 #contenedor-perfil {
-    margin-top: 50px;
+    margin: 20px 0;
     border: 1px solid #0D1321;
-    grid-column-start: 3;
-    grid-column-end: 8;
+    grid-area: 1 / 2 / 5 / 8;
     display:flex;
     flex-direction: column;
 }

@@ -13,7 +13,8 @@ form label.registro{
     color: #247ba0;
 }
 
-form input.transparent {
+form input.transparent,
+form textarea.transparent  {
     background: transparent;
     opacity: 0.5;
     border: 0;

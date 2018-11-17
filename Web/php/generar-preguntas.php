@@ -5,7 +5,7 @@
  * Date: 12/11/2018
  * Time: 12:51
  */
-require "db/dbUtils.php";
+require_once "db/dbUtils.php";
 if(session_id()==''){
     session_start();
 }
@@ -82,7 +82,7 @@ function htmlPreguntaPre($id,$usuario,$fecha,$titulo)
     ?>
     <article class="pregunta-index" id="<?=$id?>">
         <span class="informacion-usuario-fecha-pregunta">por <a href="#" class="link-perfil-usuario"><?=$usuario?></a> a <?=$fecha?></span>
-        <h2 class="titulo-pregunta"><a href="#"><?=$titulo?></a></h2>
+        <h2 class="titulo-pregunta"><a href="./pages/pregunta.php?preguntaid=<?=$id?>"><?=$titulo?></a></h2>
         <div class="contenedor-categorias-pregunta">
             <a href="#"><label>PHP</label></a>
         </div>

@@ -1,7 +1,6 @@
 <?php
 
-require "db/preguntaDB.php";
-require "db/temaDB.php";
+require "db/dbUtils.php";
 
 session_start();
 
@@ -12,20 +11,8 @@ if(isset($_POST["tituloPregunta"])&&isset($_POST["descripcionPregunta"])&&isset(
     $categorias=explode(",", $_POST["categoriasPregunta"]);
     $usuario=$_SESSION["userLogged"]["idUsuario"];
 
-    insertPregunta($titulo, $descripcion, $usuario);
-    $pregunta=findPregunta($titulo, $descripcion, $usuario);
+    insertarPregunta($titulo, $descripcion, $categorias, $usuario);
 
-    foreach($categorias as $elements)
-    {
-        $categoria=findTema($elements);
-
-        if($categoria == null)
-        {
-            insertTema($elements);
-            $categoria=findTema($elements);
-        }
-        insertPreguntaTema($pregunta["idPregunta"],$categoria["idTema"]);
-    }
+    header("Location: ../index.php");
 }
-
 ?>

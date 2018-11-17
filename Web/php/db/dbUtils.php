@@ -1,8 +1,10 @@
 <?php
+require_once "preguntaDB.php";
+require_once "temaDB.php";
 require_once "preguntasDB.php";
 require_once "usuarioDB.php";
 require_once "respuestaDB.php";
-
+require_once "votoDB.php";
 if(isset($_POST['nombreusu'])){
     $resultado = verificarNombreUsuario($_POST['nombreusu']);
     die($resultado);
@@ -40,8 +42,8 @@ function seleccionarRecientes(){
     $listaPreguntas = selectRecientes($conexion);
     foreach ($listaPreguntas as $clave => $valor){
         $conexion = getConnection();
-        $temp = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $listaPreguntas[$clave]['Usuario_idUsuario'] = $temp['nombreusu'];
+        $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
     }
     return $listaPreguntas;
 }
@@ -69,6 +71,11 @@ function seleccionarSinResponder($id=null){
 
         $id++;
     }
+    foreach ($listaPreguntas as $clave => $valor){
+        $conexion = getConnection();
+        $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+    }
 
     return $listaPreguntas;
 }
@@ -92,6 +99,11 @@ function seleccionarRespondidas($id=null){
 
         $id++;
     }
+    foreach ($listaPreguntas as $clave => $valor){
+        $conexion = getConnection();
+        $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+    }
 
     return $listaPreguntas;
 }
@@ -100,4 +112,60 @@ function verificarNombreUsuario($nombreusu){
     $conexion = getConnection();
     $encontrado = findUsuarioByNombreUsu($conexion, $nombreusu);
     return $encontrado;
+}
+
+function insertarPregunta($titulo, $descripcion, $categorias, $usuario){
+    $conexion = getConnection();
+    insertPregunta($conexion, $titulo, $descripcion, $usuario);
+    $pregunta=findPregunta($conexion, $titulo, $descripcion, $usuario);
+
+    foreach($categorias as $elements)
+    {
+        $categoria=findTema($conexion, $elements);
+
+        if($categoria == null)
+        {
+            insertTema($conexion, $elements);
+            $categoria=findTema($conexion, $elements);
+        }
+        insertPreguntaTema($conexion, $pregunta["idPregunta"],$categoria["idTema"]);
+    }
+    $conexion=null;
+}
+
+function buscarPreguntasRespuestasUsuario($tipo, $usuario){
+    $conexion = getConnection();
+    switch ($tipo){
+        case "Preguntas":
+            $preguntas=findPreguntasByUsuario($conexion, $usuario);
+            break;
+        case "Respuestas":
+            $respuestas=findRespuestasByUsuario($conexion, $usuario);
+            foreach ($respuestas as $clave=>$valor)
+            {
+                $preguntas[]=findPreguntaById($conexion, $valor["idRespuesta"]);
+            }
+            break;
+    }
+    $conexion=null;
+    return $preguntas;
+
+function cargarDatosPreguntabyId($id){
+    $datosPregunta = array();
+    $conexion = getConnection();
+    $datosPregunta['pregunta'] = selectPreguntabyID($conexion,$id);
+    $conexion = getConnection();
+    $datosPregunta['usuario'] = findUsuario($conexion,"no",$datosPregunta['pregunta']['Usuario_idUsuario']);
+    $conexion = getConnection();
+    $datosPregunta['respuestas'] = selectAllRespuestabyPreguntaID($conexion,$id);
+    foreach ($datosPregunta['respuestas'] as $clave => $valor){
+        $conexion = getConnection();
+        $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+        $datosPregunta['respuestas'][$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempVotos = selectAllVotosByRespuestaID($conexion,$valor['idRespuesta']);
+        $datosPregunta['respuestas'][$clave]['votos'] = $tempVotos;
+    }
+
+    return $datosPregunta;
 }
