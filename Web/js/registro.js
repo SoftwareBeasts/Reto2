@@ -1,9 +1,10 @@
 $(document).ready(function () {
     document.getElementById('nombreusu').focus();
+    $('#correo').on("focusout", ()=>verificarRegistrado('correo'));
     $('input[name=correoConf]').keyup(()=>verificar('correo', 'correoConf'));
     $('input[name=passw]').keyup(verificarPassw);
     $('input[name=passwConf]').keyup(()=>verificar('passw', 'passwConf'));
-    $('#nombreusu').on("focusout", verificarUsuarioRegistrado);
+    $('#nombreusu').on("focusout", ()=>verificarRegistrado('nombreusu'));
 });
 
 function verificar(input, inputConf) {
@@ -31,11 +32,12 @@ function verificarPassw() {
     }
 }
 
-function verificarUsuarioRegistrado() {
+function verificarRegistrado(tipo) {
+    let input = document.getElementById(tipo);
     $.ajax({
         type: "POST",
         url: "../php/db/dbUtils.php",
-        data: {nombreusu: $('#nombreusu').val()}
+        data: {tipo: input.value, verificarUsuarioRegistrado: true}
     }).done(function (data) {
         if (!data) {
             document.getElementById('nombreusu').setCustomValidity('');

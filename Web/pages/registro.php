@@ -4,46 +4,42 @@ require '../php/db/dbUtils.php';
 
 session_start();
 if(!isset($_SESSION['userLogged'])){
-    echo "1";
     $_SESSION['userLogged'] = null;
 }
 
 $correcto = false;
 if(isset($_POST['nombreusu'])){
-    echo "2";
     if($_POST['descripcion'] === ""){
         echo "3";
         $_POST['descripcion'] = null;
     }
-    if($_POST['img'] === ""){
-        echo "4";
+    if(!is_uploaded_file($_FILES['img']['tmp_name'])){
         $_POST['img'] = "/media/usersImg/user_default.png";
     }
     else{
-        echo "5";
         $file = pathinfo($_FILES['img']['name']);
         $extension = $file['extension'];
         $newname = $_POST['nombreusu'].".".$extension;
 
-        $target = '/media/usersImg/'.$newname;
+        $target = '../media/usersImg/'.$newname;
         move_uploaded_file( $_FILES['img']['tmp_name'], $target);
+        $_POST['img'] = '/media/usersImg/'.$newname;
     }
-    echo "6";
     $datos = Array('nombreusu' => $_POST['nombreusu'], 'correo' => $_POST['correo'],
         'pass' => password_hash($_POST['passw'], PASSWORD_DEFAULT), 'desc' => $_POST['descripcion'],
         'img' => $_POST['img']);
+    echo "       ".$_POST['nombreusu']."     ".$_POST['correo']."     ".password_hash($_POST['passw'], PASSWORD_DEFAULT)."     ".$_POST['descripcion']."     ".$_POST['img']."     ";
     $correcto = registrarUsuario($datos);
+    echo $correcto;
 }
 
 if($correcto){
-    echo "7";
     $_SESSION['userLogged'] = $datos;
 }
 
 if($_SESSION['userLogged'] !== null)
-    header("location:../index.html");
+    header("location:../index.php");
 else{
-    echo "8";
 ?>
 <!DOCTYPE html>
 <html>
@@ -58,9 +54,9 @@ else{
 </head>
 <body>
     <main id="contenedor-principal" onload="">
-        <?php //generarNav("../"); ?>
+        <?php generarNav("../"); ?>
         <div class="pos">
-            <form method="post" action="registro.php" >
+            <form method="post" action="registro.php" enctype='multipart/form-data'>
                 <label class="registro" for="nombreusu">Nombre Usuario<span class="required">*</span></label>
                 <input type="text" id="nombreusu" class="transparent registro" name="nombreusu" required>
                 <label class="registro" for="correo">Correo<span class="required">*</span></label>
