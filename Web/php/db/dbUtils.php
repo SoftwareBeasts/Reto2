@@ -5,7 +5,8 @@ require_once "preguntasDB.php";
 require_once "usuarioDB.php";
 require_once "respuestaDB.php";
 require_once "votoDB.php";
-if(isset($_POST['nombreusu'])){
+
+if(isset($_POST['nombreusu']) && isset($_POST['verificarUsuarioRegistrado'])){
     $resultado = verificarNombreUsuario($_POST['nombreusu']);
     die($resultado);
 }
@@ -31,9 +32,14 @@ function encontrarUsuario($correo,$id=null){
     return $usuario;
 }
 
-function registrarUsuario($datos){
+function registrarUsuario($datos) {
     $conexion = getConnection();
-    $correcto = altaUsuario($conexion, $datos);
+    if(!findUsuarioByEmail($datos['correo'])){
+        $correcto = altaUsuario($conexion, $datos);
+    }
+    else
+        throw new Exception("Email ya registrado");
+
     return $correcto;
 }
 
@@ -133,22 +139,23 @@ function insertarPregunta($titulo, $descripcion, $categorias, $usuario){
     $conexion=null;
 }
 
-function buscarPreguntasRespuestasUsuario($tipo, $usuario){
+function buscarPreguntasRespuestasUsuario($tipo, $usuario)
+{
     $conexion = getConnection();
-    switch ($tipo){
+    switch ($tipo) {
         case "Preguntas":
-            $preguntas=findPreguntasByUsuario($conexion, $usuario);
+            $preguntas = findPreguntasByUsuario($conexion, $usuario);
             break;
         case "Respuestas":
-            $respuestas=findRespuestasByUsuario($conexion, $usuario);
-            foreach ($respuestas as $clave=>$valor)
-            {
-                $preguntas[]=findPreguntaById($conexion, $valor["idRespuesta"]);
+            $respuestas = findRespuestasByUsuario($conexion, $usuario);
+            foreach ($respuestas as $clave => $valor) {
+                $preguntas[] = findPreguntaById($conexion, $valor["idRespuesta"]);
             }
             break;
     }
-    $conexion=null;
+    $conexion = null;
     return $preguntas;
+}
 
 function cargarDatosPreguntabyId($id){
     $datosPregunta = array();

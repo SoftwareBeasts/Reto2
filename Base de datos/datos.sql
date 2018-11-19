@@ -1,8 +1,17 @@
+/*Establecer a 1 todos los auto_increment de las tablas*/
+ALTER TABLE `pregunta` AUTO_INCREMENT=1;
+ALTER TABLE `respuesta` AUTO_INCREMENT=1;
+ALTER TABLE `tema` AUTO_INCREMENT=1;
+ALTER TABLE `usuario` AUTO_INCREMENT=1;
+ALTER TABLE `voto` AUTO_INCREMENT=1;
+
 /*Datos tabla usuario*/
-INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`) VALUES ('admin', 'admin@softwarebeasts.com', '$2y$10$ZAdQGxOcGBNCRm9NRhgfp.XTdih9jj4rGQlLmOmofrfkKrM3jE5e2', 'Soy el administrador de todo esto :)');
-INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`) VALUES ('jon','jon@softwarebeasts.com','$2y$10$gJfqO80gFYyhZ5ni9r/QSOGCil6Wr3D5E5MwEide.Srf9PUgpTeJm','It was me, DIO!');/*12345*/
-INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`) VALUES ('unai','unai@softwarebeasts.com','$2y$10$ur/GulBWw33753nGzrUxbuKYQKdIofkQEHb7XGtubXRsHwlRN4jVy','Soy Unai');/*unaisito*/
-INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`) VALUES ('imanol','imanol@softwarebeasts.com','$2y$10$SmcnpUNZIIHlOYV.X8HhwevKO2MicDjMLgjEVkIDYBfAgOhhKxNPS','Soy Imanol');/*imanolsito*/
+INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`, `img`) VALUES ('admin', 'admin@softwarebeasts.com', '$2y$10$ZAdQGxOcGBNCRm9NRhgfp.XTdih9jj4rGQlLmOmofrfkKrM3jE5e2', 'Soy el administrador de todo esto :)' ,'/media/usersImg/user_default.png');
+INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`, `img`) VALUES ('jon','jon@softwarebeasts.com','$2y$10$gJfqO80gFYyhZ5ni9r/QSOGCil6Wr3D5E5MwEide.Srf9PUgpTeJm','It was me, DIO!' ,'/media/usersImg/user_default.png');/*12345*/
+INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`, `img`) VALUES ('unai','unai@softwarebeasts.com','$2y$10$ur/GulBWw33753nGzrUxbuKYQKdIofkQEHb7XGtubXRsHwlRN4jVy','Soy Unai' ,'/media/usersImg/user_default.png');/*unaisito*/
+INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`, `img`) VALUES ('imanol','imanol@softwarebeasts.com','$2y$10$SmcnpUNZIIHlOYV.X8HhwevKO2MicDjMLgjEVkIDYBfAgOhhKxNPS','Soy Imanol' ,'/media/usersImg/user_default.png');/*imanolsito*/
+INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`, `img`) VALUES ('unaipuelles', 'unai.puelles@ikasle.egibide.org', '$2y$10$1N5omX10suf5qOAkzisy6.PtMtcULnugiULlZdGgQDTdvGB1wF0z6', NULL ,'/media/usersImg/unaipuelles.png');/*12345Abcde*/
+
 /*Datos tabla Preguntas*/
 INSERT INTO `pregunta` (`titulo`,`cuerpo`,`fecha`,`Usuario_idUsuario`) VALUES ('Como usar PHP','Ayuda por favor, no se como usar php y me estoy rayando un monton, por favor ayudenme si son tan amables muchas gracias de antemano','2018-11-6','2');
 INSERT INTO `pregunta` (`titulo`,`cuerpo`,`fecha`,`Usuario_idUsuario`) VALUES ('Como usar PHP2','Ayuda por favor, no se como usar php y me estoy rayando un monton, por favor ayudenme si son tan amables muchas gracias de antemano','2018-11-7','2');
