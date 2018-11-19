@@ -33,3 +33,6 @@ INSERT INTO `pregunta` (`titulo`,`cuerpo`,`fecha`,`Usuario_idUsuario`) VALUES ('
 	INSERT INTO `respuesta`(`titulo`,`cuerpo`,`fecha`,`aprobado`,`Usuario_idUsuario`,`Pregunta_idPregunta`) VALUES('Jaja que bobo','Si no sabes como usar php a estas alturas, no se como has programado esta web jaja','2018-11-14',0,'2','1');
 	INSERT INTO `respuesta`(`titulo`,`cuerpo`,`fecha`,`aprobado`,`Usuario_idUsuario`,`Pregunta_idPregunta`) VALUES('Jaja que bobo','Si no sabes como usar php a estas alturas, no se como has programado esta web jaja','2018-11-14',0,'2','1');
 	INSERT INTO `respuesta`(`titulo`,`cuerpo`,`fecha`,`aprobado`,`Usuario_idUsuario`,`Pregunta_idPregunta`) VALUES('Jaja que bobo','Si no sabes como usar php a estas alturas, no se como has programado esta web jaja','2018-11-14',0,'2','1');
+	
+/*TEMAS*/
+INSERT INTO `tema`(nombre) VALUES('PHP');	

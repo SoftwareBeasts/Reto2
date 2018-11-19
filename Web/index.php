@@ -31,8 +31,14 @@ require "php/generar-nav-footer.php";
         <?php
         if (isset($_GET['busquedaPreguntas'])){
             $arraytextoBusquedaCompleto = explode(" ",$_GET['busquedaPreguntas']);
+            $arraytextoBusquedaFiltrado = array();
             $irrelevantes = '/(en)\b|(la)\b|(de)\b|(que)\b|(y)\b|(como)\b|(para)\b/';
-            foreach ($arraytextoBusquedaCompleto as $elemento)
+            foreach ($arraytextoBusquedaCompleto as $elemento){
+                if(!preg_match($irrelevantes,$elemento)){
+                    array_push($arraytextoBusquedaFiltrado, strtolower($elemento));
+                }
+            }
+            $_SESSION['busquedaRelevantes'] = $arraytextoBusquedaFiltrado;
             ?>
             <div id="modoBusquedaPorTexto" style="display: none"></div>
             <hr>
