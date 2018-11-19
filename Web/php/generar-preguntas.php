@@ -74,7 +74,25 @@ switch ($modoBusqueda){
             htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda,$listaPreguntas);
         }
         break;
+    case "perso":
 
+        ?>
+        <article class="pregunta-index" id="">
+            <span class="informacion-usuario-fecha-pregunta">por <a href="#" class="link-perfil-usuario">asdasd</a> a asdasdasd</span>
+            <h2 class="titulo-pregunta"><a href="./pages/pregunta.php?preguntaid=">yrdtfu</a></h2>
+            <div class="contenedor-categorias-pregunta">
+                <a href="#"><label>PHP</label></a>
+            </div>
+            <div class="contenedor-likes-preguntas">
+                <span class="puntuacion-pregunta-index">11</span>
+            </div>
+        </article>
+        <?php
+
+        break;
+
+    default:
+        echo "Error Desconocido";
 }
 
 function htmlPreguntaPre($id,$usuario,$fecha,$titulo)

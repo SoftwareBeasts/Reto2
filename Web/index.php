@@ -7,6 +7,7 @@ if(isset($_GET['logout'])){
         header("location:index.php");
     }
 }
+
 require "php/generar-nav-footer.php";
 
 ?>
@@ -27,12 +28,26 @@ require "php/generar-nav-footer.php";
     generarNav('./');
     ?>
     <section id="contenedor-selectores-preguntas-index">
-        <div id="contenedor-selectores-index">
-            <button name="recientes" class="boton-selector">Recientes</button>
-            <button name="masvotadas" class="boton-selector">M&aacute;s votadas</button>
-            <button name="sinresponder" class="boton-selector">Sin Responder</button>
-            <button name="respondidas" class="boton-selector">Respondidas</button>
-        </div>
+        <?php
+        if (isset($_GET['busquedaPreguntas'])){
+            $arraytextoBusquedaCompleto = explode(" ",$_GET['busquedaPreguntas']);
+            $irrelevantes = '/(en)\b|(la)\b|(de)\b|(que)\b|(y)\b|(como)\b|(para)\b/';
+            foreach ($arraytextoBusquedaCompleto as $elemento)
+            ?>
+            <div id="modoBusquedaPorTexto" style="display: none"></div>
+            <hr>
+            <?php
+        }else {
+            ?>
+            <div id="contenedor-selectores-index">
+                <button name="recientes" class="boton-selector">Recientes</button>
+                <button name="masvotadas" class="boton-selector">M&aacute;s votadas</button>
+                <button name="sinresponder" class="boton-selector">Sin Responder</button>
+                <button name="respondidas" class="boton-selector">Respondidas</button>
+            </div>
+            <?php
+         }
+        ?>
         <div id="contenedor-preguntas-index">
             <!--<article class="pregunta-index" >
                 <span class="informacion-usuario-fecha-pregunta">por <a href="#" class="link-perfil-usuario">Unai Puelles</a> a 11 noviembre 2018</span>
