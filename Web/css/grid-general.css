@@ -34,7 +34,7 @@ nav#menu-cabecera{
     color: #e8f1f2;
 }
 nav#menu-cabecera div#contenido-izquierda-nav{
-    display:flex ;
+    display:flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
@@ -228,6 +228,15 @@ div#contenedor-secundario-categorias-aside a:hover{
         display: block;
     }
 
+    nav#menu-cabecera div#contenido-izquierda-nav {
+        margin-right: 5px;
+    }
+
+    nav#menu-cabecera div#contenido-derecha-nav {
+        margin-left: 5px;
+        margin-right: 20px;
+    }
+
     form#formulario-busqueda, aside#barra-lateral-aside {
         display: none;
     }
@@ -237,6 +246,16 @@ div#contenedor-secundario-categorias-aside a:hover{
 
     #contenedor-principal {
         display: block;
+    }
+
+    nav#menu-cabecera div#contenido-izquierda-nav {
+        margin-left: 0;
+        margin-right: 5px;
+    }
+
+    nav#menu-cabecera div#contenido-derecha-nav {
+        margin-left: 5px;
+        margin-right: 20px;
     }
 
     img#logo-foro, form#formulario-busqueda, aside#barra-lateral-aside {

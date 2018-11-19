@@ -2,3 +2,9 @@ main div.pos {
     grid-area: 1/8/4/2;
     opacity: 0.5;
 }
+
+@media screen and (max-width: 800px) {
+    main div.pos {
+        padding: 10px;
+    }
+}

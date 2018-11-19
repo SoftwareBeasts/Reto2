@@ -40,3 +40,17 @@
     color: #e8f1f2;
     padding: 0 40px;
 }
+
+@media screen and (max-width: 800px) {
+    #contenedor-hacer-preguntas {
+        padding-bottom: 10px;
+    }
+
+    #contenedor-hacer-preguntas ul li:last-child {
+        flex-direction: column;
+    }
+
+    #contenedor-hacer-preguntas ul li:last-child input:last-child {
+        margin-top: 10px;
+    }
+}
