@@ -38,6 +38,10 @@ form input.transparent.registro:invalid {
     border-bottom: 2px solid red !important;
 }
 
+form input.transparent.registro.mediumStrength {
+    border-bottom: 2px solid orange !important;
+}
+
 form input.transparent.registro{
     border-bottom: 2px solid #0d1321;
     color: #1d2d44;

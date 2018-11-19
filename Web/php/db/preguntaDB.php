@@ -1,10 +1,6 @@
 <?php
 
-require_once 'dbUtils.php';
-
-function findPregunta($titulo, $cuerpo, $usuario){
-    $conexion = getConnection();
-
+function findPregunta($conexion, $titulo, $cuerpo, $usuario){
     try{
         $datos = array('titulo' => $titulo, 'cuerpo' => $cuerpo, 'usuario' => $usuario);
 
@@ -13,8 +9,6 @@ function findPregunta($titulo, $cuerpo, $usuario){
         $consulta -> execute($datos);
 
         $pregunta = $consulta -> fetch();
-
-        $conexion = null;
         return $pregunta;
     }
     catch (Exception $e){
@@ -22,9 +16,7 @@ function findPregunta($titulo, $cuerpo, $usuario){
     }
 }
 
-function findPreguntaById($id){
-    $conexion = getConnection();
-
+function findPreguntaById($conexion, $id){
     try{
         $datos = array('id' => $id);
 
@@ -33,8 +25,6 @@ function findPreguntaById($id){
         $consulta -> execute($datos);
 
         $pregunta = $consulta -> fetch();
-
-        $conexion = null;
         return $pregunta;
     }
     catch (Exception $e){
@@ -42,42 +32,32 @@ function findPreguntaById($id){
     }
 }
 
-function insertPregunta($titulo, $cuerpo, $usuario){
-    $conexion = getConnection();
-
+function insertPregunta($conexion, $titulo, $cuerpo, $usuario){
     try{
         $fecha=date("Y")."-".date("m")."-".date("d");
         $datos = array('titulo' => $titulo, 'cuerpo' => $cuerpo, 'fecha' => $fecha, 'usuario' => $usuario);
 
         $consulta = $conexion -> prepare('INSERT INTO Pregunta (titulo, cuerpo, fecha, Usuario_idUsuario) VALUES (:titulo, :cuerpo, :fecha, :usuario)');
         $consulta -> execute($datos);
-
-        $conexion = null;
     }
     catch (Exception $e){
         return null;
     }
 }
 
-function insertPreguntaTema($pregunta, $tema){
-    $conexion = getConnection();
-
+function insertPreguntaTema($conexion, $pregunta, $tema){
     try{
         $datos = array('pregunta' => $pregunta, 'tema' => $tema);
 
         $consulta = $conexion -> prepare('INSERT INTO Pregunta_has_Tema (Pregunta_idPregunta, Tema_idTema) VALUES (:pregunta, :tema)');
         $consulta -> execute($datos);
-
-        $conexion = null;
     }
     catch (Exception $e){
         return null;
     }
 }
 
-function findPreguntasByUsuario($usuario){
-    $conexion = getConnection();
-
+function findPreguntasByUsuario($conexion, $usuario){
     try{
         $datos = array('usuario' => $usuario);
 
@@ -89,8 +69,6 @@ function findPreguntasByUsuario($usuario){
         {
             $preguntas[]=$pregunta;
         }
-
-        $conexion = null;
         return $preguntas;
     }
     catch (Exception $e){

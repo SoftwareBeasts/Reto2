@@ -1,9 +1,12 @@
 <?php
+require_once "preguntaDB.php";
+require_once "temaDB.php";
 require_once "preguntasDB.php";
 require_once "usuarioDB.php";
 require_once "respuestaDB.php";
 require_once "votoDB.php";
-if(isset($_POST['nombreusu'])){
+
+if(isset($_POST['nombreusu']) && isset($_POST['verificarUsuarioRegistrado'])){
     $resultado = verificarNombreUsuario($_POST['nombreusu']);
     die($resultado);
 }
@@ -29,9 +32,14 @@ function encontrarUsuario($correo,$id=null){
     return $usuario;
 }
 
-function registrarUsuario($datos){
+function registrarUsuario($datos) {
     $conexion = getConnection();
-    $correcto = altaUsuario($conexion, $datos);
+    if(!findUsuarioByEmail($datos['correo'])){
+        $correcto = altaUsuario($conexion, $datos);
+    }
+    else
+        throw new Exception("Email ya registrado");
+
     return $correcto;
 }
 
@@ -110,6 +118,43 @@ function verificarNombreUsuario($nombreusu){
     $conexion = getConnection();
     $encontrado = findUsuarioByNombreUsu($conexion, $nombreusu);
     return $encontrado;
+}
+
+function insertarPregunta($titulo, $descripcion, $categorias, $usuario){
+    $conexion = getConnection();
+    insertPregunta($conexion, $titulo, $descripcion, $usuario);
+    $pregunta=findPregunta($conexion, $titulo, $descripcion, $usuario);
+
+    foreach($categorias as $elements)
+    {
+        $categoria=findTema($conexion, $elements);
+
+        if($categoria == null)
+        {
+            insertTema($conexion, $elements);
+            $categoria=findTema($conexion, $elements);
+        }
+        insertPreguntaTema($conexion, $pregunta["idPregunta"],$categoria["idTema"]);
+    }
+    $conexion=null;
+}
+
+function buscarPreguntasRespuestasUsuario($tipo, $usuario)
+{
+    $conexion = getConnection();
+    switch ($tipo) {
+        case "Preguntas":
+            $preguntas = findPreguntasByUsuario($conexion, $usuario);
+            break;
+        case "Respuestas":
+            $respuestas = findRespuestasByUsuario($conexion, $usuario);
+            foreach ($respuestas as $clave => $valor) {
+                $preguntas[] = findPreguntaById($conexion, $valor["idRespuesta"]);
+            }
+            break;
+    }
+    $conexion = null;
+    return $preguntas;
 }
 
 function cargarDatosPreguntabyId($id){

@@ -1,6 +1,5 @@
 <?php
 
-
 function findRespuestasByUsuario($usuario){
     $conexion = getConnection();
 
@@ -15,8 +14,6 @@ function findRespuestasByUsuario($usuario){
         {
             $respuestas[]=$respuesta;
         }
-
-        $conexion = null;
         return $respuestas;
     }
     catch (Exception $e){

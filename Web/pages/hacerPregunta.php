@@ -1,7 +1,9 @@
 <?php
 require "../php/generar-nav-footer.php";
 
-session_start();
+    if(session_id()==''){
+        session_start();
+    }
 
     if(!isset($_SESSION['userLogged']))
     {
@@ -58,6 +60,7 @@ session_start();
                 <li>
                     <input type="text" name="tituloPregunta" value="" placeholder="T&iacute;tulo" />
                 </li>
+                <hr />
                 <li>
                     <textarea name="descripcionPregunta" rows="15" placeholder="Descripci&oacute;n"></textarea>
                 </li>
