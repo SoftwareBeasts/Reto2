@@ -5,6 +5,7 @@ if(session_id()==''){
 require "../php/generar-nav-footer.php";
 require_once  "../php/db/dbUtils.php";
 require "../php/generar-respuestas.php";
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,8 @@ require "../php/generar-respuestas.php";
     <link href="../css/grid-general.css" type="text/css" rel="stylesheet">
     <link href="../css/pregunta.css" type="text/css" rel="stylesheet">
     <link href="../css/form.css" type="text/css" rel="stylesheet">
+    <script src="../js/jquery-3.3.1.min.js"></script>
+
 </head>
 <body>
 
@@ -21,6 +24,15 @@ require "../php/generar-respuestas.php";
     <?php
         generarNav('../');
         $idPregunta = $_GET['preguntaid'];
+        if (isset($_POST['responder_pregunta'])){
+            $archivos = "";
+            if (isset($_POST['archivo_respuesta'])&&!is_null($_POST['archivo_respuesta'])){
+                $archivos = $_POST['archivo_respuesta'];
+            }else{
+                $archivos = null;
+            }
+            responderPregunta($idPregunta,$_POST['titulo_respuesta'],$_POST['texto_respuesta'],$_SESSION['usuarioLogged']['idUsuario'],$archivos);
+        }
         $datosPregunta = cargarDatosPreguntabyId($idPregunta);
     ?>
     <section id="contenedor-preguntas-respuestas">
@@ -61,16 +73,31 @@ require "../php/generar-respuestas.php";
         <hr>
         <div id="contenedor-responder-pregunta">
             <h3>Env&iacute;a tu respuesta</h3>
-            <form action="#" method="post">
-                <input type="text" class="transparent" id="titulo-respuesta" placeholder="titulo">
+            <form action="pregunta.php" method="post">
+                <input type="hidden" name="pregunta-responder-id" value="<?=$idPregunta?>">
+                <input type="text" class="transparent" id="titulo-respuesta" name="titulo_respuesta" placeholder="titulo" required>
                 <hr>
-                <textarea id="texto-respuesta" class="transparent" placeholder="Escribe tu respuesta"></textarea>
+                <textarea id="texto-respuesta"  name="texto_respuesta" class="transparent" placeholder="Escribe tu respuesta" required></textarea>
                 <hr>
-                <input type="file" class="transparent" id="archivo-respuesta">
-                <input type="submit"  class="submit" id="boton-responder" value="Responder">
+                <input type="file" class="transparent" id="archivo-respuesta" name="archivo_respuesta">
+                <?php
+                if (isset($_SESSION['usuarioLogged'])&&!is_null($_SESSION['usuarioLogged'])){
+                    ?>
+                    <input type="submit"  class="submit" id="boton-responder" name="responder_pregunta" value="Responder">
+                    <?php
+                }else{
+                    ?>
+                    <input type="button" class="submit" id="boton-responder" name="loginRequerido" value="Responder">
+                    <?php
+                }
+                ?>
+
             </form>
         </div>
         <hr>
+        <div id="requeridoLogearse">
+            <h3>Es necesario Logearse antes de continuar</h3>
+        </div>
     </section>
 
     <?php
@@ -79,4 +106,5 @@ require "../php/generar-respuestas.php";
     ?>
 </main>
 </body>
+<script src="../js/pregunta.js"></script>
 </html>

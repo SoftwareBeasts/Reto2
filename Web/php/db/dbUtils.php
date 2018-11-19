@@ -176,3 +176,8 @@ function cargarDatosPreguntabyId($id){
 
     return $datosPregunta;
 }
+/*Responder a una Pregunta*/
+function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
+    $conexion = getConnection();
+    insertRespuesta($conexion,$idPregunta,$titulo,$cuerpo,$userID,$archivos);
+}
