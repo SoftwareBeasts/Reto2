@@ -53,3 +53,5 @@ function selectPreguntabyID($conexion,$id){
         echo $e;
     }
 }
+
+
