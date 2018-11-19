@@ -71,7 +71,7 @@ else{
                 <textarea id="descripcion" class="transparent registro" name="descripcion"></textarea>
                 <label class="registro" for="img">Imagen de perfil</label>
                 <input type="file" id="img" class="transparent registro" name="img">
-                <input type="submit" value="Registrar">
+                <input type="submit" class="submit" value="Registrar">
             </form>
         </div>
         <?php
