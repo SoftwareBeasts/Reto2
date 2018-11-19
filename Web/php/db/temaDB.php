@@ -35,7 +35,7 @@ function selectAllTema($conexion){
 
         $temas = array();
         while($tema = $consulta->fetch()){
-            array_push($temas,strtolower($tema['nombre']));
+            array_push($temas,$tema);
         }
         $conexion = null;
         return $temas;

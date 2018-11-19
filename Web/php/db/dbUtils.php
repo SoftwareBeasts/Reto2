@@ -189,10 +189,13 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
         $temasEncontrados = array();
         foreach ($compuesto as $item){
             foreach ($allTemas as $tema){
-                if($item==$tema){
+                if($item==$tema['nombre']){
                     array_push($temasEncontrados,$tema);
                 }
             }
         }
+        return $temasEncontrados;
     }
+
+
 /*Busqueda Personalizada*/

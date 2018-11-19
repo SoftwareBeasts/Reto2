@@ -77,8 +77,13 @@ switch ($modoBusqueda){
     case "perso":
 
         $textoBusqueda = $_SESSION['busquedaRelevantes'];
-        $temasBusqueda = filtrarTemas($textoBusqueda);
-        $textoFiltrado = array_diff($textoBusqueda,$temasBusqueda);
+        $temasBusquedaconID = filtrarTemas($textoBusqueda);
+        $temasBusquedasinID = array();
+        $textoFiltrado = array();
+        foreach ($temasBusquedaconID as $clave=>$valor) {
+            array_push($temasBusquedasinID,$valor);
+        }
+
 
         break;
 
