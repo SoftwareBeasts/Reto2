@@ -159,7 +159,7 @@ function buscarPreguntasRespuestasUsuario($tipo, $usuario)
         case "Respuestas":
             $respuestas = findRespuestasByUsuario($conexion, $usuario);
             foreach ($respuestas as $clave => $valor) {
-                $preguntas[] = findPreguntaById($conexion, $valor["idRespuesta"]);
+                $preguntas[] = findPreguntaById($conexion, $valor["Pregunta_idPregunta"]);
             }
             break;
     }
