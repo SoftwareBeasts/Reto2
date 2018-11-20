@@ -62,7 +62,7 @@ else{
 </head>
 <body>
     <main id="contenedor-principal" onload="">
-        <?php//generarNav("../"); ?>
+        <?php generarNav("../"); ?>
         <div class="pos">
             <form method="post" action="registro.php" enctype='multipart/form-data'>
                 <label class="registro" for="nombreusu">Nombre Usuario<span class="required">*</span></label>
