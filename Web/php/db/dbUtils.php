@@ -6,8 +6,11 @@ require_once "usuarioDB.php";
 require_once "respuestaDB.php";
 require_once "votoDB.php";
 
-if(isset($_POST['nombreusu']) && isset($_POST['verificarUsuarioRegistrado'])){
-    $resultado = verificarNombreUsuario($_POST['nombreusu']);
+if(isset($_POST['value']) && isset($_POST['verificarUsuarioRegistrado'])){
+    if($_POST['verificarUsuarioRegistrado'])
+        $resultado = verificarNombreUsuario($_POST['value']);
+    else
+        $resultado = verificarEmailUsuario($_POST['value']);
     die($resultado);
 }
 
@@ -34,7 +37,7 @@ function encontrarUsuario($correo,$id=null){
 
 function registrarUsuario($datos) {
     $conexion = getConnection();
-    if(!findUsuarioByEmail($datos['correo'])){
+    if(!findUsuarioByEmail($conexion, $datos['correo'])){
         $correcto = altaUsuario($conexion, $datos);
     }
     else
@@ -120,6 +123,12 @@ function verificarNombreUsuario($nombreusu){
     return $encontrado;
 }
 
+function verificarEmailUsuario($correo){
+    $conexion = getConnection();
+    $encontrado = findUsuarioByemail($conexion, $correo);
+    return $encontrado;
+}
+
 function insertarPregunta($titulo, $descripcion, $categorias, $usuario){
     $conexion = getConnection();
     insertPregunta($conexion, $titulo, $descripcion, $usuario);
@@ -181,3 +190,21 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     $conexion = getConnection();
     insertRespuesta($conexion,$idPregunta,$titulo,$cuerpo,$userID,$archivos);
 }
+
+/*Busqueda Personalizada*/
+    function filtrarTemas($compuesto){
+        $conexion = getConnection();
+        $allTemas = selectAllTema($conexion);
+        $temasEncontrados = array();
+        foreach ($compuesto as $item){
+            foreach ($allTemas as $tema){
+                if($item==$tema['nombre']){
+                    array_push($temasEncontrados,$tema);
+                }
+            }
+        }
+        return $temasEncontrados;
+    }
+
+
+/*Busqueda Personalizada*/

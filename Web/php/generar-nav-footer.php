@@ -6,9 +6,9 @@ function generarNav($ruta){
         <div id="contenido-izquierda-nav">
             <a href="<?=$ruta?>index.php"><img src="<?=$ruta?>media/logo_egibide.png" height="45" alt="Logo-Foro" id="logo-foro"></a>
         <a href="<?=$ruta?>pages/hacerPregunta.php" id="link-pregunta">Haz una Pregunta</a>
-        <form id="formulario-busqueda" method="get" action="#">
+        <form id="formulario-busqueda" method="get" action="<?=$ruta?>index.php">
             <label for="caja-busqueda" id="label-caja-busqueda">Buscar</label>
-            <input type="text" name="busqueda" id="caja-busqueda" placeholder="Buscar">
+            <input type="text" name="busquedaPreguntas" id="caja-busqueda" placeholder="Buscar">
         </form>
         </div>
         <div id="contenido-derecha-nav">

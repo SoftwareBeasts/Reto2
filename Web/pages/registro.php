@@ -29,7 +29,15 @@ if(isset($_POST['nombreusu'])){
         'pass' => password_hash($_POST['passw'], PASSWORD_DEFAULT), 'desc' => $_POST['descripcion'],
         'img' => $_POST['img']);
     echo "       ".$_POST['nombreusu']."     ".$_POST['correo']."     ".password_hash($_POST['passw'], PASSWORD_DEFAULT)."     ".$_POST['descripcion']."     ".$_POST['img']."     ";
-    $correcto = registrarUsuario($datos);
+    try{
+        $correcto = registrarUsuario($datos);
+    }
+    catch (Exception $e){
+        ?>
+        <script>alert("Correo ya registrado")</script>
+        <?php
+    }
+
     echo $correcto;
 }
 
