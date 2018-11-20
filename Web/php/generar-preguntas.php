@@ -93,22 +93,28 @@ switch ($modoBusqueda){
         }
 
         $textoFiltrado = array_diff($textoBusqueda,$temasBusquedasinID);
-        $regex = "/(\?)?";
+        $regex = "/(\?)";
+        if (sizeof($textoFiltrado)==0){
+            $regex= $regex . "?";
+        }
         foreach ($textoFiltrado as $item){
             $regex = $regex . "|(".$item.")\b";
         }
         $regex = $regex . "/";
-        //echo $regex;
-        $listaPreguntas = seleccionarPreguntasByTemaID($temasBusquedaconID,$regex,$id);
-        $preguntasTemp = $_SESSION['almacenPreguntas'];
-        $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
-        foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        echo $regex;
+        if (sizeof($temasBusquedaconID)==0 && sizeof($textoFiltrado)==0){
+            
+        }else {
+            $listaPreguntas = seleccionarPreguntasByTemaID($temasBusquedaconID, $regex, $id);
+            $preguntasTemp = $_SESSION['almacenPreguntas'];
+            $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp, $listaPreguntas);
+            foreach ($_SESSION['almacenPreguntas'] as $clave => $valor) {
+                htmlPreguntaPre($valor['idPregunta'], $valor['Usuario_idUsuario'], $valor['fecha'], $valor['titulo']);
+            }
+            if (sizeof($listaPreguntas) == 10) {
+                htmlBotonMas(end($listaPreguntas)['idPregunta'] + 1, $modoBusqueda);
+            }
         }
-        if (sizeof($listaPreguntas)==10){
-            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
-        }
-
         break;
 
     default:
