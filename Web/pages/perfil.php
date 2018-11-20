@@ -16,30 +16,13 @@ require "../php/perfil.php";
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Perfil de usuario &#124; Aergibide S.L.</title>
+    <title>Perfil de <?= $_SESSION["userLogged"]["nombreusu"] ?> &#124; Aergibide S.L.</title>
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/perfil.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css" />
     <link rel="stylesheet" type="text/css" href="../css/perfil.css" />
 </head>
 <body>
-<script language="JavaScript">
-    $(function () {
-        if ($("#boton-seleccion-seleccionado").length == 0) {
-            $("[name='preguntas']").attr("id", "boton-seleccion-seleccionado");
-            $("#contenedor-preguntas-index").load("php/generar-preguntas.php?modoBusqueda="+$("#boton-seleccion-seleccionado").attr("name"));
-        }
-        ;
-    });
-    /*EVENTOS*/
-    $(".boton-selector").click(cambiarBusqueda);
-
-    /*FUNCIONES*/
-    function cambiarBusqueda() {
-        $("#boton-seleccion-seleccionado").removeAttr('id');
-        $(this).attr("id", "boton-seleccion-seleccionado");
-        $("#contenedor-preguntas-index").load("php/generar-preguntas.php?modoBusqueda="+$("#boton-seleccion-seleccionado").attr("name"));
-    }
-</script>
 <main id="contenedor-principal">
     <?php
     generarNav("../");
@@ -54,18 +37,17 @@ require "../php/perfil.php";
                 <p><?= $_SESSION["userLogged"]["correo"] ?></p>
                 <p><?= $_SESSION["userLogged"]["desc"] ?></p>
             </div>
-
         </div>
         <div id="contenedor-selectores-perfil">
-            <button name="preguntas" class="boton-selector">Preguntas</button>
-            <button name="respuestas" class="boton-selector">Respuestas</button>
+            <button name="preguntas">Preguntas</button>
+            <button name="respuestas">Respuestas</button>
         </div>
         <div id="contenedor-preguntas-perfil">
             <?php
                 listaPreguntasUsuario();
             ?>
         </div>
-        <div id="contenedor-respuestas-perfil" style="display: none;">
+        <div id="contenedor-respuestas-perfil">
             <?php
                 listaRespuestasUsuario();
             ?>
