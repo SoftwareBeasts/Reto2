@@ -22,10 +22,7 @@ $modoBusqueda = $_GET['modoBusqueda'];
      $_SESSION['botonMasModo']=$modoBusqueda;
      $_SESSION['almacenPreguntas']=array();
  }
-if(isset($_SESSION['borrarAlmacen'])&&$_SESSION['borrarAlmacen']==true){
-    $_SESSION['almacenPreguntas']=array();
-    $_SESSION['borrarAlmacen']=false;
-}
+
 
 
 
@@ -96,15 +93,17 @@ switch ($modoBusqueda){
         $regex = "/(\?)";
         if (sizeof($textoFiltrado)==0){
             $regex= $regex . "?";
-        }
-        foreach ($textoFiltrado as $item){
-            $regex = $regex . "|(".$item.")\b";
+        }else {
+            foreach ($textoFiltrado as $item) {
+                $regex = $regex . "|(" . $item . ")\b";
+            }
         }
         $regex = $regex . "/";
-        echo $regex;
+        //echo $regex;
         if (sizeof($temasBusquedaconID)==0 && sizeof($textoFiltrado)==0){
-            
-        }else {
+
+        }
+        else {
             $listaPreguntas = seleccionarPreguntasByTemaID($temasBusquedaconID, $regex, $id);
             $preguntasTemp = $_SESSION['almacenPreguntas'];
             $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp, $listaPreguntas);

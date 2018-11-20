@@ -54,7 +54,7 @@ function selectPreguntabyID($conexion,$id){
     }
 }
 
-function selectPreguntabyTemas($conexion,$temas,$regex,$id){
+function selectPreguntabyTemas($conexion,$temas,$id){
     try{
         if ($id==null){
             $id = 0;
@@ -62,6 +62,7 @@ function selectPreguntabyTemas($conexion,$temas,$regex,$id){
         $contador = 0;
         $temasConsulta = "";
         foreach ($temas as $item=>$value){
+
             if($contador==sizeof($temas)-1){
                 $temasConsulta = $temasConsulta . " tema.idTema = " . $value['idTema'];
             }else {
@@ -72,22 +73,19 @@ function selectPreguntabyTemas($conexion,$temas,$regex,$id){
 
         $consulta = $conexion->prepare("SELECT pregunta.* FROM pregunta,tema,pregunta_has_tema 
           WHERE tema.idTema=pregunta_has_tema.Tema_idTema AND pregunta.idPregunta = pregunta_has_tema.Pregunta_idPregunta
-          AND (".$temasConsulta .") AND pregunta.idPregunta>:id LIMIT 10");
+          AND (".$temasConsulta .") AND pregunta.idPregunta>:id LIMIT 1");
         $consulta->setFetchMode(PDO::FETCH_ASSOC);
         $consulta->bindValue(':id',"$id");
         $consulta->execute();
 
-        $id = 0;
-        $preguntas = array();
-        while($pregunta = $consulta->fetch()){
-            if(preg_match($regex,$pregunta['titulo'])){
-                $preguntas[$id] = $pregunta;
-                $id++;
-            }
-        }
+
+
+       $pregunta = $consulta->fetch();
+
+
 
         $conexion = null;
-        return $preguntas;
+        return $pregunta;
     }catch(Exception $e){
         echo $e;
     }
