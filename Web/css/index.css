@@ -96,20 +96,18 @@ div.contenedor-categorias-pregunta a{
 }
 
 /*Likes*/
-div#contenedor-preguntas-index div#contenedor-likes-pregunta{
-    display: flex;
-    flex-flow:row nowrap;
-    width: 25%;
-    justify-content: flex-end;
-
-}
-div#contenedor-likes-pregunta span#numero-dislikes-pregunta{
-    margin-right: 10px;
-}
-
-div#contenedor-likes-pregunta{
+div.contenedor-likes-preguntas{
     width: 25%;
     display: flex;
+}
+span.puntuacion-pregunta-index::before {
+    content: 'Puntuacion ';
+}
+
+span.puntuacion-pregunta-index {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
 }
 
 /*Barra Lateral*/
