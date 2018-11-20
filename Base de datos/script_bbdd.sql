@@ -37,7 +37,7 @@ DROP TABLE IF EXISTS `reto2_bbdd`.`Pregunta` ;
 CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Pregunta` (
   `idPregunta` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NOT NULL,
-  `cuerpo` TEXT(65000) NOT NULL,
+  `cuerpo` VARCHAR(256) NOT NULL,
   `fecha` DATE NOT NULL,
   `archivos` VARCHAR(256) NULL,
   `Usuario_idUsuario` INT NOT NULL,
@@ -58,7 +58,7 @@ DROP TABLE IF EXISTS `reto2_bbdd`.`Respuesta` ;
 CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Respuesta` (
   `idRespuesta` INT NOT NULL AUTO_INCREMENT,
   `titulo` VARCHAR(100) NOT NULL,
-  `cuerpo` TEXT(65000) NOT NULL,
+  `cuerpo` VARCHAR(256) NOT NULL,
   `fecha` DATE NOT NULL,
   `archivos` VARCHAR(256) NULL,
   `aprobado` TINYINT NOT NULL DEFAULT 0,
@@ -91,11 +91,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `reto2_bbdd`.`Voto`
+-- Table `reto2_bbdd`.`Voto_respuesta`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `reto2_bbdd`.`Voto` ;
+DROP TABLE IF EXISTS `reto2_bbdd`.`Voto_respuesta` ;
 
-CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Voto` (
+CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Voto_respuesta` (
   `idVoto` INT NOT NULL AUTO_INCREMENT,
   `tipo` TINYINT NOT NULL,
   `Usuario_idUsuario` INT NOT NULL,
@@ -131,6 +131,30 @@ CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Pregunta_has_Tema` (
   CONSTRAINT `fk_Pregunta_has_Tema_Tema1`
     FOREIGN KEY (`Tema_idTema`)
     REFERENCES `reto2_bbdd`.`Tema` (`idTema`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `reto2_bbdd`.`Voto_pregunta`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `reto2_bbdd`.`Voto_pregunta` ;
+
+CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Voto_pregunta` (
+  `idVoto` INT NOT NULL AUTO_INCREMENT,
+  `tipo` TINYINT NOT NULL,
+  `Usuario_idUsuario` INT NOT NULL,
+  `Pregunta_idPregunta` INT NOT NULL,
+  PRIMARY KEY (`idVoto`),
+  CONSTRAINT `fk_Voto_pregunta_Usuario1`
+    FOREIGN KEY (`Usuario_idUsuario`)
+    REFERENCES `reto2_bbdd`.`Usuario` (`idUsuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Voto_pregunta_Pregunta1`
+    FOREIGN KEY (`Pregunta_idPregunta`)
+    REFERENCES `reto2_bbdd`.`Pregunta` (`idPregunta`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
