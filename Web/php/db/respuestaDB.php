@@ -4,9 +4,10 @@ function findRespuestasByUsuario($conexion, $usuario){
     try{
         $datos = array('usuario' => $usuario);
 
-        $consulta = $conexion -> prepare('SELECT * FROM Respuesta WHERE Usuario_idUsuario = :usuario');
+        $consulta = $conexion -> prepare('SELECT DISTINCT Pregunta_idPregunta FROM Respuesta WHERE Usuario_idUsuario = :usuario');
         $consulta -> setFetchMode(PDO::FETCH_ASSOC);
         $consulta -> execute($datos);
+        $respuestas=array();
 
         while($respuesta = $consulta -> fetch())
         {

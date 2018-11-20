@@ -151,6 +151,7 @@ function insertarPregunta($titulo, $descripcion, $categorias, $usuario){
 function buscarPreguntasRespuestasUsuario($tipo, $usuario)
 {
     $conexion = getConnection();
+    $preguntas=array();
     switch ($tipo) {
         case "Preguntas":
             $preguntas = findPreguntasByUsuario($conexion, $usuario);
@@ -158,7 +159,7 @@ function buscarPreguntasRespuestasUsuario($tipo, $usuario)
         case "Respuestas":
             $respuestas = findRespuestasByUsuario($conexion, $usuario);
             foreach ($respuestas as $clave => $valor) {
-                $preguntas[] = findPreguntaById($conexion, $valor["idRespuesta"]);
+                $preguntas[] = findPreguntaById($conexion, $valor["Pregunta_idPregunta"]);
             }
             break;
     }

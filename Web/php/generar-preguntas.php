@@ -129,8 +129,11 @@ function htmlPreguntaPre($id,$usuario,$fecha,$titulo)
         <div class="contenedor-categorias-pregunta">
             <a href="#"><label>PHP</label></a>
         </div>
-        <div class="contenedor-likes-preguntas">
-            <span class="puntuacion-pregunta-index">11</span>
+        <div id="contenedor-likes-pregunta">
+            <a href="#" class="link-like-pregunta"><img src="./media/like.png" alt="imagen-like" class="imagen-like"></a>
+            <span id="numero-likes-pregunta">11</span>
+            <a href="#" class="link-dislike-pregunta"><img src="./media/like.png" alt="imagen-like" class="imagen-dislike"></a>
+            <span id="numero-dislikes-pregunta">3</span>
         </div>
     </article>
     <?php
