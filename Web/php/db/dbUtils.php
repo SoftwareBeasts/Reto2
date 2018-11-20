@@ -186,6 +186,14 @@ function cargarDatosPreguntabyId($id){
 
     return $datosPregunta;
 }
+
+function verTodosLosTemas() {
+    $conexion=getConnection();
+    $temas=selectAllTema($conexion);
+    $conexion=null;
+    return $temas;
+}
+
 /*Responder a una Pregunta*/
 function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     $conexion = getConnection();

@@ -1,5 +1,7 @@
 <?php
 
+require_once "db/dbUtils.php";
+
 function generarNav($ruta){
     ?>
     <nav id="menu-cabecera">
@@ -52,11 +54,15 @@ function generarAside(){
         <div id="contenedor-principal-categorias-aside">
             <h3 id="titulo-categoria">Categor&iacute;as</h3>
             <div id="contenedor-secundario-categorias-aside">
-                <a href="#"><label>PHP</label></a>
-                <a href="#"><label>PHP</label></a>
-                <a href="#"><label>PHP</label></a>
-                <a href="#"><label>PHP</label></a>
-                <a href="#"><label>PHP</label></a>
+                <?php
+                $temas=verTodosLosTemas();
+                foreach($temas as $clave=>$valor)
+                {
+                ?>
+                <a href="#"><label><?= $valor["nombre"] ?></label></a>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </aside>

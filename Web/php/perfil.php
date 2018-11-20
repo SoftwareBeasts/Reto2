@@ -4,10 +4,6 @@ require_once "db/dbUtils.php";
 
 session_start();
 
-function buscarUsuario($id) {
-    return encontrarUsuario("no", $id);
-}
-
 function listaPreguntasUsuario($idUsuario) {
 
     $preguntas=buscarPreguntasRespuestasUsuario("Preguntas", $idUsuario);
