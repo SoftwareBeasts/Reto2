@@ -74,7 +74,21 @@ switch ($modoBusqueda){
             htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda,$listaPreguntas);
         }
         break;
+    case "perso":
 
+        $textoBusqueda = $_SESSION['busquedaRelevantes'];
+        $temasBusquedaconID = filtrarTemas($textoBusqueda);
+        $temasBusquedasinID = array();
+        $textoFiltrado = array();
+        foreach ($temasBusquedaconID as $clave=>$valor) {
+            array_push($temasBusquedasinID,$valor);
+        }
+
+
+        break;
+
+    default:
+        echo "Error Desconocido";
 }
 
 function htmlPreguntaPre($id,$usuario,$fecha,$titulo)

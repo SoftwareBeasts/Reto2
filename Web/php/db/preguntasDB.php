@@ -53,3 +53,21 @@ function selectPreguntabyID($conexion,$id){
         echo $e;
     }
 }
+
+function selectPreguntabyTemas($conexion,$temas){
+    try{
+        $temasConsulta = "";
+        foreach ($temas as $item){
+            $temas = $temas . "  ";
+        }
+        $consulta = $conexion->prepare("SELECT pregunta.* FROM pregunta,tema,pregunta_has_tema 
+          WHERE tema.idTema=pregunta_has_tema.Tema_idTema AND pregunta.idPregunta = pregunta_has_tema.Pregunta_idPregunta");
+
+
+        $conexion = null;
+        return x;
+    }catch(Exception $e){
+        echo $e;
+    }
+}
+

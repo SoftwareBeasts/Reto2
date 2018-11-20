@@ -23,43 +23,53 @@ require "../php/perfil.php";
 </head>
 <body>
 <script language="JavaScript">
-    // Para editar el nombre y la descripción del usuario
-    $(document).ready(function()
-    {
-        $("#nombrePerfil").click(function()
-        {
-            var data = $(this).text();
-            $(this).remove();
-
-            $('<form action="perfil.php" method="post"><input id="nombrePerfil" name="nombrePerfil" type="text" value="'+data+'" /><input type="submit" value="Enviar"></form>').appendTo('#nombrePerfilDiv');
-        });
-        $("#descripcionPerfil").click(function()
-        {
-            var data = $(this).text();
-            $(this).remove();
-
-            $('<form action="perfil.php" method="post"><input id="descripcionPerfil" name="descripcionPerfil" type="text" value="'+data+'" /><input type="submit" value="Enviar"></form>').appendTo('#descripcionPerfilDiv');
-        });
+    $(function () {
+        if ($("#boton-seleccion-seleccionado").length == 0) {
+            $("[name='preguntas']").attr("id", "boton-seleccion-seleccionado");
+            $("#contenedor-preguntas-index").load("php/generar-preguntas.php?modoBusqueda="+$("#boton-seleccion-seleccionado").attr("name"));
+        }
+        ;
     });
+    /*EVENTOS*/
+    $(".boton-selector").click(cambiarBusqueda);
+
+    /*FUNCIONES*/
+    function cambiarBusqueda() {
+        $("#boton-seleccion-seleccionado").removeAttr('id');
+        $(this).attr("id", "boton-seleccion-seleccionado");
+        $("#contenedor-preguntas-index").load("php/generar-preguntas.php?modoBusqueda="+$("#boton-seleccion-seleccionado").attr("name"));
+    }
 </script>
 <main id="contenedor-principal">
     <?php
     generarNav("../");
     ?>
     <section id="contenedor-perfil">
-        <div>
-            <h3 id="nombrePerfilDiv"><span id="nombrePerfil"><?= $_SESSION["userLogged"]["nombreusu"] ?></span></h3>
-            <p>Preguntas realizadas: 1 &#124; Respuestas proporcionadas: 1</p>
-            <p id="descripcionPerfilDiv"><span id="descripcionPerfil"><?= $_SESSION["userLogged"]["desc"] ?></span></p>
+        <div id="contenedor-perfil-usuario">
+            <div>
+                <img src="../media/usersImg/<?php if($_SESSION["userLogged"]["img"]!=""){echo $_SESSION["userLogged"]["img"];}else{echo "user_default.png";} ?>"  height="100" width="100" />
+            </div>
+            <div>
+                <h3><?= $_SESSION["userLogged"]["nombreusu"] ?></h3>
+                <p><?= $_SESSION["userLogged"]["correo"] ?></p>
+                <p><?= $_SESSION["userLogged"]["desc"] ?></p>
+            </div>
+
         </div>
-        <ul>
-            <li>Preguntas</li>
-            <li>Respuestas</li>
-        </ul>
-        <?php
-            listaPreguntasUsuario();
-            listaRespuestasUsuario();
-        ?>
+        <div id="contenedor-selectores-perfil">
+            <button name="preguntas" class="boton-selector">Preguntas</button>
+            <button name="respuestas" class="boton-selector">Respuestas</button>
+        </div>
+        <div id="contenedor-preguntas-perfil">
+            <?php
+                listaPreguntasUsuario();
+            ?>
+        </div>
+        <div id="contenedor-respuestas-perfil" style="display: none;">
+            <?php
+                listaRespuestasUsuario();
+            ?>
+        </div>
     </section>
     <?php
     generarFooter();

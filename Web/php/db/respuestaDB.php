@@ -1,8 +1,6 @@
 <?php
 
-function findRespuestasByUsuario($usuario){
-    $conexion = getConnection();
-
+function findRespuestasByUsuario($conexion, $usuario){
     try{
         $datos = array('usuario' => $usuario);
 
@@ -56,6 +54,44 @@ function selectAllRespuestabyPreguntaID($conexion,$id){
         $conexion=null;
 
         return $listarespuestas;
+    }catch(Exception $e){
+        echo $e;
+    }
+}
+
+function insertRespuesta($conexion,$idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
+    try{
+        $today = date("Y-m-d");
+
+        if ($archivos==null){
+            $insert = $conexion->prepare("INSERT INTO respuesta(`titulo`,`cuerpo`,`fecha`,`aprobado`,`Usuario_idUsuario`,`Pregunta_idPregunta`)
+                      VALUES(:titulo,:cuerpo,:fecha,:aprobado,:iduser,:idpregunta) ");
+            $datos = array(
+                "titulo"=>$titulo,
+                "cuerpo"=>$cuerpo,
+                "fecha"=>$today,
+                "aprobado"=>0,
+                "iduser"=>$userID,
+                "idpregunta"=>$idPregunta
+            );
+        }else{
+            $insert = $conexion->prepare("INSERT INTO respuesta(`titulo`,`cuerpo`,`fecha`,`archivos`,`aprobado`,`Usuario_idUsuario`,`Pregunta_idPregunta`)
+                      VALUES(:titulo,:cuerpo,:fecha,:archivos,:aprobado,:iduser,:idpregunta) ");
+            $datos = array(
+                "titulo"=>$titulo,
+                "cuerpo"=>$cuerpo,
+                "fecha"=>$today,
+                "archivos"=>$archivos,
+                "aprobado"=>0,
+                "iduser"=>$userID,
+                "idpregunta"=>$idPregunta
+            );
+        }
+
+        $insert->execute($datos);
+
+        $conexion = null;
+
     }catch(Exception $e){
         echo $e;
     }
