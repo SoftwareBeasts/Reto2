@@ -151,6 +151,7 @@ function insertarPregunta($titulo, $descripcion, $categorias, $usuario){
 function buscarPreguntasRespuestasUsuario($tipo, $usuario)
 {
     $conexion = getConnection();
+    $preguntas=array();
     switch ($tipo) {
         case "Preguntas":
             $preguntas = findPreguntasByUsuario($conexion, $usuario);

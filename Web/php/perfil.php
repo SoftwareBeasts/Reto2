@@ -4,30 +4,34 @@ require_once "db/dbUtils.php";
 
 session_start();
 
-function listaPreguntasUsuario() {
+function buscarUsuario($id) {
+    return encontrarUsuario("no", $id);
+}
 
-    $preguntas=buscarPreguntasRespuestasUsuario("Preguntas", $_SESSION["userLogged"]["idUsuario"]);
+function listaPreguntasUsuario($idUsuario) {
+
+    $preguntas=buscarPreguntasRespuestasUsuario("Preguntas", $idUsuario);
     foreach($preguntas as $clave=>$valor)
     {
         $usuario = encontrarUsuario("no",$valor['Usuario_idUsuario']);
-        preguntaRespuestaUsuario($valor["idPregunta"], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"]);
+        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"]);
     }
 }
 
-function listaRespuestasUsuario() {
+function listaRespuestasUsuario($idUsuario) {
 
-    $preguntas=buscarPreguntasRespuestasUsuario("Respuestas", $_SESSION["userLogged"]["idUsuario"]);
+    $preguntas=buscarPreguntasRespuestasUsuario("Respuestas", $idUsuario);
     foreach($preguntas as $clave=>$valor)
     {
         $usuario = encontrarUsuario("no",$valor['Usuario_idUsuario']);
-        preguntaRespuestaUsuario($valor["idPregunta"], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"]);
+        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"]);
     }
 }
 
-function preguntaRespuestaUsuario($id, $usuario, $fecha, $titulo) {
+function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo) {
     ?>
     <article class="pregunta-perfil">
-        <span class="informacion-usuario-fecha-pregunta">por <a href="#" class="link-perfil-usuario"><?=$usuario?></a> a <?=$fecha?></span>
+        <span class="informacion-usuario-fecha-pregunta">por <a href="perfil.php?usuario=<?=$idUsuario?>" class="link-perfil-usuario"><?=$usuario?></a> a <?=$fecha?></span>
         <h2 class="titulo-pregunta"><a href="pregunta.php?preguntaid=<?=$id?>"><?=$titulo?></a></h2>
         <div id="contenedor-categorias-pregunta">
             <a href="#"><label>PHP</label></a>

@@ -64,6 +64,7 @@ function findPreguntasByUsuario($conexion, $usuario){
         $consulta = $conexion -> prepare('SELECT * FROM Pregunta WHERE Usuario_idUsuario = :usuario');
         $consulta -> setFetchMode(PDO::FETCH_ASSOC);
         $consulta -> execute($datos);
+        $preguntas=array();
 
         while($pregunta = $consulta -> fetch())
         {

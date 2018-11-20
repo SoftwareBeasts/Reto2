@@ -5,18 +5,32 @@ require "../php/perfil.php";
     if(session_id()==''){
         session_start();
     }
-
-    if(!isset($_SESSION['userLogged']))
+    $usuario=array();
+    if(isset($_GET["usuario"]))
     {
-        header('Location: login.php');
+        $usuario=buscarUsuario($_GET["usuario"]);
+        if($usuario==NULL)
+        {
+            header('Location: ../index.php');
+        }
+
     }
+    elseif(isset($_SESSION['userLogged']))
+    {
+        $usuario=$_SESSION['userLogged'];
+    }
+    else
+    {
+        header('Location: ../index.php');
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Perfil de <?= $_SESSION["userLogged"]["nombreusu"] ?> &#124; Aergibide S.L.</title>
+    <title>Perfil de <?= $usuario["nombreusu"] ?> &#124; Aergibide S.L.</title>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/perfil.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css" />
@@ -30,12 +44,12 @@ require "../php/perfil.php";
     <section id="contenedor-perfil">
         <div id="contenedor-perfil-usuario">
             <div>
-                <img src="../media/usersImg/<?php if($_SESSION["userLogged"]["img"]!=""){echo $_SESSION["userLogged"]["img"];}else{echo "user_default.png";} ?>"  height="100" width="100" />
+                <img src="..<?php if($usuario["img"]!=""){echo $usuario["img"];}else{echo "/media/usersImg/user_default.png";} ?>"  height="100" width="100" />
             </div>
             <div>
-                <h3><?= $_SESSION["userLogged"]["nombreusu"] ?></h3>
-                <p><?= $_SESSION["userLogged"]["correo"] ?></p>
-                <p><?= $_SESSION["userLogged"]["desc"] ?></p>
+                <h3><?= $usuario["nombreusu"] ?></h3>
+                <p><?= $usuario["correo"] ?></p>
+                <p><?= $usuario["desc"] ?></p>
             </div>
         </div>
         <div id="contenedor-selectores-perfil">
@@ -44,12 +58,12 @@ require "../php/perfil.php";
         </div>
         <div id="contenedor-preguntas-perfil">
             <?php
-                listaPreguntasUsuario();
+                listaPreguntasUsuario($usuario["idUsuario"]);
             ?>
         </div>
         <div id="contenedor-respuestas-perfil">
             <?php
-                listaRespuestasUsuario();
+                listaRespuestasUsuario($usuario["idUsuario"]);
             ?>
         </div>
     </section>
