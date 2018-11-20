@@ -182,6 +182,10 @@ div#requeridoLogearse{
     left:calc(50% - 175px);
     background-color: #748CAB;
     z-index: 1000;
+}
 
-
+@media screen and (max-width: 800px) {
+    div#contenedor-responder-pregunta form input#boton-responder {
+        width:50%;
+    }
 }

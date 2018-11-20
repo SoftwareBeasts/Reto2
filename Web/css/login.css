@@ -10,6 +10,7 @@ main div.center {
 }
 
 div.center form {
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -60,6 +61,12 @@ div.center form div {
     }
     to {
         opacity: 1;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    div.center form {
+        height: auto;
     }
 }
 

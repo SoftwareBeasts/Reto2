@@ -6,8 +6,8 @@
 body,html{
     min-height: 100vh;
     width: 98.673vw;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 #contenedor-principal{
     margin-top: 50px;
@@ -30,11 +30,11 @@ nav#menu-cabecera{
     height: 50px;
     /*overflow: hidden;*/
     background-color: #1d2d44;
-    box-shadow: 0px 1px 5px 1px black;
+    box-shadow: 0 1px 5px 1px black;
     color: #e8f1f2;
 }
 nav#menu-cabecera div#contenido-izquierda-nav{
-    display:flex ;
+    display:flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
@@ -99,7 +99,7 @@ nav#menu-cabecera a:visited{
     position: absolute;
     background-color: #e8f1f2;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
 }
 
@@ -228,6 +228,15 @@ div#contenedor-secundario-categorias-aside a:hover{
         display: block;
     }
 
+    nav#menu-cabecera div#contenido-izquierda-nav {
+        margin-right: 5px;
+    }
+
+    nav#menu-cabecera div#contenido-derecha-nav {
+        margin-left: 5px;
+        margin-right: 20px;
+    }
+
     form#formulario-busqueda, aside#barra-lateral-aside {
         display: none;
     }
@@ -237,6 +246,16 @@ div#contenedor-secundario-categorias-aside a:hover{
 
     #contenedor-principal {
         display: block;
+    }
+
+    nav#menu-cabecera div#contenido-izquierda-nav {
+        margin-left: 0;
+        margin-right: 5px;
+    }
+
+    nav#menu-cabecera div#contenido-derecha-nav {
+        margin-left: 5px;
+        margin-right: 20px;
     }
 
     img#logo-foro, form#formulario-busqueda, aside#barra-lateral-aside {
