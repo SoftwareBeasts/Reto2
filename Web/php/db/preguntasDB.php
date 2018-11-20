@@ -54,18 +54,40 @@ function selectPreguntabyID($conexion,$id){
     }
 }
 
-function selectPreguntabyTemas($conexion,$temas){
+function selectPreguntabyTemas($conexion,$temas,$regex,$id){
     try{
-        $temasConsulta = "";
-        foreach ($temas as $item){
-            $temas = $temas . "  ";
+        if ($id==null){
+            $id = 0;
         }
-        $consulta = $conexion->prepare("SELECT pregunta.* FROM pregunta,tema,pregunta_has_tema 
-          WHERE tema.idTema=pregunta_has_tema.Tema_idTema AND pregunta.idPregunta = pregunta_has_tema.Pregunta_idPregunta");
+        $contador = 0;
+        $temasConsulta = "";
+        foreach ($temas as $item=>$value){
+            if($contador==sizeof($temas)-1){
+                $temasConsulta = $temasConsulta . " tema.idTema = " . $value['idTema'];
+            }else {
+                $temasConsulta = $temasConsulta . " tema.idTema = " . $value['idTema'] . " OR";
+            }
+            $contador++;
+        }
 
+        $consulta = $conexion->prepare("SELECT pregunta.* FROM pregunta,tema,pregunta_has_tema 
+          WHERE tema.idTema=pregunta_has_tema.Tema_idTema AND pregunta.idPregunta = pregunta_has_tema.Pregunta_idPregunta
+          AND (".$temasConsulta .") AND pregunta.idPregunta>:id LIMIT 10");
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
+        $consulta->bindValue(':id',"$id");
+        $consulta->execute();
+
+        $id = 0;
+        $preguntas = array();
+        while($pregunta = $consulta->fetch()){
+            if(preg_match($regex,$pregunta['titulo'])){
+                $preguntas[$id] = $pregunta;
+                $id++;
+            }
+        }
 
         $conexion = null;
-        return x;
+        return $preguntas;
     }catch(Exception $e){
         echo $e;
     }

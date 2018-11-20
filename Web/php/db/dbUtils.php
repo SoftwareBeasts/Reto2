@@ -4,7 +4,7 @@ require_once "temaDB.php";
 require_once "preguntasDB.php";
 require_once "usuarioDB.php";
 require_once "respuestaDB.php";
-require_once "votoDB.php";
+require_once "voto_respuestaDB.php";
 
 if(isset($_POST['nombreusu']) && isset($_POST['verificarUsuarioRegistrado'])){
     $resultado = verificarNombreUsuario($_POST['nombreusu']);
@@ -197,5 +197,19 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
         return $temasEncontrados;
     }
 
+
+    function seleccionarPreguntasByTemaID($temas,$regex,$id=null){
+        $conexion = getConnection();
+        $preguntas = selectPreguntabyTemas($conexion,$temas,$regex,$id);
+
+        foreach ($preguntas as $clave => $valor){
+            $conexion = getConnection();
+            $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+            $preguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        }
+
+
+        return $preguntas;
+    }
 
 /*Busqueda Personalizada*/

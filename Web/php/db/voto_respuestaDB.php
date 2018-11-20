@@ -8,7 +8,7 @@
 
 function selectAllVotosByRespuestaID ($conexion,$id){
     try{
-        $consulta = $conexion->prepare("SELECT * FROM voto WHERE Respuesta_idRespuesta = :id");
+        $consulta = $conexion->prepare("SELECT * FROM voto_respuesta WHERE Respuesta_idRespuesta = :id");
         $consulta->setFetchMode(PDO::FETCH_ASSOC);
         $consulta->bindValue(':id',"$id");
         $consulta->execute();

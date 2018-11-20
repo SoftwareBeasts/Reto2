@@ -22,7 +22,10 @@ $modoBusqueda = $_GET['modoBusqueda'];
      $_SESSION['botonMasModo']=$modoBusqueda;
      $_SESSION['almacenPreguntas']=array();
  }
-
+if(isset($_SESSION['borrarAlmacen'])&&$_SESSION['borrarAlmacen']==true){
+    $_SESSION['almacenPreguntas']=array();
+    $_SESSION['borrarAlmacen']=false;
+}
 
 
 
@@ -53,7 +56,7 @@ switch ($modoBusqueda){
             htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
         }
         if(sizeof($listaPreguntas)==10){
-            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda,$listaPreguntas);
+            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
         }
 
         break;
@@ -71,19 +74,40 @@ switch ($modoBusqueda){
             htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
         }
         if(sizeof($listaPreguntas)==10){
-            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda,$listaPreguntas);
+            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
         }
         break;
     case "perso":
-
+        if(isset($_GET['cargarMas'])){
+            $id = $_GET['cargarMas'];
+        }else{
+            $id=null;
+        }
         $textoBusqueda = $_SESSION['busquedaRelevantes'];
         $temasBusquedaconID = filtrarTemas($textoBusqueda);
         $temasBusquedasinID = array();
-        $textoFiltrado = array();
+
         foreach ($temasBusquedaconID as $clave=>$valor) {
-            array_push($temasBusquedasinID,$valor);
+
+                array_push($temasBusquedasinID,$valor['nombre']);
         }
 
+        $textoFiltrado = array_diff($textoBusqueda,$temasBusquedasinID);
+        $regex = "/(\?)?";
+        foreach ($textoFiltrado as $item){
+            $regex = $regex . "|(".$item.")\b";
+        }
+        $regex = $regex . "/";
+        //echo $regex;
+        $listaPreguntas = seleccionarPreguntasByTemaID($temasBusquedaconID,$regex,$id);
+        $preguntasTemp = $_SESSION['almacenPreguntas'];
+        $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
+        foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
+            htmlPreguntaPre($valor['idPregunta'],$valor['Usuario_idUsuario'],$valor['fecha'],$valor['titulo']);
+        }
+        if (sizeof($listaPreguntas)==10){
+            htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
+        }
 
         break;
 
