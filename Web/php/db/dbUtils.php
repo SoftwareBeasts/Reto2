@@ -181,3 +181,21 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     $conexion = getConnection();
     insertRespuesta($conexion,$idPregunta,$titulo,$cuerpo,$userID,$archivos);
 }
+
+/*Busqueda Personalizada*/
+    function filtrarTemas($compuesto){
+        $conexion = getConnection();
+        $allTemas = selectAllTema($conexion);
+        $temasEncontrados = array();
+        foreach ($compuesto as $item){
+            foreach ($allTemas as $tema){
+                if($item==$tema['nombre']){
+                    array_push($temasEncontrados,$tema);
+                }
+            }
+        }
+        return $temasEncontrados;
+    }
+
+
+/*Busqueda Personalizada*/

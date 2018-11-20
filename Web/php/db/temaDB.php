@@ -26,4 +26,21 @@ function insertTema($conexion, $nombre){
         return null;
     }
 }
+
+function selectAllTema($conexion){
+    try{
+        $consulta = $conexion->prepare("SELECT * FROM tema");
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
+        $consulta->execute();
+
+        $temas = array();
+        while($tema = $consulta->fetch()){
+            array_push($temas,$tema);
+        }
+        $conexion = null;
+        return $temas;
+    }catch(Exception $e){
+        echo $e;
+    }
+}
 ?>
