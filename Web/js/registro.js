@@ -1,10 +1,9 @@
 $(document).ready(function () {
-    document.getElementById('nombreusu').focus();
-    $('#correo').on("focusout", ()=>verificarRegistrado('correo'));
+    $('#nombreusu').on("blur", ()=>verificarRegistrado('nombreusu', true));
+    $('#correo').on("blur", ()=>verificarRegistrado('correo', 0 ));
     $('input[name=correoConf]').keyup(()=>verificar('correo', 'correoConf'));
     $('input[name=passw]').keyup(verificarPassw);
     $('input[name=passwConf]').keyup(()=>verificar('passw', 'passwConf'));
-    $('#nombreusu').on("focusout", ()=>verificarRegistrado('nombreusu'));
 });
 
 function verificar(input, inputConf) {
@@ -21,7 +20,6 @@ function verificarPassw() {
     let input = document.getElementById("passw");
     try{
         if(!mediumRegExp.test(input.value)){
-            console.log("1");
             throw "Debe tener al menos una mayúscula, una minúscula y un número";
         }
         else
@@ -32,20 +30,24 @@ function verificarPassw() {
     }
 }
 
-function verificarRegistrado(tipo) {
-    let input = document.getElementById(tipo);
+function verificarRegistrado(inputVr, accion) {
+    let input = document.getElementById(inputVr);
+    let cadena;
+    if(accion)
+        cadena = 'Usuario ya registrado';
+    else
+        cadena = 'Correo ya registrado';
     $.ajax({
         type: "POST",
         url: "../php/db/dbUtils.php",
-        data: {tipo: input.value, verificarUsuarioRegistrado: true}
+        data: {value: input.value, verificarUsuarioRegistrado: accion}
     }).done(function (data) {
+        console.log(data);
         if (!data) {
-            document.getElementById('nombreusu').setCustomValidity('');
+            input.setCustomValidity('');
         }
         else{
-            document.getElementById('nombreusu').setCustomValidity('Usuario ya registrado');
+            input.setCustomValidity(cadena);
         }
-    }).fail(function () {
-        alert("FAIL");
     });
 }
