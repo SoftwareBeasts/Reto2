@@ -29,7 +29,15 @@ if(isset($_POST['nombreusu'])){
         'pass' => password_hash($_POST['passw'], PASSWORD_DEFAULT), 'desc' => $_POST['descripcion'],
         'img' => $_POST['img']);
     echo "       ".$_POST['nombreusu']."     ".$_POST['correo']."     ".password_hash($_POST['passw'], PASSWORD_DEFAULT)."     ".$_POST['descripcion']."     ".$_POST['img']."     ";
-    $correcto = registrarUsuario($datos);
+    try{
+        $correcto = registrarUsuario($datos);
+    }
+    catch (Exception $e){
+        ?>
+        <script>alert("Correo ya registrado")</script>
+        <?php
+    }
+
     echo $correcto;
 }
 
@@ -71,7 +79,7 @@ else{
                 <textarea id="descripcion" class="transparent registro" name="descripcion"></textarea>
                 <label class="registro" for="img">Imagen de perfil</label>
                 <input type="file" id="img" class="transparent registro" name="img">
-                <input type="submit" value="Registrar">
+                <input type="submit" class="submit" value="Registrar">
             </form>
         </div>
         <?php

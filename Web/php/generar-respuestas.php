@@ -30,7 +30,7 @@ function generarRespuestasPregunta($datosRespuesta){
         ?>
         <article class="contenedor-respuesta" id="<?= $valor['idRespuesta'] ?>">
             <span>por <a href="#" class="informacion-usuario-pregunta"><?= $valor['Usuario_idUsuario'] ?></a> a <?=$valor['fecha']?></span>
-            <h3 class="titulo-respuesta-pregunta"><?=$valor['titulo']?>></h3>
+            <h3 class="titulo-respuesta-pregunta"><?=$valor['titulo']?></h3>
             <p class="respuesta-pregunta"><?=$valor['cuerpo']?></p>
             <div class="contenedor-likes-respuesta">
                 <a href="#" class="link-like-respuesta"><img src="../media/like.png" alt="imagen-like"

@@ -118,3 +118,17 @@ div.contenedor-categorias-pregunta a:hover{
 article.pregunta-index h2.titulo-pregunta a:hover{
     color: #247ba0;
 }
+
+@media screen and (max-width: 400px) {
+    div#contenedor-selectores-index {
+        flex-direction: column;
+        margin:10px 0;
+        height: 20vh;
+    }
+    div#contenedor-selectores-index * {
+        width:80%;
+    }
+    button.boton-selector:first-child:first-child {
+        margin-left: 0;
+    }
+}

@@ -42,10 +42,18 @@ form input.transparent.registro.mediumStrength {
     border-bottom: 2px solid orange !important;
 }
 
-form input.transparent.registro{
+form input.transparent.registro, form textarea.transparent.registro{
     border-bottom: 2px solid #0d1321;
     color: #1d2d44;
     width: 50%;
+}
+
+form textarea.transparent.registro{
+    height: 25%;
+}
+
+form input[type="file"].transparent {
+    height: auto;
 }
 
 input.error {
@@ -65,6 +73,7 @@ input.error {
     top: 560px;
     transition: box-shadow 150ms;
     width: 100%;
+    margin: 10px auto 0 auto;
 }
 
 .submit:hover {

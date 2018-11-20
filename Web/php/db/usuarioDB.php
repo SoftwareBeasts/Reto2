@@ -43,7 +43,7 @@ function findUsuarioByNombreUsu($conexion, $nombreusu){
 function findUsuarioByEmail($conexion, $correo){
     $encontrado = false;
     try {
-        $consulta = $conexion->prepare('SELECT nombreusu FROM usuario WHERE correo = :correo');
+        $consulta = $conexion->prepare('SELECT correo FROM usuario WHERE correo = :correo');
         $consulta->setFetchMode(PDO::FETCH_ASSOC);
         $consulta->bindValue(':correo', "$correo");
         $consulta->execute();

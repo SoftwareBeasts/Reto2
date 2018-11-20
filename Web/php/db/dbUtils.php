@@ -6,8 +6,11 @@ require_once "usuarioDB.php";
 require_once "respuestaDB.php";
 require_once "voto_respuestaDB.php";
 
-if(isset($_POST['nombreusu']) && isset($_POST['verificarUsuarioRegistrado'])){
-    $resultado = verificarNombreUsuario($_POST['nombreusu']);
+if(isset($_POST['value']) && isset($_POST['verificarUsuarioRegistrado'])){
+    if($_POST['verificarUsuarioRegistrado'])
+        $resultado = verificarNombreUsuario($_POST['value']);
+    else
+        $resultado = verificarEmailUsuario($_POST['value']);
     die($resultado);
 }
 
@@ -34,7 +37,7 @@ function encontrarUsuario($correo,$id=null){
 
 function registrarUsuario($datos) {
     $conexion = getConnection();
-    if(!findUsuarioByEmail($datos['correo'])){
+    if(!findUsuarioByEmail($conexion, $datos['correo'])){
         $correcto = altaUsuario($conexion, $datos);
     }
     else
@@ -117,6 +120,12 @@ function seleccionarRespondidas($id=null){
 function verificarNombreUsuario($nombreusu){
     $conexion = getConnection();
     $encontrado = findUsuarioByNombreUsu($conexion, $nombreusu);
+    return $encontrado;
+}
+
+function verificarEmailUsuario($correo){
+    $conexion = getConnection();
+    $encontrado = findUsuarioByemail($conexion, $correo);
     return $encontrado;
 }
 

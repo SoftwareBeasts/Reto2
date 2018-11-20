@@ -1,8 +1,6 @@
 <?php
 
-function findRespuestasByUsuario($usuario){
-    $conexion = getConnection();
-
+function findRespuestasByUsuario($conexion, $usuario){
     try{
         $datos = array('usuario' => $usuario);
 
