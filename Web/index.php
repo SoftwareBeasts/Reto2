@@ -30,6 +30,10 @@ require "php/generar-nav-footer.php";
     <section id="contenedor-selectores-preguntas-index">
         <?php
         if (isset($_GET['busquedaPreguntas'])){
+            if (isset($_SESSION['nocopy'])&&($_SESSION['nocopy']==$_GET['busquedaPreguntas'])||$_SESSION['nocopy']!=$_GET['busquedaPreguntas']){
+                $_SESSION['almacenPreguntas'] = array();
+            }
+            $_SESSION['nocopy'] = $_GET['busquedaPreguntas'];
             $arraytextoBusquedaCompleto = explode(" ",$_GET['busquedaPreguntas']);
             $arraytextoBusquedaFiltrado = array();
             $irrelevantes = '/(en)\b|(la)\b|(de)\b|(que)\b|(y)\b|(como)\b|(para)\b/';
