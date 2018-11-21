@@ -41,6 +41,8 @@
     padding: 0 40px;
 }
 
+/*  Tablet (min-width: 400px) and (max-width: 800px)
+    Móvil (max-width: 400px) */
 @media screen and (max-width: 800px) {
     #contenedor-hacer-preguntas {
         padding-bottom: 10px;

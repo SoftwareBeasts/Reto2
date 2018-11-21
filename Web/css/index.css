@@ -121,6 +121,7 @@ article.pregunta-index h2.titulo-pregunta a:hover{
     color: #247ba0;
 }
 
+/*  Móvil (max-width: 400px) */
 @media screen and (max-width: 400px) {
     div#contenedor-selectores-index {
         flex-direction: column;
