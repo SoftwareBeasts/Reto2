@@ -31,8 +31,22 @@ function selectRecientes($connection){
 
 function selectMasVotadas($conexion){
     try{
-        echo "Funcionalidad aun no añadida";
+        $consulta = $conexion->prepare("SELECT pregunta.* FROM pregunta WHERE pregunta.idPregunta IN (SELECT `idPre` FROM 
+                                      (SELECT `contados`,`idPre` FROM
+                                        (SELECT COUNT(*) AS `contados`,Pregunta_idPregunta AS `idPre` FROM `votos_pregunta` WHERE tipo=1 GROUP BY Pregunta_idPregunta) AS contar1 ORDER BY `contados` DESC LIMIT 20
+                                      ) AS contar2)");
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
+        $consulta->execute();
+        $listaPreguntas = array();
+        $id = 0;
 
+        while($pregunta = $consulta->fetch()){
+            $listaPreguntas[$id] = $pregunta;
+            $id++;
+        }
+
+        $conexion = null;
+        return $listaPreguntas;
     }catch(Exception $e){
         echo $e;
     }

@@ -63,6 +63,16 @@ function seleccionarRecientes(){
 function seleccionarMasVotadas(){
     $conexion = getConnection();
     $listaPreguntas = selectMasVotadas($conexion);
+    foreach ($listaPreguntas as $clave=> $valor){
+        $conexion = getConnection();
+        $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+    }
+
+    return $listaPreguntas;
 }
 
 function seleccionarSinResponder($id=null){
