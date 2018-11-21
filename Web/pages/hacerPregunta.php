@@ -72,7 +72,6 @@ require "../php/generar-nav-footer.php";
         </form>
     </section>
     <?php
-    generarAside();
     generarFooter();
     ?>
 </main>

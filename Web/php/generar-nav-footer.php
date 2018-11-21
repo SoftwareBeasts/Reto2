@@ -1,5 +1,5 @@
 <?php
-require_once "db/dbUtils.php";
+
 function generarNav($ruta){
     ?>
     <nav id="menu-cabecera">
@@ -45,8 +45,7 @@ function generarFooter(){
     </footer>
     <?php
 }
-function generarAside($ruta){
-    $listaTemas = seleccionarTodosTemas();
+function generarAside($ruta,$listaTemas){
     ?>
     <aside id="barra-lateral-aside">
         <div id="placeholder-aside-aside"></div>

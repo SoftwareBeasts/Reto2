@@ -7,7 +7,7 @@ if(isset($_GET['logout'])){
         header("location:index.php");
     }
 }
-
+require_once "php/db/dbUtils.php";
 require "php/generar-nav-footer.php";
 
 ?>
@@ -76,7 +76,8 @@ require "php/generar-nav-footer.php";
     </section>
 
     <?php
-    generarAside(" ");
+    $listaTemas = seleccionarTodosTemas();
+    generarAside(" ",$listaTemas);
     generarFooter();
     ?>
 </main>

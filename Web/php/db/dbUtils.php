@@ -175,11 +175,22 @@ function buscarPreguntasRespuestasUsuario($tipo, $usuario)
     switch ($tipo) {
         case "Preguntas":
             $preguntas = findPreguntasByUsuario($conexion, $usuario);
+            foreach ($preguntas as $clave=>$valor){
+                $conexion=getConnection();
+                $listaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+                $preguntas[$clave]['temas'] = $listaTemas;
+            }
             break;
         case "Respuestas":
             $respuestas = findRespuestasByUsuario($conexion, $usuario);
             foreach ($respuestas as $clave => $valor) {
                 $preguntas[] = findPreguntaById($conexion, $valor["Pregunta_idPregunta"]);
+            }
+            $conexion=null;
+            foreach ($preguntas as $clave=>$valor){
+                $conexion=getConnection();
+                $listaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+                $preguntas[$clave]['temas'] = $listaTemas;
             }
             break;
     }
