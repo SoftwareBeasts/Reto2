@@ -1,6 +1,6 @@
 <?php
     require '../php/generar-nav-footer.php';
-    require '../php/db/dbUtils.php';
+    require_once '../php/db/dbUtils.php';
 
     session_start();
 
