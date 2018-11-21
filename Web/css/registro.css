@@ -2,7 +2,8 @@ main div.pos {
     grid-area: 1/8/4/2;
     opacity: 0.5;
 }
-
+/*  Tablet (min-width: 400px) and (max-width: 800px)
+    Móvil (max-width: 400px) */
 @media screen and (max-width: 800px) {
     main div.pos {
         padding: 10px;

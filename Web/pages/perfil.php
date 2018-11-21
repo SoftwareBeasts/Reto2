@@ -1,6 +1,7 @@
 <?php
 require "../php/generar-nav-footer.php";
 require "../php/perfil.php";
+require_once "../php/db/dbUtils.php";
 
     if(session_id()==''){
         session_start();
@@ -8,7 +9,7 @@ require "../php/perfil.php";
     $usuario=array();
     if(isset($_GET["usuario"]))
     {
-        $usuario=buscarUsuario($_GET["usuario"]);
+        $usuario=encontrarUsuario("no", $_GET["usuario"]);
         if($usuario==NULL)
         {
             header('Location: ../index.php');

@@ -49,7 +49,7 @@ nav#menu-cabecera div#contenido-derecha-nav{
     margin-right: 50px;
 }
 img#logo-foro{
-
+    margin-top: 5px;
 }
 a#link-pregunta{
     margin-left: 20px;
@@ -233,7 +233,9 @@ div#contenedor-secundario-categorias-aside a:hover{
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-@media screen and (min-width: 400px) and (max-width: 800px) {
+/*  Tablet (min-width: 400px) and (max-width: 800px)
+    Móvil (max-width: 400px) */
+@media screen and (max-width: 800px) {
 
     #contenedor-principal {
         display: block;
@@ -253,23 +255,10 @@ div#contenedor-secundario-categorias-aside a:hover{
     }
 }
 
+/*  Móvil (max-width: 400px) */
 @media screen and (max-width: 400px) {
 
-    #contenedor-principal {
-        display: block;
-    }
-
-    nav#menu-cabecera div#contenido-izquierda-nav {
-        margin-left: 0;
-        margin-right: 5px;
-    }
-
-    nav#menu-cabecera div#contenido-derecha-nav {
-        margin-left: 5px;
-        margin-right: 20px;
-    }
-
-    img#logo-foro, form#formulario-busqueda, aside#barra-lateral-aside {
+    img#logo-foro {
         display: none;
     }
 }
