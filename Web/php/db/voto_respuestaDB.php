@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 2gdaw08
- * Date: 16/11/2018
- * Time: 10:22
- */
 
 function selectAllVotosByRespuestaID ($conexion,$id){
     try{
@@ -27,4 +21,42 @@ function selectAllVotosByRespuestaID ($conexion,$id){
     }catch(Exception $e){
         echo $e;
     }
+}
+
+function likeDislikeFinder($conexion, $likeDislikeData){
+    $encontrado = [false, ""];
+    try{
+        $consulta = $conexion -> prepare("SELECT `tipo` FROM voto_respuesta 
+                                          WHERE Respuesta_idRespuesta = :Respuesta_idRespuesta
+                                          AND Usuario_idUsuario = :Usuario_idUsuario");
+        $consulta->setFetchMode(PDO::FETCH_OBJ);
+        $consulta -> execute($likeDislikeData);
+        $resul = $consulta->fetch();
+
+        if(!$resul == null) {
+            $encontrado[0] = true;
+            $encontrado[1] = $resul->tipo;
+        }
+        else {
+            $encontrado[0] = true;
+            $encontrado[1] = $resul->tipo;
+        }
+    }
+    catch (Exception $e){
+        return $encontrado;
+    }
+    return $encontrado;
+}
+
+function insertLikeDislike($conexion, $likeDislikeData){
+    $correcto = false;
+    try{
+        $consulta = $conexion -> prepare('INSERT INTO voto_respuesta (`tipo`, `Respuesta_idRespuesta`, `Usuario_idUsuario`) 
+                                          VALUES (:type, :Respuesta_idRespuesta, :Usuario_idUsuario)');
+        $consulta -> execute($likeDislikeData);
+        $correcto = true;
+    }
+    catch (Exception $e){
+    }
+    return $correcto;
 }
