@@ -4,7 +4,7 @@ require_once "temaDB.php";
 require_once "preguntasDB.php";
 require_once "usuarioDB.php";
 require_once "respuestaDB.php";
-require_once "votoDB.php";
+require_once "voto_respuestaDB.php";
 
 if(isset($_POST['value']) && isset($_POST['verificarUsuarioRegistrado'])){
     if($_POST['verificarUsuarioRegistrado'])
@@ -52,8 +52,12 @@ function seleccionarRecientes(){
     foreach ($listaPreguntas as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
     }
+
     return $listaPreguntas;
 }
 function seleccionarMasVotadas(){
@@ -83,7 +87,10 @@ function seleccionarSinResponder($id=null){
     foreach ($listaPreguntas as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
     }
 
     return $listaPreguntas;
@@ -111,7 +118,10 @@ function seleccionarRespondidas($id=null){
     foreach ($listaPreguntas as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
     }
 
     return $listaPreguntas;
@@ -215,5 +225,37 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
         return $temasEncontrados;
     }
 
+
+    function seleccionarPreguntasByTemaID($temas,$regex,$id=null)
+    {
+        if ($id == null) {
+            $id = 0;
+        }
+        $pregunta = " ";
+        $contador = 0;
+        $listaPreguntas = array();
+        while (sizeof($listaPreguntas) < 10 && !$pregunta == null) {
+            $conexion = getConnection();
+            $pregunta = selectPreguntabyTemas($conexion, $temas,$id);
+            if(!$pregunta==null) {
+                if (preg_match($regex, $pregunta['titulo'])) {
+                    $listaPreguntas[$contador] = $pregunta;
+                    $contador++;
+                }
+            }
+            $id = $pregunta['idPregunta'];
+        }
+        foreach ($listaPreguntas as $clave => $valor){
+            $conexion = getConnection();
+            $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+            $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+            $conexion = getConnection();
+            $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+            $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+        }
+
+
+        return $listaPreguntas;
+    }
 
 /*Busqueda Personalizada*/
