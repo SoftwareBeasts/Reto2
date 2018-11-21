@@ -52,8 +52,12 @@ function seleccionarRecientes(){
     foreach ($listaPreguntas as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
     }
+
     return $listaPreguntas;
 }
 function seleccionarMasVotadas(){
@@ -83,7 +87,10 @@ function seleccionarSinResponder($id=null){
     foreach ($listaPreguntas as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
     }
 
     return $listaPreguntas;
@@ -111,7 +118,10 @@ function seleccionarRespondidas($id=null){
     foreach ($listaPreguntas as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
     }
 
     return $listaPreguntas;
@@ -230,7 +240,10 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
         foreach ($listaPreguntas as $clave => $valor){
             $conexion = getConnection();
             $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-            $listaPreguntas[$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+            $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+            $conexion = getConnection();
+            $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+            $listaPreguntas[$clave]['temas'] = $tempListaTemas;
         }
 
 
