@@ -45,18 +45,20 @@ function generarFooter(){
     </footer>
     <?php
 }
-function generarAside(){
+function generarAside($ruta,$listaTemas){
     ?>
     <aside id="barra-lateral-aside">
         <div id="placeholder-aside-aside"></div>
         <div id="contenedor-principal-categorias-aside">
             <h3 id="titulo-categoria">Categor&iacute;as</h3>
             <div id="contenedor-secundario-categorias-aside">
-                <a href="#"><label>PHP</label></a>
-                <a href="#"><label>PHP</label></a>
-                <a href="#"><label>PHP</label></a>
-                <a href="#"><label>PHP</label></a>
-                <a href="#"><label>PHP</label></a>
+                <?php
+                    foreach ($listaTemas as $tema){
+                        ?>
+                            <a href="<?=$ruta?>index.php?busquedaPreguntas=<?=$tema['nombre']?>"><label><?=$tema['nombre']?></label></a>
+                        <?php
+                    }
+                ?>
             </div>
         </div>
     </aside>

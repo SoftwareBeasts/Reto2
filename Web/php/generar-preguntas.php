@@ -30,13 +30,13 @@ switch ($modoBusqueda){
     case "recientes":
         $listaPreguntas = seleccionarRecientes();
         foreach ($listaPreguntas as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas']);
         }
         break;
     case "masvotadas":
         $listaPreguntas = seleccionarMasVotadas();
         foreach ($listaPreguntas as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas']);
         }
         break;
     case "sinresponder":
@@ -50,7 +50,7 @@ switch ($modoBusqueda){
         $preguntasTemp = $_SESSION['almacenPreguntas'];
         $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
         foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas']);
         }
         if(sizeof($listaPreguntas)==10){
             htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
@@ -68,7 +68,7 @@ switch ($modoBusqueda){
         $preguntasTemp = $_SESSION['almacenPreguntas'];
         $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
         foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas']);
         }
         if(sizeof($listaPreguntas)==10){
             htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
@@ -108,7 +108,7 @@ switch ($modoBusqueda){
             $preguntasTemp = $_SESSION['almacenPreguntas'];
             $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp, $listaPreguntas);
             foreach ($_SESSION['almacenPreguntas'] as $clave => $valor) {
-                htmlPreguntaPre($valor['idPregunta'], $valor['nombre'], $valor['fecha'], $valor['titulo']);
+                htmlPreguntaPre($valor['idPregunta'], $valor['nombre'], $valor['fecha'], $valor['titulo'],$valor['temas']);
             }
             if (sizeof($listaPreguntas) == 10) {
                 htmlBotonMas(end($listaPreguntas)['idPregunta'] + 1, $modoBusqueda);
@@ -120,14 +120,20 @@ switch ($modoBusqueda){
         echo "Error Desconocido";
 }
 
-function htmlPreguntaPre($id,$usuario,$fecha,$titulo)
+function htmlPreguntaPre($id,$usuario,$fecha,$titulo,$temas)
 {
     ?>
     <article class="pregunta-index" id="<?=$id?>">
         <span class="informacion-usuario-fecha-pregunta">por <a href="#" class="link-perfil-usuario"><?=$usuario?></a> a <?=$fecha?></span>
         <h2 class="titulo-pregunta"><a href="./pages/pregunta.php?preguntaid=<?=$id?>"><?=$titulo?></a></h2>
         <div class="contenedor-categorias-pregunta">
-            <a href="#"><label>PHP</label></a>
+            <?php
+                foreach ($temas as $clave=>$valor){
+                    ?>
+                    <a href="index.php?busquedaPreguntas=<?=$valor['nombre']?>"><label><?=$valor['nombre']?></label></a>
+                    <?php
+                }
+            ?>
         </div>
         <div class="contenedor-likes-preguntas">
             <span class="puntuacion-pregunta-index">11</span>

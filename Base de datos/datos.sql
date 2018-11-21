@@ -3,7 +3,8 @@ ALTER TABLE `pregunta` AUTO_INCREMENT=1;
 ALTER TABLE `respuesta` AUTO_INCREMENT=1;
 ALTER TABLE `tema` AUTO_INCREMENT=1;
 ALTER TABLE `usuario` AUTO_INCREMENT=1;
-ALTER TABLE `voto` AUTO_INCREMENT=1;
+ALTER TABLE `voto_respuesta` AUTO_INCREMENT=1;
+ALTER TABLE `voto_pregunta` AUTO_INCREMENT=1;
 
 /*Datos tabla usuario*/
 INSERT INTO `usuario` (`nombreusu`, `correo`, `pass`, `desc`, `img`) VALUES ('admin', 'admin@softwarebeasts.com', '$2y$10$ZAdQGxOcGBNCRm9NRhgfp.XTdih9jj4rGQlLmOmofrfkKrM3jE5e2', 'Soy el administrador de todo esto :)' ,'/media/usersImg/user_default.png');
@@ -36,3 +37,8 @@ INSERT INTO `pregunta` (`titulo`,`cuerpo`,`fecha`,`Usuario_idUsuario`) VALUES ('
 	
 /*TEMAS*/
 INSERT INTO `tema`(nombre) VALUES('php');	
+
+
+/*Pregunta has Tema*/
+INSERT INTO `pregunta_has_tema`(`Pregunta_idPregunta`,`Tema_idTema`) VALUES(1,1);
+INSERT INTO `pregunta_has_tema`(`Pregunta_idPregunta`,`Tema_idTema`) VALUES(2,1);
