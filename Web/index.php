@@ -7,7 +7,7 @@ if(isset($_GET['logout'])){
         header("location:index.php");
     }
 }
-
+require_once "php/db/dbUtils.php";
 require "php/generar-nav-footer.php";
 
 ?>
@@ -30,8 +30,10 @@ require "php/generar-nav-footer.php";
     <section id="contenedor-selectores-preguntas-index">
         <?php
         if (isset($_GET['busquedaPreguntas'])){
-            if (isset($_SESSION['nocopy'])&&($_SESSION['nocopy']==$_GET['busquedaPreguntas'])||$_SESSION['nocopy']!=$_GET['busquedaPreguntas']){
-                $_SESSION['almacenPreguntas'] = array();
+            if (isset($_SESSION['nocopy'])){
+                if($_SESSION['nocopy']==$_GET['busquedaPreguntas']||$_SESSION['nocopy']!=$_GET['busquedaPreguntas']) {
+                    $_SESSION['almacenPreguntas'] = array();
+                }
             }
             $_SESSION['nocopy'] = $_GET['busquedaPreguntas'];
             $arraytextoBusquedaCompleto = explode(" ",$_GET['busquedaPreguntas']);
@@ -74,7 +76,8 @@ require "php/generar-nav-footer.php";
     </section>
 
     <?php
-    generarAside();
+    $listaTemas = seleccionarTodosTemas();
+    generarAside(" ",$listaTemas);
     generarFooter();
     ?>
 </main>

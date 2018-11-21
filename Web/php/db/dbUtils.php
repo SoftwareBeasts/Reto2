@@ -77,6 +77,16 @@ function seleccionarRecientes(){
 function seleccionarMasVotadas(){
     $conexion = getConnection();
     $listaPreguntas = selectMasVotadas($conexion);
+    foreach ($listaPreguntas as $clave=> $valor){
+        $conexion = getConnection();
+        $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+    }
+
+    return $listaPreguntas;
 }
 
 function seleccionarSinResponder($id=null){
@@ -179,11 +189,22 @@ function buscarPreguntasRespuestasUsuario($tipo, $usuario)
     switch ($tipo) {
         case "Preguntas":
             $preguntas = findPreguntasByUsuario($conexion, $usuario);
+            foreach ($preguntas as $clave=>$valor){
+                $conexion=getConnection();
+                $listaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+                $preguntas[$clave]['temas'] = $listaTemas;
+            }
             break;
         case "Respuestas":
             $respuestas = findRespuestasByUsuario($conexion, $usuario);
             foreach ($respuestas as $clave => $valor) {
                 $preguntas[] = findPreguntaById($conexion, $valor["Pregunta_idPregunta"]);
+            }
+            $conexion=null;
+            foreach ($preguntas as $clave=>$valor){
+                $conexion=getConnection();
+                $listaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+                $preguntas[$clave]['temas'] = $listaTemas;
             }
             break;
     }
@@ -278,3 +299,10 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     }
 
 /*Busqueda Personalizada*/
+/*Cargar los Temas*/
+    function seleccionarTodosTemas(){
+        $conexion = getConnection();
+        $listaTemas = selectAllTema($conexion);
+        return $listaTemas;
+    }
+/*Cargar los Temas*/
