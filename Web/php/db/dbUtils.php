@@ -14,6 +14,20 @@ if(isset($_POST['value']) && isset($_POST['verificarUsuarioRegistrado'])){
     die($resultado);
 }
 
+if(isset($_GET['idRespuesta']) && isset($_GET['userId'])){
+    if(isset($_GET['type'])){
+        $likeDislikeData = array('type' => $_GET['type'], 'Respuesta_idRespuesta' => $_GET['idRespuesta'],
+            'Usuario_idUsuario' => $_GET['userId']);
+        $encontrado = setLikeDislike($likeDislikeData);
+    }
+    else{
+        $likeDislikeData = array('Respuesta_idRespuesta' => $_GET['idRespuesta'],
+            'Usuario_idUsuario' => $_GET['userId']);
+        $encontrado = findLikeDislike($likeDislikeData);
+    }
+    die(json_encode($encontrado));
+}
+
 function getConnection(){
     $bbdd = "mysql:host=localhost;dbname=reto2_bbdd;charset=utf8";
     $usuario = "root";
@@ -63,6 +77,16 @@ function seleccionarRecientes(){
 function seleccionarMasVotadas(){
     $conexion = getConnection();
     $listaPreguntas = selectMasVotadas($conexion);
+    foreach ($listaPreguntas as $clave=> $valor){
+        $conexion = getConnection();
+        $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
+        $listaPreguntas[$clave]['nombre'] = $tempUser['nombreusu'];
+        $conexion = getConnection();
+        $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+    }
+
+    return $listaPreguntas;
 }
 
 function seleccionarSinResponder($id=null){
@@ -165,11 +189,22 @@ function buscarPreguntasRespuestasUsuario($tipo, $usuario)
     switch ($tipo) {
         case "Preguntas":
             $preguntas = findPreguntasByUsuario($conexion, $usuario);
+            foreach ($preguntas as $clave=>$valor){
+                $conexion=getConnection();
+                $listaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+                $preguntas[$clave]['temas'] = $listaTemas;
+            }
             break;
         case "Respuestas":
             $respuestas = findRespuestasByUsuario($conexion, $usuario);
             foreach ($respuestas as $clave => $valor) {
                 $preguntas[] = findPreguntaById($conexion, $valor["Pregunta_idPregunta"]);
+            }
+            $conexion=null;
+            foreach ($preguntas as $clave=>$valor){
+                $conexion=getConnection();
+                $listaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
+                $preguntas[$clave]['temas'] = $listaTemas;
             }
             break;
     }
@@ -188,7 +223,7 @@ function cargarDatosPreguntabyId($id){
     foreach ($datosPregunta['respuestas'] as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $datosPregunta['respuestas'][$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $datosPregunta['respuestas'][$clave]['nombre'] = $tempUser['nombreusu'];
         $conexion = getConnection();
         $tempVotos = selectAllVotosByRespuestaID($conexion,$valor['idRespuesta']);
         $datosPregunta['respuestas'][$clave]['votos'] = $tempVotos;
@@ -197,11 +232,16 @@ function cargarDatosPreguntabyId($id){
     return $datosPregunta;
 }
 
-function verTodosLosTemas() {
-    $conexion=getConnection();
-    $temas=selectAllTema($conexion);
-    $conexion=null;
-    return $temas;
+function findLikeDislike($likeDislikeData){
+    $conexion = getConnection();
+    $encontrado = likeDislikeFinder($conexion, $likeDislikeData);
+    return $encontrado;
+}
+
+function setLikeDislike($likeDislikeData){
+    $conexion = getConnection();
+    $correcto = insertLikeDislike($conexion, $likeDislikeData);
+    return $correcto;
 }
 
 /*Responder a una Pregunta*/
@@ -259,3 +299,10 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     }
 
 /*Busqueda Personalizada*/
+/*Cargar los Temas*/
+    function seleccionarTodosTemas(){
+        $conexion = getConnection();
+        $listaTemas = selectAllTema($conexion);
+        return $listaTemas;
+    }
+/*Cargar los Temas*/

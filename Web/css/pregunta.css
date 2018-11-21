@@ -65,7 +65,14 @@ div#contenedor-likes-pregunta span#numero-dislikes-pregunta{
     margin-right: 10px;
 }
 
+span a.informacion-usuario-pregunta {
+    text-decoration: none;
+    color: #247ba0;
+}
 
+span a.informacion-usuario-pregunta:visited {
+    color: #247ba0;
+}
 
 /*Respuestas*/
 div#contenedor-respuestas{
@@ -166,6 +173,7 @@ img.imagen-dislike{
 }
 img.imagen-dislike:hover,img.imagen-like:hover{
     filter: blur(1px);
+    cursor: pointer;
 }
 div#contenedor-responder-pregunta form input#boton-responder:hover{
     background-color: #748CAB;

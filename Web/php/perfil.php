@@ -10,7 +10,7 @@ function listaPreguntasUsuario($idUsuario) {
     foreach($preguntas as $clave=>$valor)
     {
         $usuario = encontrarUsuario("no",$valor['Usuario_idUsuario']);
-        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"]);
+        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"],$valor["temas"]);
     }
 }
 
@@ -20,17 +20,24 @@ function listaRespuestasUsuario($idUsuario) {
     foreach($preguntas as $clave=>$valor)
     {
         $usuario = encontrarUsuario("no",$valor['Usuario_idUsuario']);
-        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"]);
+        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"] ,$valor["temas"]);
     }
 }
 
-function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo) {
+function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo,$temas) {
     ?>
     <article class="pregunta-perfil">
         <span class="informacion-usuario-fecha-pregunta">por <a href="perfil.php?usuario=<?=$idUsuario?>" class="link-perfil-usuario"><?=$usuario?></a> a <?=$fecha?></span>
         <h2 class="titulo-pregunta"><a href="pregunta.php?preguntaid=<?=$id?>"><?=$titulo?></a></h2>
         <div id="contenedor-categorias-pregunta">
-            <a href="#"><label>PHP</label></a>
+            <?php
+                foreach ($temas as $clave=>$valor){
+                    ?>
+                        <a href="../index.php?busquedaPreguntas=<?=$valor['nombre']?>"><label><?=$valor['nombre']?></label></a>
+                    <?php
+                }
+            ?>
+
         </div>
         <div id="contenedor-likes-pregunta">
             <a href="#" class="link-like-pregunta"><img src="../media/like.png" alt="imagen-like" class="imagen-like"></a>

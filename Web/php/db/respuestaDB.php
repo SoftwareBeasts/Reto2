@@ -97,4 +97,3 @@ function insertRespuesta($conexion,$idPregunta,$titulo,$cuerpo,$userID,$archivos
         echo $e;
     }
 }
-?>

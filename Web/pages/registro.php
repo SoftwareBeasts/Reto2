@@ -42,7 +42,8 @@ if(isset($_POST['nombreusu'])){
 }
 
 if($correcto){
-    $_SESSION['userLogged'] = $datos;
+
+    $_SESSION['userLogged'] = encontrarUsuario($datos['correo']);
 }
 
 if($_SESSION['userLogged'] !== null)

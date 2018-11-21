@@ -47,7 +47,7 @@ function generarFooter(){
     </footer>
     <?php
 }
-function generarAside(){
+function generarAside($ruta,$listaTemas){
     ?>
     <aside id="barra-lateral-aside">
         <div id="placeholder-aside-aside"></div>
@@ -55,13 +55,11 @@ function generarAside(){
             <h3 id="titulo-categoria">Categor&iacute;as</h3>
             <div id="contenedor-secundario-categorias-aside">
                 <?php
-                $temas=verTodosLosTemas();
-                foreach($temas as $clave=>$valor)
-                {
-                ?>
-                <a href="#"><label><?= $valor["nombre"] ?></label></a>
-                <?php
-                }
+                    foreach ($listaTemas as $tema){
+                        ?>
+                            <a href="<?=$ruta?>index.php?busquedaPreguntas=<?=$tema['nombre']?>"><label><?=$tema['nombre']?></label></a>
+                        <?php
+                    }
                 ?>
             </div>
         </div>
