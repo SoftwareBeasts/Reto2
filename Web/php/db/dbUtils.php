@@ -261,3 +261,10 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     }
 
 /*Busqueda Personalizada*/
+/*Cargar los Temas*/
+    function seleccionarTodosTemas(){
+        $conexion = getConnection();
+        $listaTemas = selectAllTema($conexion);
+        return $listaTemas;
+    }
+/*Cargar los Temas*/
