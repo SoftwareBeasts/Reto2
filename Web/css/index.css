@@ -121,8 +121,18 @@ article.pregunta-index h2.titulo-pregunta a:hover{
     color: #247ba0;
 }
 
+/*  Tablet (min-width: 400px) and (max-width: 800px)
+    Móvil (max-width: 400px) */
+@media screen and (max-width: 800px) {
+
+    section#contenedor-selectores-preguntas-index{
+        grid-area: 1 / 1 / 5 / 11;
+    }
+}
+
 /*  Móvil (max-width: 400px) */
 @media screen and (max-width: 400px) {
+
     div#contenedor-selectores-index {
         flex-direction: column;
         margin:10px 0;

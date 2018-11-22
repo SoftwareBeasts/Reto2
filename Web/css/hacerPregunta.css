@@ -45,6 +45,7 @@
     Móvil (max-width: 400px) */
 @media screen and (max-width: 800px) {
     #contenedor-hacer-preguntas {
+        grid-area: 1 / 1 / 5 / 11;
         padding-bottom: 10px;
     }
 

@@ -240,10 +240,6 @@ div#contenedor-secundario-categorias-aside a:hover{
     Móvil (max-width: 400px) */
 @media screen and (max-width: 800px) {
 
-    #contenedor-principal {
-        display: block;
-    }
-
     nav#menu-cabecera {
         flex-wrap: wrap;
         height: 100px;
@@ -268,7 +264,7 @@ div#contenedor-secundario-categorias-aside a:hover{
         display: block;
     }
 
-    nav#menu-cabecera + section {
+    nav#menu-cabecera + * {
         margin-top: 100px;
     }
 }
