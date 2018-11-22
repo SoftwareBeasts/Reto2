@@ -101,7 +101,8 @@ require "../php/generar-respuestas.php";
     </section>
 
     <?php
-    generarAside('../');
+    $listaTemas = seleccionarTodosTemas();
+    generarAside('../', $listaTemas);
     generarFooter();
     ?>
 </main>

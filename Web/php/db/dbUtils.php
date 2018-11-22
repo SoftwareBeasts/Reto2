@@ -16,9 +16,15 @@ if(isset($_POST['value']) && isset($_POST['verificarUsuarioRegistrado'])){
 
 if(isset($_GET['idRespuesta']) && isset($_GET['userId'])){
     if(isset($_GET['type'])){
-        $likeDislikeData = array('type' => $_GET['type'], 'Respuesta_idRespuesta' => $_GET['idRespuesta'],
-            'Usuario_idUsuario' => $_GET['userId']);
-        $encontrado = setLikeDislike($likeDislikeData);
+
+        if($_GET['type'] === "true")
+            $tipo = 1;
+        else
+            $tipo = 0;
+
+        $likeDislikeData = array('type' => (int)$tipo, 'Respuesta_idRespuesta' => (int)$_GET['idRespuesta'],
+            'Usuario_idUsuario' => (int)$_GET['userId']);
+        $encontrado = setLikeDislike($likeDislikeData, $_GET['alter']);
     }
     else{
         $likeDislikeData = array('Respuesta_idRespuesta' => $_GET['idRespuesta'],
@@ -238,9 +244,9 @@ function findLikeDislike($likeDislikeData){
     return $encontrado;
 }
 
-function setLikeDislike($likeDislikeData){
+function setLikeDislike($likeDislikeData, $alter){
     $conexion = getConnection();
-    $correcto = insertLikeDislike($conexion, $likeDislikeData);
+    $correcto = insertLikeDislike($conexion, $likeDislikeData, $alter);
     return $correcto;
 }
 

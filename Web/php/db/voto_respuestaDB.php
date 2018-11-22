@@ -24,7 +24,7 @@ function selectAllVotosByRespuestaID ($conexion,$id){
 }
 
 function likeDislikeFinder($conexion, $likeDislikeData){
-    $encontrado = [false, ""];
+    $encontrado = [false, false];
     try{
         $consulta = $conexion -> prepare("SELECT `tipo` FROM voto_respuesta 
                                           WHERE Respuesta_idRespuesta = :Respuesta_idRespuesta
@@ -34,12 +34,7 @@ function likeDislikeFinder($conexion, $likeDislikeData){
         $resul = $consulta->fetch();
 
         if(!$resul == null) {
-            $encontrado[0] = true;
-            $encontrado[1] = $resul->tipo;
-        }
-        else {
-            $encontrado[0] = true;
-            $encontrado[1] = $resul->tipo;
+            $encontrado = [true, ((int)$resul->tipo ? true : false)];
         }
     }
     catch (Exception $e){
@@ -48,15 +43,28 @@ function likeDislikeFinder($conexion, $likeDislikeData){
     return $encontrado;
 }
 
-function insertLikeDislike($conexion, $likeDislikeData){
-    $correcto = false;
+//Cuando hay un voto y lo cambias hace otra insert en vez de alter (Mirar el if de $alter)
+function insertLikeDislike($conexion, $likeDislikeData, $alter){
+
     try{
-        $consulta = $conexion -> prepare('INSERT INTO voto_respuesta (`tipo`, `Respuesta_idRespuesta`, `Usuario_idUsuario`) 
+        if($alter !== "TRUE"){
+            $consulta = $conexion -> prepare('INSERT INTO voto_respuesta (`tipo`, `Respuesta_idRespuesta`, `Usuario_idUsuario`) 
                                           VALUES (:type, :Respuesta_idRespuesta, :Usuario_idUsuario)');
+            $correcto = "TUPUTAMADREEE";
+        }
+        else{
+            $correcto = "HOLAAAAA";
+            $consulta = $conexion -> prepare('UPDATE voto_respuesta SET tipo = :type
+                                          WHERE Respuesta_idRespuesta = :Respuesta_idRespuesta
+                                           AND Usuario_idUsuario = :Usuario_idUsuario');
+        }
         $consulta -> execute($likeDislikeData);
-        $correcto = true;
+        //$correcto = $consulta -> errorCode();
+        //$correcto = true;
+        $correcto = $likeDislikeData;
+        return $correcto;
     }
     catch (Exception $e){
     }
-    return $correcto;
+
 }
