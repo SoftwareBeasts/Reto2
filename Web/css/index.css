@@ -65,7 +65,12 @@ article.pregunta-index{
     width: 100%;
     display: flex;
     flex-flow: row wrap;
-    border:0.5px solid #0d1321;
+    border-width: 0px 0.5px 0.5px 0.5px;
+    border-color: #0D1321;
+    border-style: solid;
+}
+article.pregunta-index:first-child{
+    border-top: 0.5px solid #0D1321;
 }
 article.pregunta-index h2.titulo-pregunta a{
     text-decoration: none;
