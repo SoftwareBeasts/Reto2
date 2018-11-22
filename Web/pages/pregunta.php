@@ -48,12 +48,30 @@ require "../php/generar-respuestas.php";
                 <a href="#"><label>PHP</label></a>
 
             </div>
-
+            <?php
+            function numlikesdislikes($valor){
+                $tempcontador = array(
+                    "likes"=>0,
+                    "dislikes"=>0
+                );
+                foreach ($valor['votos'] as $item=>$value){
+                    if ($value['tipo']==1){
+                        $tempcontador['likes']++;
+                    }else{
+                        $tempcontador['dislikes']++;
+                    }
+                }
+                return $tempcontador;
+            }
+            $listavotosPregunta = numlikesdislikes($datosPregunta['pregunta']['votos']);
+            ?>
             <div id="contenedor-likes-pregunta">
-                <a href="#" class="link-like-pregunta"><img src="../media/like.png" alt="imagen-like" class="imagen-like"></a>
-                <span id="numero-likes-pregunta">11</span>
-                <a href="#" class="link-dislike-pregunta"><img src="../media/like.png" alt="imagen-like" class="imagen-dislike"></a>
-                <span id="numero-dislikes-pregunta">3</span>
+
+                <img src="../media/like.png" alt="imagen-like" class="imagen-like">
+                <span id="numero-likes-pregunta"><?=$listavotosPregunta['likes']?></span>
+                <img src="../media/like.png" alt="imagen-like" class="imagen-dislike">
+                <span id="numero-dislikes-pregunta"><?=$listavotosPregunta['dislikes']?></span>
+
             </div>
         </div>
         <hr>
@@ -106,7 +124,7 @@ require "../php/generar-respuestas.php";
     <?php
     $listaTemas = seleccionarTodosTemas();
     generarAside('../', $listaTemas);
-    generarFooter();
+    generarFooter("../");
     ?>
 </main>
 </body>

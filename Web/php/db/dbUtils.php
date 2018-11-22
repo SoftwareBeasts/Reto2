@@ -242,6 +242,8 @@ function cargarDatosPreguntabyId($id){
     $conexion = getConnection();
     $datosPregunta['pregunta'] = selectPreguntabyID($conexion,$id);
     $conexion = getConnection();
+    $datosPregunta['pregunta']['votos'] = selectVotosByPreguntaID($conexion,$id);
+    $conexion = getConnection();
     $datosPregunta['usuario'] = findUsuario($conexion,"no",$datosPregunta['pregunta']['Usuario_idUsuario']);
     $conexion = getConnection();
     $datosPregunta['respuestas'] = selectAllRespuestabyPreguntaID($conexion,$id);

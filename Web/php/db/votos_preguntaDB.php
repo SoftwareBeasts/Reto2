@@ -47,3 +47,20 @@ function insertLikeDislikeP($conexion,$likeDislikeData,$alter){
     }
     return $correcto;
 }
+function selectVotosByPreguntaID($conexion,$id){
+    try{
+        $consulta = $conexion->prepare("SELECT * FROM voto_pregunta WHERE Pregunta_idPregunta = :id");
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
+        $consulta->bindValue(":id","$id");
+        $consulta->execute();
+        $listaVotos = array();
+
+        while($voto = $consulta->fetch()){
+            $listaVotos[] = $voto;
+        }
+        $conexion = null;
+        return $listaVotos;
+    }catch(Exception $e){
+        echo $e;
+    }
+}
