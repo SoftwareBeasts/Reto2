@@ -1,7 +1,5 @@
 <?php
 
-require_once "db/dbUtils.php";
-
 function generarNav($ruta){
     ?>
     <nav id="menu-cabecera">
