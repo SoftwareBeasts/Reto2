@@ -132,5 +132,12 @@ h2.titulo-pregunta{
 #contenedor-perfil article.pregunta-perfil h2.titulo-pregunta a:hover{
     color: #247ba0;
 }
+/*  Tablet (min-width: 400px) and (max-width: 800px)
+    Móvil (max-width: 400px) */
+@media screen and (max-width: 800px) {
+    #contenedor-perfil {
+        grid-area: 1 / 1 / 5 / 11;
+    }
+}
 
 

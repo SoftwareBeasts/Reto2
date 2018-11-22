@@ -6,6 +6,7 @@ main div.pos {
     Móvil (max-width: 400px) */
 @media screen and (max-width: 800px) {
     main div.pos {
+        grid-area: 1/11/4/1;
         padding: 10px;
     }
 }
