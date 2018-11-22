@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: 2gdaw08
- * Date: 16/11/2018
- * Time: 10:22
- */
 
 function selectAllVotosByRespuestaID ($conexion,$id){
     try{
@@ -27,4 +21,50 @@ function selectAllVotosByRespuestaID ($conexion,$id){
     }catch(Exception $e){
         echo $e;
     }
+}
+
+function likeDislikeFinder($conexion, $likeDislikeData){
+    $encontrado = [false, false];
+    try{
+        $consulta = $conexion -> prepare("SELECT `tipo` FROM voto_respuesta 
+                                          WHERE Respuesta_idRespuesta = :Respuesta_idRespuesta
+                                          AND Usuario_idUsuario = :Usuario_idUsuario");
+        $consulta->setFetchMode(PDO::FETCH_OBJ);
+        $consulta -> execute($likeDislikeData);
+        $resul = $consulta->fetch();
+
+        if(!$resul == null) {
+            $encontrado = [true, ((int)$resul->tipo ? true : false)];
+        }
+    }
+    catch (Exception $e){
+        return $encontrado;
+    }
+    return $encontrado;
+}
+
+//Cuando hay un voto y lo cambias hace otra insert en vez de alter (Mirar el if de $alter)
+function insertLikeDislike($conexion, $likeDislikeData, $alter){
+
+    try{
+        if($alter !== "TRUE"){
+            $consulta = $conexion -> prepare('INSERT INTO voto_respuesta (`tipo`, `Respuesta_idRespuesta`, `Usuario_idUsuario`) 
+                                          VALUES (:type, :Respuesta_idRespuesta, :Usuario_idUsuario)');
+            $correcto = "TUPUTAMADREEE";
+        }
+        else{
+            $correcto = "HOLAAAAA";
+            $consulta = $conexion -> prepare('UPDATE voto_respuesta SET tipo = :type
+                                          WHERE Respuesta_idRespuesta = :Respuesta_idRespuesta
+                                           AND Usuario_idUsuario = :Usuario_idUsuario');
+        }
+        $consulta -> execute($likeDislikeData);
+        //$correcto = $consulta -> errorCode();
+        //$correcto = true;
+        $correcto = $likeDislikeData;
+        return $correcto;
+    }
+    catch (Exception $e){
+    }
+
 }

@@ -29,15 +29,13 @@ function generarRespuestasPregunta($datosRespuesta){
 
         ?>
         <article class="contenedor-respuesta" id="<?= $valor['idRespuesta'] ?>">
-            <span>por <a href="#" class="informacion-usuario-pregunta"><?= $valor['Usuario_idUsuario'] ?></a> a <?=$valor['fecha']?></span>
+            <span>por <a href="../pages/perfil.php?usuario=<?= $valor['Usuario_idUsuario'] ?>" class="informacion-usuario-pregunta"><?= $valor['nombre'] ?></a> a <?=$valor['fecha']?></span>
             <h3 class="titulo-respuesta-pregunta"><?=$valor['titulo']?></h3>
             <p class="respuesta-pregunta"><?=$valor['cuerpo']?></p>
             <div class="contenedor-likes-respuesta">
-                <a href="#" class="link-like-respuesta"><img src="../media/like.png" alt="imagen-like"
-                                                             class="imagen-like"></a>
+                <img src="../media/like.png" alt="imagen-like" class="imagen-like">
                 <span class="numero-likes-respuesta"><?=$votos['likes']?></span>
-                <a href="#" class="link-dislike-respuesta"><img src="../media/like.png" alt="imagen-like"
-                                                                class="imagen-dislike"></a>
+                <img src="../media/like.png" alt="imagen-like" class="imagen-dislike">
                 <span class="numero-dislikes-respuesta"><?=$votos['dislikes']?></span>
             </div>
         </article>

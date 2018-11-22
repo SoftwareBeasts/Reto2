@@ -14,6 +14,26 @@ if(isset($_POST['value']) && isset($_POST['verificarUsuarioRegistrado'])){
     die($resultado);
 }
 
+if(isset($_GET['idRespuesta']) && isset($_GET['userId'])){
+    if(isset($_GET['type'])){
+
+        if($_GET['type'] === "true")
+            $tipo = 1;
+        else
+            $tipo = 0;
+
+        $likeDislikeData = array('type' => (int)$tipo, 'Respuesta_idRespuesta' => (int)$_GET['idRespuesta'],
+            'Usuario_idUsuario' => (int)$_GET['userId']);
+        $encontrado = setLikeDislike($likeDislikeData, $_GET['alter']);
+    }
+    else{
+        $likeDislikeData = array('Respuesta_idRespuesta' => $_GET['idRespuesta'],
+            'Usuario_idUsuario' => $_GET['userId']);
+        $encontrado = findLikeDislike($likeDislikeData);
+    }
+    die(json_encode($encontrado));
+}
+
 function getConnection(){
     $bbdd = "mysql:host=localhost;dbname=reto2_bbdd;charset=utf8";
     $usuario = "root";
@@ -209,7 +229,7 @@ function cargarDatosPreguntabyId($id){
     foreach ($datosPregunta['respuestas'] as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
-        $datosPregunta['respuestas'][$clave]['Usuario_idUsuario'] = $tempUser['nombreusu'];
+        $datosPregunta['respuestas'][$clave]['nombre'] = $tempUser['nombreusu'];
         $conexion = getConnection();
         $tempVotos = selectAllVotosByRespuestaID($conexion,$valor['idRespuesta']);
         $datosPregunta['respuestas'][$clave]['votos'] = $tempVotos;
@@ -217,6 +237,19 @@ function cargarDatosPreguntabyId($id){
 
     return $datosPregunta;
 }
+
+function findLikeDislike($likeDislikeData){
+    $conexion = getConnection();
+    $encontrado = likeDislikeFinder($conexion, $likeDislikeData);
+    return $encontrado;
+}
+
+function setLikeDislike($likeDislikeData, $alter){
+    $conexion = getConnection();
+    $correcto = insertLikeDislike($conexion, $likeDislikeData, $alter);
+    return $correcto;
+}
+
 /*Responder a una Pregunta*/
 function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     $conexion = getConnection();

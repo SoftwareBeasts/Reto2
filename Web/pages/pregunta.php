@@ -31,14 +31,14 @@ require "../php/generar-respuestas.php";
             }else{
                 $archivos = null;
             }
-            responderPregunta($idPregunta,$_POST['titulo_respuesta'],$_POST['texto_respuesta'],$_SESSION['usuarioLogged']['idUsuario'],$archivos);
+            responderPregunta($idPregunta,$_POST['titulo_respuesta'],$_POST['texto_respuesta'],$_SESSION['userLogged']['idUsuario'],$archivos);
         }
         $datosPregunta = cargarDatosPreguntabyId($idPregunta);
     ?>
     <section id="contenedor-preguntas-respuestas">
         <hr>
         <div id="contenedor-pregunta">
-            <span><a href="#" class="informacion-usuario-pregunta"><?=$datosPregunta['usuario']['nombreusu']?></a> <?=$datosPregunta['pregunta']['fecha']?></span>
+            <span><a href="../pages/perfil.php?usuario=<?= $datosPregunta['usuario']['idUsuario'] ?>" class="informacion-usuario-pregunta"><?=$datosPregunta['usuario']['nombreusu']?></a> <?=$datosPregunta['pregunta']['fecha']?></span>
             <h2 id="titulo-pregunta"><?=$datosPregunta['pregunta']['titulo']?></h2>
             <p id="contenido-pregunta"><?=$datosPregunta['pregunta']['cuerpo']?></p>
             <div id="contenedor-categorias-pregunta">
@@ -73,7 +73,7 @@ require "../php/generar-respuestas.php";
         <hr>
         <div id="contenedor-responder-pregunta">
             <h3>Env&iacute;a tu respuesta</h3>
-            <form action="pregunta.php" method="post">
+            <form action="pregunta.php?preguntaid=<?=$idPregunta?>" method="post">
                 <input type="hidden" name="pregunta-responder-id" value="<?=$idPregunta?>">
                 <input type="text" class="transparent" id="titulo-respuesta" name="titulo_respuesta" placeholder="titulo" required>
                 <hr>
@@ -81,7 +81,7 @@ require "../php/generar-respuestas.php";
                 <hr>
                 <input type="file" class="transparent" id="archivo-respuesta" name="archivo_respuesta">
                 <?php
-                if (isset($_SESSION['usuarioLogged'])&&!is_null($_SESSION['usuarioLogged'])){
+                if (isset($_SESSION['userLogged'])&&!is_null($_SESSION['userLogged'])){
                     ?>
                     <input type="submit"  class="submit" id="boton-responder" name="responder_pregunta" value="Responder">
                     <?php
@@ -101,7 +101,8 @@ require "../php/generar-respuestas.php";
     </section>
 
     <?php
-    generarAside();
+    $listaTemas = seleccionarTodosTemas();
+    generarAside('../', $listaTemas);
     generarFooter();
     ?>
 </main>
