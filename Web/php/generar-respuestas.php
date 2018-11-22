@@ -33,7 +33,7 @@ function generarRespuestasPregunta($datosRespuesta){
             <h3 class="titulo-respuesta-pregunta"><?=$valor['titulo']?></h3>
             <p class="respuesta-pregunta"><?=$valor['cuerpo']?></p>
             <?php
-            if($archivo === ""){
+            if($archivo[0] !== ""){
             ?>
             <span><a class="informacion-usuario-pregunta" href="<?= $valor['archivos'] ?>"><?= $archivo[1] ?></a></span>
             <?php

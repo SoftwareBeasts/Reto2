@@ -17,38 +17,11 @@ require "../php/generar-nav-footer.php";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Haz tu pregunta &#124; Aergibide S.L.</title>
     <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/hacerPregunta.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css" />
     <link rel="stylesheet" type="text/css" href="../css/hacerPregunta.css" />
 </head>
 <body>
-<script language="JavaScript">
-    function validarDatos() {
-        try
-        {
-            var titulo=$("input[name='tituloPregunta']").val();
-            if(titulo==="")
-            {
-                throw "Hacer pregunta: No se ha introducido el título.";
-            }
-            var descripcion=$("textarea").val();
-            if(descripcion==="")
-            {
-                throw "Hacer pregunta: No se ha introducido la descripción.";
-            }
-            var categorias=$("input[name='categoriasPregunta']").val();
-            if(categorias==="")
-            {
-                throw "Hacer pregunta: No se ha introducido ninguna categoría.";
-            }
-            return true;
-        }
-        catch(err)
-        {
-            console.log(err);
-            return false;
-        }
-    }
-</script>
 <main id="contenedor-principal">
     <?php
     generarNav("../");

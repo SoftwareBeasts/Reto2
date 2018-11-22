@@ -66,6 +66,10 @@ div.center form div {
 /*  Tablet (min-width: 400px) and (max-width: 800px)
     Móvil (max-width: 400px) */
 @media screen and (max-width: 800px) {
+    main div.center {
+        grid-area: 1/2/4/10;
+    }
+
     div.center form {
         height: auto;
     }
