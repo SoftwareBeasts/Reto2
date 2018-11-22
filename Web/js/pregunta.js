@@ -104,7 +104,6 @@ function likeDislikeExistsP(idPreguntaD, userIdD) {
 
 function setLikeDislike(idRespuestaD, userIdD, typeD, alterD=false) {
     let encontrado = false;
-    debugger;
     $.ajax({
         type: "GET",
         async: false,
@@ -113,7 +112,6 @@ function setLikeDislike(idRespuestaD, userIdD, typeD, alterD=false) {
     }).done(function (data) {
         encontrado = data;
     });
-    debugger;
     return encontrado;
 }
 function setLikeDislikeP(idPreguntaD, userIdD,typeD,alterD=false){
@@ -130,7 +128,6 @@ function setLikeDislikeP(idPreguntaD, userIdD,typeD,alterD=false){
 }
 
 function setInstantLike(img, idRespuesta, type, alter){
-    debugger;
     $(img).attr("src", "../media/like_blue.png");
     if(!alter){
         let clss;
@@ -145,7 +142,25 @@ function setInstantLike(img, idRespuesta, type, alter){
         span.html(text);
     }
     else{
-        
+        let sumar = ".numero-dislikes-respuesta";
+        let restar = ".numero-likes-respuesta";
+        let imagen = ".imagen-like";
+        if(type){
+            sumar = ".numero-likes-respuesta";
+            restar = ".numero-dislikes-respuesta";
+            imagen = ".imagen-dislike";
+        }
+        let htmll = $("#"+idRespuesta);
+        let span = htmll.find(sumar);
+        let text = parseInt(span.text());
+        text++;
+        span.html(text);
+
+        span = htmll.find(restar);
+        text = parseInt(span.text());
+        text--;
+        span.html(text);
+        span.siblings(imagen).attr("src", "../media/like.png");
     }
 
 }
