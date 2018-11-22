@@ -37,7 +37,7 @@ require "../php/generar-respuestas.php";
     ?>
     <section id="contenedor-preguntas-respuestas">
         <hr>
-        <div id="contenedor-pregunta">
+        <div id="contenedor-pregunta"  name="<?=$idPregunta?>">
             <span><a href="../pages/perfil.php?usuario=<?= $datosPregunta['usuario']['idUsuario'] ?>" class="informacion-usuario-pregunta"><?=$datosPregunta['usuario']['nombreusu']?></a> <?=$datosPregunta['pregunta']['fecha']?></span>
             <h2 id="titulo-pregunta"><?=$datosPregunta['pregunta']['titulo']?></h2>
             <p id="contenido-pregunta"><?=$datosPregunta['pregunta']['cuerpo']?></p>
@@ -47,9 +47,9 @@ require "../php/generar-respuestas.php";
             </div>
 
             <div id="contenedor-likes-pregunta">
-                <a href="#" class="link-like-pregunta"><img src="../media/like.png" alt="imagen-like" class="imagen-like"></a>
+                <img src="../media/like.png" alt="imagen-like" class="imagen-like">
                 <span id="numero-likes-pregunta">11</span>
-                <a href="#" class="link-dislike-pregunta"><img src="../media/like.png" alt="imagen-like" class="imagen-dislike"></a>
+                <img src="../media/like.png" alt="imagen-like" class="imagen-dislike">
                 <span id="numero-dislikes-pregunta">3</span>
             </div>
         </div>
