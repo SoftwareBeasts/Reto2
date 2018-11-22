@@ -97,8 +97,7 @@ h2.titulo-pregunta{
     transition: background-color 1s;
     -webkit-transition: background-color 1s;
 }
-
-#contenedor-perfil article.pregunta-perfil div#contenedor-likes-pregunta{
+/*enedor-perfil article.pregunta-perfil div#contenedor-likes-pregunta{
     display: flex;
     flex-flow:row nowrap;
     width: 25%;
@@ -125,7 +124,23 @@ h2.titulo-pregunta{
 #contenedor-perfil img.imagen-dislike:hover,img.imagen-like:hover{
     filter: blur(1px);
 }
+*/
+/*Actual*/
+div.contenedor-likes-preguntas{
+    width: 25%;
+    display: flex;
 
+}
+span.puntuacion-pregunta-index::before{
+    content: 'Puntuacion ';
+}
+
+span.puntuacion-pregunta-index{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+/*ACTUAL*/
 #contenedor-perfil div#contenedor-categorias-pregunta a:hover{
     background-color: #247ba0;
 }

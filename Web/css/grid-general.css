@@ -144,6 +144,14 @@ footer#pie-pagina a{
 footer#pie-pagina a:visited{
     color: #e8f1f2;
 }
+footer#pie-pagina a#link-github img{
+    width: 50px;
+    height: 50px;
+}
+footer#pie-pagina a#link-reto2 img{
+    width: 150px;
+    height: 75px;
+}
 /*Aside*/
 aside#barra-lateral-aside{
     display: flex;

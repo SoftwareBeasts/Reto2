@@ -39,8 +39,10 @@ function generarNav($ruta){
 function generarFooter($ruta){
     ?>
     <footer id="pie-pagina">
-        <img alt="Logo-Software-Beasts">
-        <a href="https://github.com"><img alt="Logo-Github" src="<?=$ruta?>media/github-logo.png"></a>
+        <a href="https://github/SoftwareBeasts/Reto2" id="link-reto2"><img alt="Logo-Software-Beasts" src="<?=$ruta?>media/SoftwarebeastsLogo.png"></a>
+        <hr>
+        <a href="https://github.com" id="link-github"><img alt="Logo-Github" src="<?=$ruta?>media/github-logo.png"></a>
+        <hr>
         <label>MIT License</label>
     </footer>
     <?php

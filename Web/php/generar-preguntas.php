@@ -22,7 +22,17 @@ $modoBusqueda = $_GET['modoBusqueda'];
      $_SESSION['botonMasModo']=$modoBusqueda;
      $_SESSION['almacenPreguntas']=array();
  }
-
+function puntuacionPreguntas($listaVotos){
+    $tempcontador = 0;
+    foreach ($listaVotos['votos'] as $item=>$value){
+        if ($value['tipo']==1){
+            $tempcontador++;
+        }else{
+            $tempcontador--;
+        }
+    }
+    return $tempcontador;
+}
 
 
 
@@ -30,13 +40,15 @@ switch ($modoBusqueda){
     case "recientes":
         $listaPreguntas = seleccionarRecientes();
         foreach ($listaPreguntas as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas']);
+            $votos = puntuacionPreguntas($valor['votos']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas'],$votos);
         }
         break;
     case "masvotadas":
         $listaPreguntas = seleccionarMasVotadas();
         foreach ($listaPreguntas as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas']);
+            $votos = puntuacionPreguntas($valor['votos']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas'],$votos);
         }
         break;
     case "sinresponder":
@@ -50,7 +62,8 @@ switch ($modoBusqueda){
         $preguntasTemp = $_SESSION['almacenPreguntas'];
         $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
         foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas']);
+            $votos = puntuacionPreguntas($valor['votos']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas'],$votos);
         }
         if(sizeof($listaPreguntas)==10){
             htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
@@ -68,7 +81,8 @@ switch ($modoBusqueda){
         $preguntasTemp = $_SESSION['almacenPreguntas'];
         $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp,$listaPreguntas);
         foreach ($_SESSION['almacenPreguntas'] as $clave=>$valor){
-            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas']);
+            $votos = puntuacionPreguntas($valor['votos']);
+            htmlPreguntaPre($valor['idPregunta'],$valor['nombre'],$valor['fecha'],$valor['titulo'],$valor['temas'],$votos);
         }
         if(sizeof($listaPreguntas)==10){
             htmlBotonMas(end($listaPreguntas)['idPregunta']+1,$modoBusqueda);
@@ -108,7 +122,8 @@ switch ($modoBusqueda){
             $preguntasTemp = $_SESSION['almacenPreguntas'];
             $_SESSION['almacenPreguntas'] = array_merge($preguntasTemp, $listaPreguntas);
             foreach ($_SESSION['almacenPreguntas'] as $clave => $valor) {
-                htmlPreguntaPre($valor['idPregunta'], $valor['nombre'], $valor['fecha'], $valor['titulo'],$valor['temas']);
+                $votos = puntuacionPreguntas($valor['votos']);
+                htmlPreguntaPre($valor['idPregunta'], $valor['nombre'], $valor['fecha'], $valor['titulo'],$valor['temas'],$votos);
             }
             if (sizeof($listaPreguntas) == 10) {
                 htmlBotonMas(end($listaPreguntas)['idPregunta'] + 1, $modoBusqueda);
@@ -120,7 +135,7 @@ switch ($modoBusqueda){
         echo "Error Desconocido";
 }
 
-function htmlPreguntaPre($id,$usuario,$fecha,$titulo,$temas)
+function htmlPreguntaPre($id,$usuario,$fecha,$titulo,$temas,$votos)
 {
     ?>
     <article class="pregunta-index" id="<?=$id?>">
@@ -136,7 +151,7 @@ function htmlPreguntaPre($id,$usuario,$fecha,$titulo,$temas)
             ?>
         </div>
         <div class="contenedor-likes-preguntas">
-            <span class="puntuacion-pregunta-index">11</span>
+            <span class="puntuacion-pregunta-index"><?=$votos?></span>
         </div>
     </article>
     <?php
