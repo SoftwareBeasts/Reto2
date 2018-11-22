@@ -45,7 +45,7 @@ require "../php/generar-nav-footer.php";
         </form>
     </section>
     <?php
-    generarFooter();
+    generarFooter("../");
     ?>
 </main>
 </body>
