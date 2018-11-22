@@ -5,6 +5,7 @@ require_once "preguntasDB.php";
 require_once "usuarioDB.php";
 require_once "respuestaDB.php";
 require_once "voto_respuestaDB.php";
+require_once "votos_preguntaDB.php";
 
 if(isset($_POST['value']) && isset($_POST['verificarUsuarioRegistrado'])){
     if($_POST['verificarUsuarioRegistrado'])
@@ -13,7 +14,7 @@ if(isset($_POST['value']) && isset($_POST['verificarUsuarioRegistrado'])){
         $resultado = verificarEmailUsuario($_POST['value']);
     die($resultado);
 }
-
+/*Respuesta*/
 if(isset($_GET['idRespuesta']) && isset($_GET['userId'])){
     if(isset($_GET['type'])){
 
@@ -30,6 +31,24 @@ if(isset($_GET['idRespuesta']) && isset($_GET['userId'])){
         $likeDislikeData = array('Respuesta_idRespuesta' => $_GET['idRespuesta'],
             'Usuario_idUsuario' => $_GET['userId']);
         $encontrado = findLikeDislike($likeDislikeData);
+    }
+    die(json_encode($encontrado));
+}
+/*Pregunta*/
+if(isset($_GET['idPregunta'],$_GET['userId'])){
+    if(isset($_GET['type'])){
+        if ($_GET['type']==="true")
+            $tipo = 1;
+        else
+            $tipo = 0;
+
+        $likeDislikeData = array('type'=>(int)$tipo, 'Pregunta_idPregunta' => (int)$_GET['idPregunta'],
+            'Usuario_idUsuario' => (int)$_GET['userId']);
+        $encontrado = setLikeDislikeP($likeDislikeDataP,$_GET['alter']);
+    }else{
+        $likeDislikeData = array('Pregunta_idPregunta'=>$_GET['idPregunta'],
+            'Usuario_idUsuario'=> $_GET['userId']);
+        $encontrado = findLikeDislikeP($likeDislikeData);
     }
     die(json_encode($encontrado));
 }
@@ -243,13 +262,22 @@ function findLikeDislike($likeDislikeData){
     $encontrado = likeDislikeFinder($conexion, $likeDislikeData);
     return $encontrado;
 }
+function findLikeDislikeP($likeDislikeData){
+    $conexion = getConnection();
+    $encontrado = likeDislikeFinderP($conexion,$likeDislikeData);
+    return $encontrado;
+}
 
 function setLikeDislike($likeDislikeData, $alter){
     $conexion = getConnection();
     $correcto = insertLikeDislike($conexion, $likeDislikeData, $alter);
     return $correcto;
 }
-
+function setLikeDislikeP($likeDislikeData,$alter){
+    $conexion = getConnection();
+    $correcto = insertLikeDislikeP($conexion,$likeDislikeData,$alter);
+    return $correcto;
+}
 /*Responder a una Pregunta*/
 function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     $conexion = getConnection();
