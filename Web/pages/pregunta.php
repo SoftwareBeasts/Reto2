@@ -22,22 +22,25 @@ require "../php/generar-respuestas.php";
 
 <main id="contenedor-principal">
     <?php
-        generarNav('../');
-        $idPregunta = $_GET['preguntaid'];
-        if (isset($_POST['responder_pregunta'])){
-            $archivos = "";
-            if (isset($_POST['archivo_respuesta'])&&!is_null($_POST['archivo_respuesta'])){
-                $archivos = $_POST['archivo_respuesta'];
-            }else{
-                $archivos = null;
-            }
-            responderPregunta($idPregunta,$_POST['titulo_respuesta'],$_POST['texto_respuesta'],$_SESSION['userLogged']['idUsuario'],$archivos);
+    generarNav('../');
+    $idPregunta = $_GET['preguntaid'];
+    if (isset($_POST['responder_pregunta'])){
+        $archivos = null;
+        if(is_uploaded_file($_FILES['archivo_respuesta']['tmp_name'])){
+            $file = pathinfo($_FILES['archivo_respuesta']['name']);
+            $newname = $_SESSION['userLogged']['idUsuario'].$idPregunta.date("YmdHis")."_".$_FILES['archivo_respuesta']['name'];
+
+            $target = '../media/usersArchives/'.$newname;
+            move_uploaded_file( $_FILES['archivo_respuesta']['tmp_name'], $target);
+            $archivos = '../media/usersArchives/'.$newname;
         }
-        $datosPregunta = cargarDatosPreguntabyId($idPregunta);
+        responderPregunta($idPregunta,$_POST['titulo_respuesta'],$_POST['texto_respuesta'],$_SESSION['userLogged']['idUsuario'],$archivos);
+    }
+    $datosPregunta = cargarDatosPreguntabyId($idPregunta);
     ?>
     <section id="contenedor-preguntas-respuestas">
         <hr>
-        <div id="contenedor-pregunta"  name="<?=$idPregunta?>">
+        <div id="contenedor-pregunta" name="<?= $idPregunta ?>">
             <span><a href="../pages/perfil.php?usuario=<?= $datosPregunta['usuario']['idUsuario'] ?>" class="informacion-usuario-pregunta"><?=$datosPregunta['usuario']['nombreusu']?></a> <?=$datosPregunta['pregunta']['fecha']?></span>
             <h2 id="titulo-pregunta"><?=$datosPregunta['pregunta']['titulo']?></h2>
             <p id="contenido-pregunta"><?=$datosPregunta['pregunta']['cuerpo']?></p>
@@ -63,33 +66,35 @@ require "../php/generar-respuestas.php";
             $listavotosPregunta = numlikesdislikes($datosPregunta['pregunta']['votos']);
             ?>
             <div id="contenedor-likes-pregunta">
+
                 <img src="../media/like.png" alt="imagen-like" class="imagen-like">
                 <span id="numero-likes-pregunta"><?=$listavotosPregunta['likes']?></span>
                 <img src="../media/like.png" alt="imagen-like" class="imagen-dislike">
                 <span id="numero-dislikes-pregunta"><?=$listavotosPregunta['dislikes']?></span>
+
             </div>
         </div>
         <hr>
         <div id="contenedor-respuestas">
             <?php
-                generarRespuestasPregunta($datosPregunta['respuestas']);
+            generarRespuestasPregunta($datosPregunta['respuestas']);
             ?>
-       <!-- <article class="contenedor-respuesta">
-            <span>por <a href="#" class="informacion-usuario-pregunta">Unai Puelles</a> a 11 de noviembre de 2018</span>
-            <p class="respuesta-pregunta">Ya encontré la solucion en StackOverflow, muchas gracias btw</p>
-            <div class="contenedor-likes-respuesta">
-                <a href="#" class="link-like-respuesta"><img src="../media/like.png" alt="imagen-like" class="imagen-like"></a>
-                <span class="numero-likes-respuesta">11</span>
-                <a href="#" class="link-dislike-respuesta"><img src="../media/like.png" alt="imagen-like" class="imagen-dislike"></a>
-                <span class="numero-dislikes-respuesta">3</span>
-            </div>
-        </article>-->
+            <!-- <article class="contenedor-respuesta">
+                 <span>por <a href="#" class="informacion-usuario-pregunta">Unai Puelles</a> a 11 de noviembre de 2018</span>
+                 <p class="respuesta-pregunta">Ya encontré la solucion en StackOverflow, muchas gracias btw</p>
+                 <div class="contenedor-likes-respuesta">
+                     <a href="#" class="link-like-respuesta"><img src="../media/like.png" alt="imagen-like" class="imagen-like"></a>
+                     <span class="numero-likes-respuesta">11</span>
+                     <a href="#" class="link-dislike-respuesta"><img src="../media/like.png" alt="imagen-like" class="imagen-dislike"></a>
+                     <span class="numero-dislikes-respuesta">3</span>
+                 </div>
+             </article>-->
 
         </div>
         <hr>
         <div id="contenedor-responder-pregunta">
             <h3>Env&iacute;a tu respuesta</h3>
-            <form action="pregunta.php?preguntaid=<?=$idPregunta?>" method="post">
+            <form action="pregunta.php?preguntaid=<?=$idPregunta?>" method="post" enctype='multipart/form-data'>
                 <input type="hidden" name="pregunta-responder-id" value="<?=$idPregunta?>">
                 <input type="text" class="transparent" id="titulo-respuesta" name="titulo_respuesta" placeholder="titulo" required>
                 <hr>
