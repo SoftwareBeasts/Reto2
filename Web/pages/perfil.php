@@ -69,7 +69,7 @@ require_once "../php/db/dbUtils.php";
         </div>
     </section>
     <?php
-    generarFooter();
+    generarFooter("../");
     ?>
 </main>
 </body>

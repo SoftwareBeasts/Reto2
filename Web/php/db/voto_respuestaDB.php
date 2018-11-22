@@ -45,26 +45,23 @@ function likeDislikeFinder($conexion, $likeDislikeData){
 
 //Cuando hay un voto y lo cambias hace otra insert en vez de alter (Mirar el if de $alter)
 function insertLikeDislike($conexion, $likeDislikeData, $alter){
-
+    $correcto = false;
     try{
         if($alter !== "TRUE"){
             $consulta = $conexion -> prepare('INSERT INTO voto_respuesta (`tipo`, `Respuesta_idRespuesta`, `Usuario_idUsuario`) 
                                           VALUES (:type, :Respuesta_idRespuesta, :Usuario_idUsuario)');
-            $correcto = "TUPUTAMADREEE";
         }
         else{
-            $correcto = "HOLAAAAA";
             $consulta = $conexion -> prepare('UPDATE voto_respuesta SET tipo = :type
                                           WHERE Respuesta_idRespuesta = :Respuesta_idRespuesta
                                            AND Usuario_idUsuario = :Usuario_idUsuario');
         }
         $consulta -> execute($likeDislikeData);
         //$correcto = $consulta -> errorCode();
-        //$correcto = true;
-        $correcto = $likeDislikeData;
-        return $correcto;
+        $correcto = true;
+
     }
     catch (Exception $e){
     }
-
+    return $correcto;
 }
