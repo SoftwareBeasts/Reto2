@@ -24,7 +24,7 @@ $modoBusqueda = $_GET['modoBusqueda'];
  }
 function puntuacionPreguntas($listaVotos){
     $tempcontador = 0;
-    foreach ($listaVotos['votos'] as $item=>$value){
+    foreach ($listaVotos as $item=>$value){
         if ($value['tipo']==1){
             $tempcontador++;
         }else{
