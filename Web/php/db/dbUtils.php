@@ -95,6 +95,9 @@ function seleccionarRecientes(){
         $conexion = getConnection();
         $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
         $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+        $conexion = getConnection();
+        $tempVotos = selectVotosByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['votos'] = $tempVotos;
     }
 
     return $listaPreguntas;
@@ -109,6 +112,9 @@ function seleccionarMasVotadas(){
         $conexion = getConnection();
         $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
         $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+        $conexion = getConnection();
+        $tempVotos = selectVotosByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['votos'] = $tempVotos;
     }
 
     return $listaPreguntas;
@@ -140,6 +146,9 @@ function seleccionarSinResponder($id=null){
         $conexion = getConnection();
         $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
         $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+        $conexion = getConnection();
+        $tempVotos = selectVotosByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['votos'] = $tempVotos;
     }
 
     return $listaPreguntas;
@@ -171,6 +180,9 @@ function seleccionarRespondidas($id=null){
         $conexion = getConnection();
         $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
         $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+        $conexion = getConnection();
+        $tempVotos = selectVotosByPreguntaID($conexion,$valor['idPregunta']);
+        $listaPreguntas[$clave]['votos'] = $tempVotos;
     }
 
     return $listaPreguntas;
@@ -218,6 +230,9 @@ function buscarPreguntasRespuestasUsuario($tipo, $usuario)
                 $conexion=getConnection();
                 $listaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
                 $preguntas[$clave]['temas'] = $listaTemas;
+                $conexion = getConnection();
+                $tempVotos = selectVotosByPreguntaID($conexion,$valor['idPregunta']);
+                $listaPreguntas[$clave]['votos'] = $tempVotos;
             }
             break;
         case "Respuestas":
@@ -230,6 +245,9 @@ function buscarPreguntasRespuestasUsuario($tipo, $usuario)
                 $conexion=getConnection();
                 $listaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
                 $preguntas[$clave]['temas'] = $listaTemas;
+                $conexion = getConnection();
+                $tempVotos = selectVotosByPreguntaID($conexion,$valor['idPregunta']);
+                $listaPreguntas[$clave]['votos'] = $tempVotos;
             }
             break;
     }
@@ -254,6 +272,7 @@ function cargarDatosPreguntabyId($id){
         $conexion = getConnection();
         $tempVotos = selectAllVotosByRespuestaID($conexion,$valor['idRespuesta']);
         $datosPregunta['respuestas'][$clave]['votos'] = $tempVotos;
+
     }
 
     return $datosPregunta;
@@ -328,6 +347,9 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
             $conexion = getConnection();
             $tempListaTemas = selectTemaByPreguntaID($conexion,$valor['idPregunta']);
             $listaPreguntas[$clave]['temas'] = $tempListaTemas;
+            $conexion = getConnection();
+            $tempVotos = selectVotosByPreguntaID($conexion,$valor['idPregunta']);
+            $listaPreguntas[$clave]['votos'] = $tempVotos;
         }
 
 
