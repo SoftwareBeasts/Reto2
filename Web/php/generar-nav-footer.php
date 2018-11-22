@@ -31,7 +31,11 @@ function generarNav($ruta){
                 }
             ?>
         </div>
+        <form id="formulario-busqueda-movil" method="get" action="<?=$ruta?>index.php">
+            <input type="text" name="busquedaPreguntas" id="caja-busqueda" placeholder="Buscar" required>
+        </form>
     </nav>
+
     <?php
 }
 
