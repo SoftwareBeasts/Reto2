@@ -84,7 +84,7 @@ else{
             </form>
         </div>
         <?php
-        generarFooter(); ?>
+        generarFooter("../"); ?>
     </main>
 </body>
 </html>

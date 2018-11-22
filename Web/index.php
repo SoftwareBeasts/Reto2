@@ -78,7 +78,7 @@ require "php/generar-nav-footer.php";
     <?php
     $listaTemas = seleccionarTodosTemas();
     generarAside(" ",$listaTemas);
-    generarFooter();
+    generarFooter(" ");
     ?>
 </main>
 </body>
