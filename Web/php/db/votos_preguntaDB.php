@@ -10,6 +10,7 @@
 function likeDislikeFinderP($conexion,$likeDislikeData){
     $encontrado = [false,false];
     try{
+
         $consulta = $conexion->prepare("SELECT `tipo` FROM voto_pregunta
                                         WHERE Pregunta_idPregunta = :Pregunta_idPregunta
                                         AND Usuario_idUsuario = :Usuario_idUsuario");
@@ -21,7 +22,7 @@ function likeDislikeFinderP($conexion,$likeDislikeData){
             $encontrado = [true, ((int)$resul->tipo ? true:false)];
         }
 
-    }catch(Eception $e){
+    }catch(Exeption $e){
         return $encontrado;
     }
     return $encontrado;
