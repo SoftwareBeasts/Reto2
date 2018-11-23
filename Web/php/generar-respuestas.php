@@ -41,7 +41,7 @@ function generarRespuestasPregunta($datosRespuesta)
 {
     foreach ($datosRespuesta as $clave => $valor) {
 
-        $votos = numlikesdislikes($valor);
+        $votos = numlikesdislikes($valor['votos']);
         $archivo = explode("_", $valor['archivos']);
         ?>
         <article class="contenedor-respuesta" id="<?= $valor['idRespuesta'] ?>">
