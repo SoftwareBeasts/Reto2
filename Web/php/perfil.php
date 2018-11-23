@@ -51,11 +51,13 @@ function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo,$te
 }
 function puntuacionPreguntas($listaVotos){
     $tempcontador = 0;
-    foreach ($listaVotos as $item=>$value){
-        if ($value['tipo']==1){
-            $tempcontador++;
-        }else{
-            $tempcontador--;
+    if($listaVotos!=null) {
+        foreach ($listaVotos as $item => $value) {
+            if ($value['tipo'] == 1) {
+                $tempcontador++;
+            } else {
+                $tempcontador--;
+            }
         }
     }
     return $tempcontador;
