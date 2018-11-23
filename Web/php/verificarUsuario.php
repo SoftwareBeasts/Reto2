@@ -2,14 +2,14 @@
 
 require './db/dbUtils.php';
 
-if(isset($_GET['nombreusu'])){
+//Busca el usuario que se ha pasado por post y genera un input hidden con true si lo ha encontrado o false si no
+if (isset($_GET['nombreusu'])) {
     $encontrado = verificarNombreUsuario($_GET['nombreusu']);
-    if($encontrado){
+    if ($encontrado) {
         ?>
         <input id="varUsuarioRegistrado" type="hidden" value="1">
         <?php
-    }
-    else{
+    } else {
         ?>
         <input id="varUsuarioRegistrado" type="hidden" value="0">
         <?php
