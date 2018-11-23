@@ -13,7 +13,18 @@ if(isset($_POST['nombreusu'])){
         echo "3";
         $_POST['descripcion'] = null;
     }
-    establecerImagen();
+    if(!is_uploaded_file($_FILES['img']['tmp_name'])){
+        $_POST['img'] = "/media/usersImg/user_default.png";
+    }
+    else{
+        $file = pathinfo($_FILES['img']['name']);
+        $extension = $file['extension'];
+        $newname = $_POST['nombreusu'].".".$extension;
+
+        $target = '../media/usersImg/'.$newname;
+        move_uploaded_file( $_FILES['img']['tmp_name'], $target);
+        $_POST['img'] = '/media/usersImg/'.$newname;
+    }
     $datos = Array('nombreusu' => $_POST['nombreusu'], 'correo' => $_POST['correo'],
         'pass' => password_hash($_POST['passw'], PASSWORD_DEFAULT), 'desc' => $_POST['descripcion'],
         'img' => $_POST['img']);
@@ -78,20 +89,5 @@ else{
 </body>
 </html>
 <?php
-}
-
-function establecerImagen(){
-    if(!is_uploaded_file($_FILES['img']['tmp_name'])){
-        $_POST['img'] = "/media/usersImg/user_default.png";
-    }
-    else{
-        $file = pathinfo($_FILES['img']['name']);
-        $extension = $file['extension'];
-        $newname = $_POST['nombreusu'].".".$extension;
-
-        $target = '../media/usersImg/'.$newname;
-        move_uploaded_file( $_FILES['img']['tmp_name'], $target);
-        $_POST['img'] = '/media/usersImg/'.$newname;
-    }
 }
 ?>

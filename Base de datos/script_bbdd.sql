@@ -20,7 +20,7 @@ DROP TABLE IF EXISTS `reto2_bbdd`.`Usuario` ;
 
 CREATE TABLE IF NOT EXISTS `reto2_bbdd`.`Usuario` (
   `idUsuario` INT NOT NULL AUTO_INCREMENT,
-  `nombreusu` VARCHAR(15) NOT NULL,
+  `nombreusu` VARCHAR(30) NOT NULL,
   `correo` VARCHAR(50) NOT NULL,
   `pass` VARCHAR(60) NOT NULL,
   `desc` VARCHAR(256) NULL,
