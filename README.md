@@ -19,13 +19,15 @@
 </p>
 
 <p align="center">
-  <a href="#¿para-qué-sirve?">Key Features</a> •
-  <a href="#Documentacion">How To Use</a> •
-  <a href="#download">Download</a> •
-  <a href="#credits">Credits</a> •
+  <a href="#¿Para-qué-sirve?">¿Para qué sirve?</a> •
+  <a href="#descarga">Descarga</a> •
+  <a href="#documentación">Documentación</a> •
+  <a href="#demo">Demo</a> •
   <a href="#relacionado">Relacionado</a> •
   <a href="#licencia">Licencia</a>
 </p>
+
+---
 
 ## ¿Para qué sirve?
 Esta página web sirve para que los operarios de la empresa de latas de conservas puedan controlar el autómata de una manera más sencilla e intuitiva que directamente usando el programa base.
@@ -53,7 +55,7 @@ Puedes ver una demo de esta aplicación web en funcionamiento haciendo click [aq
 
 [Web autómata](https://github.com/SoftwareBeasts/Reto1) - Aplicación web para gestión de un autómata
 
-## Licecia
+## Licencia
 
 ###### Realizado por Software Beasts bajo licencia [MIT](/LICENSE). 2018.
 
