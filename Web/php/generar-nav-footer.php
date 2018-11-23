@@ -31,16 +31,20 @@ function generarNav($ruta){
                 }
             ?>
         </div>
+        <form id="formulario-busqueda-movil" method="get" action="<?=$ruta?>index.php">
+            <input type="text" name="busquedaPreguntas" id="caja-busqueda" placeholder="Buscar" required>
+        </form>
     </nav>
+
     <?php
 }
 
 
-function generarFooter(){
+function generarFooter($ruta){
     ?>
     <footer id="pie-pagina">
         <img alt="Logo-Software-Beasts">
-        <a href="#"><img alt="Logo-Github"></a>
+        <a href="https://github.com"><img alt="Logo-Github" src="<?=$ruta?>media/github-logo.png"></a>
         <label>MIT License</label>
     </footer>
     <?php

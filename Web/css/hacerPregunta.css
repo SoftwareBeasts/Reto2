@@ -2,7 +2,7 @@
     margin: 10px 0;
     padding: 0 10px;
     border: 1px solid #0D1321;
-    grid-area: 1 / 3 / 5 / 9;
+    grid-area: 1 / 2 / 5 / 10;
 }
 
 #contenedor-hacer-preguntas ul {
@@ -45,6 +45,7 @@
     Móvil (max-width: 400px) */
 @media screen and (max-width: 800px) {
     #contenedor-hacer-preguntas {
+        grid-area: 1 / 1 / 5 / 11;
         padding-bottom: 10px;
     }
 
