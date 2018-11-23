@@ -1,5 +1,3 @@
-/*MODO BUSQUEDA*/
-
 /*AHAHHAA*/
 $(function () {
     if ($("#modoBusquedaPorTexto").length>0){
