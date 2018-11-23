@@ -13,11 +13,13 @@ function numlikesdislikes($valor){
         "likes"=>0,
         "dislikes"=>0
     );
-    foreach ($valor['votos'] as $item=>$value){
-        if ($value['tipo']==1){
-            $tempcontador['likes']++;
-        }else{
-            $tempcontador['dislikes']++;
+    if ($valor['votos']!=null) {
+        foreach ($valor['votos'] as $item => $value) {
+            if ($value['tipo'] == 1) {
+                $tempcontador['likes']++;
+            } else {
+                $tempcontador['dislikes']++;
+            }
         }
     }
     return $tempcontador;
