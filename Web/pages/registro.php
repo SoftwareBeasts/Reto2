@@ -71,7 +71,7 @@ else{
                 <label class="registro" for="correo">Correo<span class="required">*</span></label>
                 <input type="email" id="correo" class="transparent registro" name="correo" required>
                 <label class="registro" for="correoConf">Confirmar correo<span class="required">*</span></label>
-                <input type="" id="correoConf" class="transparent registro" name="correoConf" required>
+                <input type="email" id="correoConf" class="transparent registro" name="correoConf" required>
                 <label class="registro" for="passw">Contraseña<span class="required">*</span></label>
                 <input type="password" id="passw" class="transparent registro" name="passw" required>
                 <label class="registro" for="passwConf">Confirmar contraseña<span class="required">*</span></label>
