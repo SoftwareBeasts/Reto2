@@ -29,8 +29,12 @@
 
 ---
 
-## ¿Para qué sirve?
-Esta página web sirve para que los operarios de la empresa de latas de conservas puedan controlar el autómata de una manera más sencilla e intuitiva que directamente usando el programa base.
+## ¿En qué consiste?
+La empresa del
+sector aeronáutico Aergibide SL nos ha contactado para desarrollar una aplicación que
+solucione el grave problema que tienen en su departamento de I+D+I: la gestión del
+conocimiento. Por lo que hemos decidido desarrollar una web tipo [StackOverflow](https://stackoverflow.com/) para gestión 
+interna de la empresa. Este es el desarrollo que hemos realizado.
 
 ## Descarga
 Disponemos de un [manual de usuario](/Documentaci%C3%B3n/Manual%20de%20Usuario.pdf) en el que explicamos los pasos a seguir 
