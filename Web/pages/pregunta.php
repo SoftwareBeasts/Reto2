@@ -45,8 +45,16 @@ require "../php/generar-respuestas.php";
             <h2 id="titulo-pregunta"><?=$datosPregunta['pregunta']['titulo']?></h2>
             <p id="contenido-pregunta"><?=$datosPregunta['pregunta']['cuerpo']?></p>
             <div id="contenedor-categorias-pregunta">
-                <a href="#"><label>PHP</label></a>
+                <?php
 
+                if (isset($datosPregunta['temas'])) {
+                    foreach ($datosPregunta['temas'] as $clave => $valor) {
+                        ?>
+                        <a href="../index.php?busquedaPreguntas=<?= $valor['nombre'] ?>"><label><?= $valor['nombre'] ?></label></a>
+                        <?php
+                    }
+                }
+                ?>
             </div>
             <?php
             function numlikesdislikesP($valor){
@@ -54,7 +62,7 @@ require "../php/generar-respuestas.php";
                     "likes"=>0,
                     "dislikes"=>0
                 );
-                if(sizeof($valor['votos'])>0) {
+                if($valor!=null) {
                     foreach ($valor['votos'] as $item => $value) {
                         if ($value['tipo'] == 1) {
                             $tempcontador['likes']++;
