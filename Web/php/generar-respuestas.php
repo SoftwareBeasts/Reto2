@@ -8,6 +8,12 @@
 if(session_id()==''){
     session_start();
 }
+/**
+ * @param $valor un array con todos los votos de esa respuesta
+ * @return array un array de dos posiciones una con los likes y otra con los dislikes
+ *
+ * guarda los datos en un array que contiene likes y dislikes
+ */
 function numlikesdislikes($valor){
     $tempcontador = array(
         "likes"=>0,
@@ -24,6 +30,12 @@ function numlikesdislikes($valor){
     }
     return $tempcontador;
 }
+
+/**
+ * @param $datosRespuesta Los datos de la respuesta
+ *
+ * Genera una respuesta con los datos suministrados
+ */
 function generarRespuestasPregunta($datosRespuesta){
     foreach ($datosRespuesta as $clave=>$valor) {
 
