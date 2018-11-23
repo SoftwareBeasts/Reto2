@@ -1,8 +1,8 @@
 <?php
 session_start();
 /*Cerrar Sesion*/
-if(isset($_GET['logout'])){
-    if($_GET['logout']){
+if (isset($_GET['logout'])) {
+    if ($_GET['logout']) {
         session_destroy();
         session_start();
         header("location:index.php");
@@ -31,19 +31,19 @@ require "php/generar-nav-footer.php";
     <section id="contenedor-selectores-preguntas-index">
         <?php
         /*Comprobar que la busqueda mediante la barra superior no ha cambiado, y en caso de que cambie eliminar las preguntas guardadas*/
-        if (isset($_GET['busquedaPreguntas'])){
-            if (isset($_SESSION['nocopy'])){
-                if($_SESSION['nocopy']==$_GET['busquedaPreguntas']||$_SESSION['nocopy']!=$_GET['busquedaPreguntas']) {
+        if (isset($_GET['busquedaPreguntas'])) {
+            if (isset($_SESSION['nocopy'])) {
+                if ($_SESSION['nocopy'] == $_GET['busquedaPreguntas'] || $_SESSION['nocopy'] != $_GET['busquedaPreguntas']) {
                     $_SESSION['almacenPreguntas'] = array();
                 }
             }
             /*Recoger el texto introducio por el usuario, transformarlo en array y eliminar palabras "irrelevantes"*/
             $_SESSION['nocopy'] = $_GET['busquedaPreguntas'];
-            $arraytextoBusquedaCompleto = explode(" ",$_GET['busquedaPreguntas']);
+            $arraytextoBusquedaCompleto = explode(" ", $_GET['busquedaPreguntas']);
             $arraytextoBusquedaFiltrado = array();
             $irrelevantes = '/(en)\b|(la)\b|(de)\b|(que)\b|(y)\b|(como)\b|(para)\b/';
-            foreach ($arraytextoBusquedaCompleto as $elemento){
-                if(!preg_match($irrelevantes,$elemento)){
+            foreach ($arraytextoBusquedaCompleto as $elemento) {
+                if (!preg_match($irrelevantes, $elemento)) {
                     array_push($arraytextoBusquedaFiltrado, strtolower($elemento));
                 }
             }
@@ -52,7 +52,7 @@ require "php/generar-nav-footer.php";
             <div id="modoBusquedaPorTexto" style="display: none"></div>
             <hr>
             <?php
-        }else {
+        } else {
             ?>
             <div id="contenedor-selectores-index">
                 <button name="recientes" class="boton-selector">Recientes</button>
@@ -61,7 +61,7 @@ require "php/generar-nav-footer.php";
                 <button name="respondidas" class="boton-selector">Respondidas</button>
             </div>
             <?php
-         }
+        }
         ?>
         <div id="contenedor-preguntas-index">
             <!--<article class="pregunta-index" >
@@ -80,7 +80,7 @@ require "php/generar-nav-footer.php";
 
     <?php
     $listaTemas = seleccionarTodosTemas();
-    generarAside(" ",$listaTemas);
+    generarAside(" ", $listaTemas);
     generarFooter(" ");
     ?>
 </main>
