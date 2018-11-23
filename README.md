@@ -37,7 +37,7 @@ conocimiento. Por lo que hemos decidido desarrollar una web tipo [StackOverflow]
 interna de la empresa. Este es el desarrollo que hemos realizado.
 
 ## Descarga
-Disponemos de un [manual de usuario](/Documentaci%C3%B3n/Manual%20de%20usuario.pdf) en el que explicamos los pasos a seguir 
+Disponemos de un [manual de usuario](/Documentaci%C3%B3n/Manual%20de%20Usuario.pdf) en el que explicamos los pasos a seguir 
 para la descarga y el funcionamiento de nuestra página web.
 
 ## Documentación
