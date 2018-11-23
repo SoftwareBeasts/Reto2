@@ -15,7 +15,7 @@ function numlikesdislikes($valor){
     );
     if ($valor!=null) {
         foreach ($valor as $item => $value) {
-            if ($value['tipo'] == 1) {
+            if ($value == 1) {
                 $tempcontador['likes']++;
             } else {
                 $tempcontador['dislikes']++;
