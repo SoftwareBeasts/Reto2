@@ -20,12 +20,14 @@ function avisarLoginRequerido(){
 }
 
 function likeDislike(img, type){
-    if($(img).parent()===$("#contenedor-likes-pregunta")){
+    debugger;
+    if($(img).parent().attr("id")=="contenedor-likes-pregunta"){
+
         let userId = getUserLogged();
         if (userId === "") {
             window.location.replace("/pages/login.php");
         }
-        let idPregunta = $("#contenedor-pregunta").attr("id");
+        let idPregunta = $("#contenedor-pregunta").attr("name");
         //Buscar el voto en la base de datos
         let encontrado =likeDislikeExistsP(idPregunta,userId);
         if (!encontrado[0]){
@@ -169,24 +171,24 @@ function setInstantLikeP (img,idPregunta,type,alter){
     if(!alter){
         let clss;
         if(type)
-            clss = ".numero-likes-pregunta";
+            clss = "#numero-likes-pregunta";
         else
-            clss = ".numero-dislikes-pregunta";
-        let span = $("#"+idRespuesta).find(clss);
+            clss = "#numero-dislikes-pregunta";
+        let span = $("#contenedor-likes-pregunta").find(clss);
         let text = parseInt(span.text());
         text++;
         span.html(text);
     }
     else{
-        let sumar = ".numero-dislikes-pregunta";
-        let restar = ".numero-likes-pregunta";
+        let sumar = "#numero-dislikes-pregunta";
+        let restar = "#numero-likes-pregunta";
         let imagen = ".imagen-like";
         if(type){
-            sumar = ".numero-likes-pregunta";
-            restar = ".numero-dislikes-pregunta";
+            sumar = "#numero-likes-pregunta";
+            restar = "#numero-dislikes-pregunta";
             imagen = ".imagen-dislike";
         }
-        let htmll = $("#"+idPregunta);
+        let htmll = $("#contenedor-likes-pregunta");
         let span = htmll.find(sumar);
         let text = parseInt(span.text());
         text++;

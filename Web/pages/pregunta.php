@@ -66,7 +66,7 @@ require "../php/generar-respuestas.php";
                     "dislikes"=>0
                 );
                 if($valor!=null) {
-                    foreach ($valor['votos'] as $item => $value) {
+                    foreach ($valor as $item => $value) {
                         if ($value['tipo'] == 1) {
                             $tempcontador['likes']++;
                         } else {
@@ -79,7 +79,6 @@ require "../php/generar-respuestas.php";
             $listavotosPregunta = numlikesdislikesP($datosPregunta['pregunta']['votos']);
             ?>
             <div id="contenedor-likes-pregunta">
-
                 <img src="../media/like.png" alt="imagen-like" class="imagen-like">
                 <span id="numero-likes-pregunta"><?=$listavotosPregunta['likes']?></span>
                 <img src="../media/like.png" alt="imagen-like" class="imagen-dislike">
