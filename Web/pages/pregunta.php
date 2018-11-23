@@ -2,6 +2,9 @@
 if(session_id()==''){
     session_start();
 }
+if(!isset($_SESSION['userLogged']))
+    $_SESSION['userLogged'] = null;
+
 require "../php/generar-nav-footer.php";
 require_once  "../php/db/dbUtils.php";
 require "../php/generar-respuestas.php";
