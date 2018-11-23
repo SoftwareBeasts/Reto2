@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="#¿Para-qué-sirve?">¿Para qué sirve?</a> •
+  <a href="#¿en-qué-consiste">¿En qué consiste</a> •
   <a href="#descarga">Descarga</a> •
   <a href="#documentación">Documentación</a> •
   <a href="#demo">Demo</a> •
