@@ -4,6 +4,10 @@ require_once "db/dbUtils.php";
 
 session_start();
 
+/**
+ * Busca todas las preguntas iniciadas por el usuario e imprime un <article> por cada pregunta
+ * @param $idUsuario
+ */
 function listaPreguntasUsuario($idUsuario) {
 
     $preguntas=buscarPreguntasRespuestasUsuario("Preguntas", $idUsuario);
@@ -15,6 +19,10 @@ function listaPreguntasUsuario($idUsuario) {
     }
 }
 
+/**
+ * Busca todas las preguntas donde el usuario ha realizado una respuesta e imprime un <article> por cada pregunta
+ * @param $idUsuario
+ */
 function listaRespuestasUsuario($idUsuario) {
 
     $preguntas=buscarPreguntasRespuestasUsuario("Respuestas", $idUsuario);
@@ -26,6 +34,16 @@ function listaRespuestasUsuario($idUsuario) {
     }
 }
 
+/**
+ * El <article> donde imprime cada pregunta del perfil de usuario
+ * @param $id
+ * @param $idUsuario
+ * @param $usuario
+ * @param $fecha
+ * @param $titulo
+ * @param $temas
+ * @param $votos
+ */
 function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo,$temas,$votos) {
     ?>
     <article class="pregunta-perfil">
@@ -49,6 +67,11 @@ function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo,$te
     </article>
     <?php
 }
+
+/** Función que cuenta los votos afirmativos y negativos para calcular la puntuación de la pregunta
+ * @param $listaVotos
+ * @return int
+ */
 function puntuacionPreguntas($listaVotos){
     $tempcontador = 0;
     foreach ($listaVotos as $item=>$value){

@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Para buscar una pregunta por el título, cuerpo y usuario.
+ * @param $conexion
+ * @param $titulo
+ * @param $cuerpo
+ * @param $usuario
+ * @return array|null
+ */
 function findPregunta($conexion, $titulo, $cuerpo, $usuario){
     try{
         $datos = array('titulo' => $titulo, 'cuerpo' => $cuerpo, 'usuario' => $usuario);
@@ -16,6 +24,12 @@ function findPregunta($conexion, $titulo, $cuerpo, $usuario){
     }
 }
 
+/**
+ * Para buscar una pregunta por el ID
+ * @param $conexion
+ * @param $id
+ * @return array|null
+ */
 function findPreguntaById($conexion, $id){
     try{
         $datos = array('id' => $id);
@@ -32,6 +46,14 @@ function findPreguntaById($conexion, $id){
     }
 }
 
+/**
+ * Para insertar una pregunta
+ * @param $conexion
+ * @param $titulo
+ * @param $cuerpo
+ * @param $usuario
+ * @return null
+ */
 function insertPregunta($conexion, $titulo, $cuerpo, $usuario){
     try{
         $fecha=date("Y")."-".date("m")."-".date("d");
@@ -45,6 +67,13 @@ function insertPregunta($conexion, $titulo, $cuerpo, $usuario){
     }
 }
 
+/**
+ * Para insertar en Pregunta_has_Tema
+ * @param $conexion
+ * @param $pregunta
+ * @param $tema
+ * @return null
+ */
 function insertPreguntaTema($conexion, $pregunta, $tema){
     try{
         $datos = array('pregunta' => $pregunta, 'tema' => $tema);
@@ -57,6 +86,12 @@ function insertPreguntaTema($conexion, $pregunta, $tema){
     }
 }
 
+/**
+ * Para buscar todas las preguntas de un usuario
+ * @param $conexion
+ * @param $usuario
+ * @return array|null
+ */
 function findPreguntasByUsuario($conexion, $usuario){
     try{
         $datos = array('usuario' => $usuario);
