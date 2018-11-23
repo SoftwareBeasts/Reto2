@@ -326,7 +326,7 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     }
 
 
-    function seleccionarPreguntasByTemaID($temas,$regex,$id=null)
+    function sseleccionarPreguntasByTemaID($temas,$regex,$id=null)
     {
         if ($id == null) {
             $id = 0;

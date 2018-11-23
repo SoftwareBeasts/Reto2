@@ -4,41 +4,44 @@
     border: 1px solid #0D1321;
     grid-area: 1 / 2 / 5 / 10;
 }
-
-#contenedor-hacer-preguntas ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-#contenedor-hacer-preguntas ul li:first-child input, #contenedor-hacer-preguntas ul li textarea {
-    width: 100%;
-}
-
-#contenedor-hacer-preguntas ul li:nth-of-type(2) + li:last-child {
-    margin-top: 25px;
-}
-
-#contenedor-hacer-preguntas ul li:first-child input {
-    font-size: 1.5em;
-}
-
-#contenedor-hacer-preguntas ul li:last-child {
+#contenedor-hacer-preguntas {
     display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    border:0.5px solid #0d1321;
+}
+#contenedor-hacer-preguntas h1 {
+    margin-top: 3px;
+    margin-left: 10px;
+
+}
+#contenedor-hacer-preguntas form {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+}
+#contenedor-hacer-preguntas form input:first-child, #contenedor-hacer-preguntas form input:nth-of-type(2) {
+    min-width: 75%;
+    max-width: 94%;
+    align-self: center;
+    color: #0D1321;
+}
+#contenedor-hacer-preguntas form textarea {
+    min-width: 75%;
+    max-width: 94%;
+    min-height: 500px;
+    margin-right: 3%;
+    margin-left: 3%;
+    color: #0D1321;
 }
 
-#contenedor-hacer-preguntas ul li:last-child {
-    justify-content: space-between;
-}
-
-#contenedor-hacer-preguntas ul li:nth-of-type(2) textarea, #contenedor-hacer-preguntas ul li:last-child input {
-    font-size: 1.10em;
-}
-
-#contenedor-hacer-preguntas ul li:last-child input:last-child {
-    background-color: #247ba0;
-    color: #e8f1f2;
-    padding: 0 40px;
+#contenedor-hacer-preguntas form input.submit {
+    width: 30%;
+    align-self: center;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    transition: background-color 1s;
+    -webkit-transition: background-color 1s;
 }
 
 /*  Tablet (min-width: 400px) and (max-width: 800px)
@@ -47,13 +50,5 @@
     #contenedor-hacer-preguntas {
         grid-area: 1 / 1 / 5 / 11;
         padding-bottom: 10px;
-    }
-
-    #contenedor-hacer-preguntas ul li:last-child {
-        flex-direction: column;
-    }
-
-    #contenedor-hacer-preguntas ul li:last-child input:last-child {
-        margin-top: 10px;
     }
 }

@@ -20,6 +20,7 @@ require "../php/generar-nav-footer.php";
     <script src="../js/hacerPregunta.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css" />
     <link rel="stylesheet" type="text/css" href="../css/hacerPregunta.css" />
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
 </head>
 <body>
 <main id="contenedor-principal">
@@ -29,19 +30,10 @@ require "../php/generar-nav-footer.php";
     <section id="contenedor-hacer-preguntas">
         <h1>Haz tu pregunta</h1>
         <form action="../php/hacerPregunta.php" method="post" onsubmit="return validarDatos();">
-            <ul>
-                <li>
-                    <input type="text" name="tituloPregunta" value="" placeholder="T&iacute;tulo" />
-                </li>
-                <hr />
-                <li>
-                    <textarea name="descripcionPregunta" rows="15" placeholder="Descripci&oacute;n"></textarea>
-                </li>
-                <li>
-                    <input type="text" name="categoriasPregunta" value="" placeholder="Categor&iacute;as" />
-                    <input type="submit" value="Enviar" />
-                </li>
-            </ul>
+            <input type="text" name="tituloPregunta" class="transparent" value="" placeholder="T&iacute;tulo" />
+            <textarea name="descripcionPregunta" class="transparent" placeholder="Descripci&oacute;n"></textarea>
+            <input type="text" name="categoriasPregunta" class="transparent"  value="" placeholder="Categor&iacute;as" />
+            <input type="submit" class="submit" value="Enviar" />
         </form>
     </section>
     <?php

@@ -1,5 +1,6 @@
 <?php
 session_start();
+/*Cerrar Sesion*/
 if(isset($_GET['logout'])){
     if($_GET['logout']){
         session_destroy();
@@ -29,12 +30,14 @@ require "php/generar-nav-footer.php";
     ?>
     <section id="contenedor-selectores-preguntas-index">
         <?php
+        /*Comprobar que la busqueda mediante la barra superior no ha cambiado, y en caso de que cambie eliminar las preguntas guardadas*/
         if (isset($_GET['busquedaPreguntas'])){
             if (isset($_SESSION['nocopy'])){
                 if($_SESSION['nocopy']==$_GET['busquedaPreguntas']||$_SESSION['nocopy']!=$_GET['busquedaPreguntas']) {
                     $_SESSION['almacenPreguntas'] = array();
                 }
             }
+            /*Recoger el texto introducio por el usuario, transformarlo en array y eliminar palabras "irrelevantes"*/
             $_SESSION['nocopy'] = $_GET['busquedaPreguntas'];
             $arraytextoBusquedaCompleto = explode(" ",$_GET['busquedaPreguntas']);
             $arraytextoBusquedaFiltrado = array();
