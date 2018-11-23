@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/SoftwareBeasts"><img src="/Documentaci%C3%B3n/media/software_beasts_icon_color.png" alt="Software Beasts" width="200"></a>
+  <a href="https://github.com/SoftwareBeasts"><img src="/Documentaci%C3%B3n/media/software_beasts_icon_color.png" alt="Software Beasts" width="300"></a>
   <br>
   Software Beasts
   <br>
@@ -19,15 +19,13 @@
 </p>
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
+  <a href="#¿para-qué-sirve?">Key Features</a> •
+  <a href="#Documentacion">How To Use</a> •
   <a href="#download">Download</a> •
   <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
-  <a href="#license">License</a>
+  <a href="#relacionado">Relacionado</a> •
+  <a href="#licencia">Licencia</a>
 </p>
-
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
 
 ## ¿Para qué sirve?
 Esta página web sirve para que los operarios de la empresa de latas de conservas puedan controlar el autómata de una manera más sencilla e intuitiva que directamente usando el programa base.
@@ -47,39 +45,15 @@ Documentación general del proyecto [aquí](/Documentación/Documentacion.pdf)
 | Version 0.0 de Sketch [imagen](/Documentaci%C3%B3n/Sketch%20v0.0.jpg) |
 | Github pages [link](https://softwarebeasts.github.io/) |
 
-
-###### Realizado por Software Beasts bajo licencia [MIT](/LICENSE). 2018.
-
-## How To Use
-
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
-
-# Go into the repository
-$ cd electron-markdownify
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start
-```
-
-Note: If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
-
-
 ## Demo
 
 Puedes ver una demo de esta aplicación web en funcionamiento haciendo click [aquí](http://softwarebeasts.tk/)
 
-## Related
+## Relacionado
 
 [Web autómata](https://github.com/SoftwareBeasts/Reto1) - Aplicación web para gestión de un autómata
 
-## License
+## Licecia
 
-MIT
+###### Realizado por Software Beasts bajo licencia [MIT](/LICENSE). 2018.
 
