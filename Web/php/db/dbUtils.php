@@ -44,7 +44,7 @@ if(isset($_GET['idPregunta'],$_GET['userId'])){
 
         $likeDislikeData = array('type'=>(int)$tipo, 'Pregunta_idPregunta' => (int)$_GET['idPregunta'],
             'Usuario_idUsuario' => (int)$_GET['userId']);
-        $encontrado = setLikeDislikeP($likeDislikeDataP,$_GET['alter']);
+        $encontrado = setLikeDislikeP($likeDislikeData,$_GET['alter']);
     }else{
         $likeDislikeData = array('Pregunta_idPregunta'=>$_GET['idPregunta'],
             'Usuario_idUsuario'=> $_GET['userId']);
@@ -326,7 +326,7 @@ function responderPregunta($idPregunta,$titulo,$cuerpo,$userID,$archivos=null){
     }
 
 
-    function seleccionarPreguntasByTemaID($temas,$regex,$id=null)
+    function sseleccionarPreguntasByTemaID($temas,$regex,$id=null)
     {
         if ($id == null) {
             $id = 0;
