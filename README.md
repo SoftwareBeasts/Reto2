@@ -41,15 +41,15 @@ Disponemos de un [manual de usuario](/Documentaci%C3%B3n/Manual%20de%20Usuario.p
 para la descarga y el funcionamiento de nuestra página web.
 
 ## Documentación
-Documentación general del proyecto [aquí](/Documentación/)
+Documentación general del proyecto [aquí](/Documentaci%C3%B3n)
 
 | Enlaces específicos |
 | ------------- |
-| Seguimiento semanal: [Semana 1](/Documentaci%C3%B3n/Seguimiento%20Semana%201%20Software%20Beasts%20Reto%202.pdf), [Semana 2](/Documentaci%C3%B3n/Seguimiento%20Semana%202%20Software%20Beasts%20Reto%202.pdf), [Semana 3](/Documentaci%C3%B3n/Seguimiento%20Semana%203%20Software%20Beasts.pdf)|
-| Reunión con el equipo de ARI [documento](/Documentaci%C3%B3n/Reuni%C3%B3n%20con%20ARI.pdf) |
+| Seguimiento semanal: [Semana 1](/Documentaci%C3%B3n/Seguimiento%20Semana%201%20Software%20Beasts%20Reto%202.pdf), [Semana 2](/Documentaci%C3%B3n/Seguimiento%20Semana%202%20Software%20Beasts%20Reto%202.pdf), [Semana 3](/Documentaci%C3%B3n/Seguimiento%20Semana%203%20Software%20Beasts%20Reto%202.pdf)|
+| Guía de estilos [documento](/Documentaci%C3%B3n/Gu%C3%ADa%20de%20estilo.pdf) |
 | Plataforma de planificación que hemos usado de una forma diaria <a href="https://trello.com/b/96znWmkJ/" target="_blank">link a Trello</a>|
-| Version 0.0 de Sketch [imagen](/Documentaci%C3%B3n/Sketch%20v0.0.jpg) |
-| Github pages [link](https://softwarebeasts.github.io/) |
+| Version 0.0 de Sketch de todas las páginas [carpeta](/Documentaci%C3%B3n/Sketch%20v0.0) |
+| Web frame de todo el sitio web [carpeta](/Documentaci%C3%B3n/WebFrame) |
 
 ## Demo
 
