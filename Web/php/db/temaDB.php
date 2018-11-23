@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @param $conexion La conexion
+ * @param $nombre el nombre del tema a buscar
+ * @return null retorna nulo si hay algun error y el tema si se encuentra
+ */
 function findTema($conexion, $nombre)
 {
     try {
@@ -16,6 +20,11 @@ function findTema($conexion, $nombre)
     }
 }
 
+/**
+ * @param $conexion La conexion
+ * @param $nombre el nombre del tema a insertar
+ * @return null si ahy algun error retorna nulo
+ */
 function insertTema($conexion, $nombre)
 {
     try {
@@ -27,6 +36,10 @@ function insertTema($conexion, $nombre)
     }
 }
 
+/**
+ * @param $conexion La conexion
+ * @return array retorna un array con todos los temas
+ */
 function selectAllTema($conexion)
 {
     try {
@@ -45,22 +58,27 @@ function selectAllTema($conexion)
     }
 }
 
+/**
+ * @param $conexion La conexion
+ * @param $id el id de la pregunta de la cual coger los temas
+ * @return array un array con los temas de la pregunta cuyo id se suministra
+ */
 function selectTemaByPreguntaID($conexion, $id)
 {
     try {
         $consulta = $conexion->prepare("SELECT tema.* FROM tema,pregunta_has_tema WHERE pregunta_has_tema.Pregunta_idPregunta=:id AND pregunta_has_tema.Tema_idTema = tema.idTema");
         $consulta->setFetchMode(PDO::FETCH_ASSOC);
-        $consulta->bindValue(':id',"$id");
+        $consulta->bindValue(':id', "$id");
         $consulta->execute();
 
 
         $contador = 0;
         $listaTemas = array();
-        while($tema = $consulta->fetch()){
-         $listaTemas[$contador] = $tema;
-         $contador++;
+        while ($tema = $consulta->fetch()) {
+            $listaTemas[$contador] = $tema;
+            $contador++;
         }
-        $conexion=null;
+        $conexion = null;
         return $listaTemas;
     } catch (Excepcion $e) {
         echo $e;

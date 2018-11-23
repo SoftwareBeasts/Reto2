@@ -6,6 +6,10 @@ require_once "../php/db/dbUtils.php";
     if(session_id()==''){
         session_start();
     }
+
+    /* Para seleccionar el usuario para visualizar su perfil:
+        1.- A través de la URL, si existe el usuario
+        2.- El perfil del usuario que ha iniciado sesión */
     $usuario=array();
     if(isset($_GET["usuario"]))
     {
@@ -14,7 +18,6 @@ require_once "../php/db/dbUtils.php";
         {
             header('Location: ../index.php');
         }
-
     }
     elseif(isset($_SESSION['userLogged']))
     {
@@ -40,6 +43,7 @@ require_once "../php/db/dbUtils.php";
 <body>
 <main id="contenedor-principal">
     <?php
+    /* Generar la barra superior */
     generarNav("../");
     ?>
     <section id="contenedor-perfil">
@@ -69,6 +73,7 @@ require_once "../php/db/dbUtils.php";
         </div>
     </section>
     <?php
+    /* Generar el pie de página */
     generarFooter("../");
     ?>
 </main>

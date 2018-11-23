@@ -5,6 +5,7 @@ require "../php/generar-nav-footer.php";
         session_start();
     }
 
+    /* Para que no suban preguntas usuarios anónimos obligando que inicien sesión */
     if(!isset($_SESSION['userLogged']))
     {
         header('Location: login.php');
@@ -25,6 +26,7 @@ require "../php/generar-nav-footer.php";
 <body>
 <main id="contenedor-principal">
     <?php
+    /* Generar la barra superior */
     generarNav("../");
     ?>
     <section id="contenedor-hacer-preguntas">
@@ -37,6 +39,7 @@ require "../php/generar-nav-footer.php";
         </form>
     </section>
     <?php
+    /* Generar el pie de página */
     generarFooter("../");
     ?>
 </main>
