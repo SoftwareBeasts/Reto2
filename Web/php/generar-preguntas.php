@@ -175,7 +175,7 @@ function htmlPreguntaPre($id, $usuario, $iduser, $fecha, $titulo, $temas, $votos
 {
     ?>
     <article class="pregunta-index" id="<?= $id ?>">
-        <span class="informacion-usuario-fecha-pregunta">por <a href="/pages/perfil.php?usuario=<?= $iduser ?>"
+        <span class="informacion-usuario-fecha-pregunta">por <a href="./pages/perfil.php?usuario=<?= $iduser ?>"
                                                                 class="link-perfil-usuario"><?= $usuario ?></a> a <?= $fecha ?></span>
         <h2 class="titulo-pregunta"><a href="./pages/pregunta.php?preguntaid=<?= $id ?>"><?= $titulo ?></a></h2>
         <div class="contenedor-categorias-pregunta">
