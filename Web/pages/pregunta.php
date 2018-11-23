@@ -49,21 +49,23 @@ require "../php/generar-respuestas.php";
 
             </div>
             <?php
-            function numlikesdislikes($valor){
+            function numlikesdislikesP($valor){
                 $tempcontador = array(
                     "likes"=>0,
                     "dislikes"=>0
                 );
-                foreach ($valor['votos'] as $item=>$value){
-                    if ($value['tipo']==1){
-                        $tempcontador['likes']++;
-                    }else{
-                        $tempcontador['dislikes']++;
+                if(sizeof($valor['votos'])>0) {
+                    foreach ($valor['votos'] as $item => $value) {
+                        if ($value['tipo'] == 1) {
+                            $tempcontador['likes']++;
+                        } else {
+                            $tempcontador['dislikes']++;
+                        }
                     }
                 }
                 return $tempcontador;
             }
-            $listavotosPregunta = numlikesdislikes($datosPregunta['pregunta']['votos']);
+            $listavotosPregunta = numlikesdislikesP($datosPregunta['pregunta']['votos']);
             ?>
             <div id="contenedor-likes-pregunta">
 
