@@ -37,6 +37,7 @@ require_once "../php/db/dbUtils.php";
     <title>Perfil de <?= $usuario["nombreusu"] ?> &#124; Aergibide S.L.</title>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/perfil.js"></script>
+    <link rel="icon" type="image/png" href="../media/favicon_software_beasts_color.png"/>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css" />
     <link rel="stylesheet" type="text/css" href="../css/perfil.css" />
 </head>
