@@ -19,6 +19,7 @@ require "../php/generar-nav-footer.php";
     <title>Haz tu pregunta &#124; Aergibide S.L.</title>
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/hacerPregunta.js"></script>
+    <link rel="icon" type="image/png" href="../media/favicon_software_beasts_color.png"/>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css" />
     <link rel="stylesheet" type="text/css" href="../css/hacerPregunta.css" />
     <link rel="stylesheet" type="text/css" href="../css/form.css">
