@@ -10,7 +10,8 @@ function listaPreguntasUsuario($idUsuario) {
     foreach($preguntas as $clave=>$valor)
     {
         $usuario = encontrarUsuario("no",$valor['Usuario_idUsuario']);
-        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"],$valor["temas"]);
+        $tempListaVotos = puntuacionPreguntas($valor['votos']);
+        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"],$valor["temas"],$tempListaVotos);
     }
 }
 
@@ -20,11 +21,12 @@ function listaRespuestasUsuario($idUsuario) {
     foreach($preguntas as $clave=>$valor)
     {
         $usuario = encontrarUsuario("no",$valor['Usuario_idUsuario']);
-        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"] ,$valor["temas"]);
+        $tempListaVotos = puntuacionPreguntas($valor['votos']);
+        preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"] ,$valor["temas"],$tempListaVotos);
     }
 }
 
-function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo,$temas) {
+function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo,$temas,$votos) {
     ?>
     <article class="pregunta-perfil">
         <span class="informacion-usuario-fecha-pregunta">por <a href="perfil.php?usuario=<?=$idUsuario?>" class="link-perfil-usuario"><?=$usuario?></a> a <?=$fecha?></span>
@@ -40,12 +42,22 @@ function preguntaRespuestaUsuario($id, $idUsuario, $usuario, $fecha, $titulo,$te
 
         </div>
         <div id="contenedor-likes-pregunta">
-            <a href="#" class="link-like-pregunta"><img src="../media/like.png" alt="imagen-like" class="imagen-like"></a>
-            <span id="numero-likes-pregunta">11</span>
-            <a href="#" class="link-dislike-pregunta"><img src="../media/like.png" alt="imagen-like" class="imagen-dislike"></a>
-            <span id="numero-dislikes-pregunta">3</span>
+            <div class="contenedor-likes-preguntas">
+                <span class="puntuacion-pregunta-index"><?=$votos?></span>
+            </div>
         </div>
     </article>
     <?php
+}
+function puntuacionPreguntas($listaVotos){
+    $tempcontador = 0;
+    foreach ($listaVotos['votos'] as $item=>$value){
+        if ($value['tipo']==1){
+            $tempcontador++;
+        }else{
+            $tempcontador--;
+        }
+    }
+    return $tempcontador;
 }
 ?>
