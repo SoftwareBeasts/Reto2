@@ -19,6 +19,7 @@ if (!isset($_SESSION['contador']))
 <head>
     <title>Aergibide S.L</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../media/favicon_software_beasts_color.png"/>
     <link rel="stylesheet" type="text/css" href="../css/grid-general.css">
     <link rel="stylesheet" type="text/css" href="../css/login.css">
     <link rel="stylesheet" type="text/css" href="../css/form.css">

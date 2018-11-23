@@ -15,6 +15,7 @@ require "../php/generar-respuestas.php";
 <head>
     <title>Aergibide S.L</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../media/favicon_software_beasts_color.png"/>
     <link href="../css/grid-general.css" type="text/css" rel="stylesheet">
     <link href="../css/pregunta.css" type="text/css" rel="stylesheet">
     <link href="../css/form.css" type="text/css" rel="stylesheet">

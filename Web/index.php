@@ -18,6 +18,7 @@ require "php/generar-nav-footer.php";
     <title>Aergibide S.L</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="js/jquery-3.3.1.min.js"></script>
+    <link rel="icon" type="image/png" href="./media/favicon_software_beasts_color.png"/>
     <link href="css/grid-general.css" type="text/css" rel="stylesheet">
     <link href="css/index.css" type="text/css" rel="stylesheet">
 </head>
