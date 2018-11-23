@@ -265,6 +265,11 @@ function cargarDatosPreguntabyId($id){
     $datosPregunta['usuario'] = findUsuario($conexion,"no",$datosPregunta['pregunta']['Usuario_idUsuario']);
     $conexion = getConnection();
     $datosPregunta['respuestas'] = selectAllRespuestabyPreguntaID($conexion,$id);
+    $conexion=getConnection();
+    $listaTemas = selectTemaByPreguntaID($conexion,$id);
+    if (sizeof($listaTemas)>0) {
+        $datosPregunta['temas'] = $listaTemas;
+    }
     foreach ($datosPregunta['respuestas'] as $clave => $valor){
         $conexion = getConnection();
         $tempUser = findUsuario($conexion,"no",$valor['Usuario_idUsuario']);
