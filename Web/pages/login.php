@@ -53,7 +53,7 @@ if (!isset($_SESSION['contador']))
             if ($_SESSION['userLogged'] == null) {
                 ?>
                 <div>
-                    <label class="login" for="usem">Usuario o Email</label>
+                    <label class="login" for="usem">Email</label>
                     <input class="transparent" type="text" name="usem" id="usem" autofocus
                            placeholder="ejemplo@ejemplo.com">
                 </div>
