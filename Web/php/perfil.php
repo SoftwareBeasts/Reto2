@@ -14,7 +14,9 @@ function listaPreguntasUsuario($idUsuario) {
     foreach($preguntas as $clave=>$valor)
     {
         $usuario = encontrarUsuario("no",$valor['Usuario_idUsuario']);
-        $tempListaVotos = puntuacionPreguntas($valor['votos']);
+        if (isset($valor['votos'])) {
+            $tempListaVotos = puntuacionPreguntas($valor['votos']);
+        }else $tempListaVotos = 0;
         preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"],$valor["temas"],$tempListaVotos);
     }
 }
@@ -29,7 +31,9 @@ function listaRespuestasUsuario($idUsuario) {
     foreach($preguntas as $clave=>$valor)
     {
         $usuario = encontrarUsuario("no",$valor['Usuario_idUsuario']);
-        $tempListaVotos = puntuacionPreguntas($valor['votos']);
+        if (isset($valor['votos'])) {
+            $tempListaVotos = puntuacionPreguntas($valor['votos']);
+        }else $tempListaVotos = 0;
         preguntaRespuestaUsuario($valor["idPregunta"], $valor['Usuario_idUsuario'], $usuario['nombreusu'], $valor["fecha"],$valor["titulo"] ,$valor["temas"],$tempListaVotos);
     }
 }

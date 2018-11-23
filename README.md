@@ -19,7 +19,7 @@
 </p>
 
 <p align="center">
-  <a href="#¿en-qué-consiste">¿En qué consiste</a> •
+  <a href="#en-qué-consiste">¿En qué consiste?</a> •
   <a href="#descarga">Descarga</a> •
   <a href="#documentación">Documentación</a> •
   <a href="#demo">Demo</a> •
@@ -37,7 +37,7 @@ conocimiento. Por lo que hemos decidido desarrollar una web tipo [StackOverflow]
 interna de la empresa. Este es el desarrollo que hemos realizado.
 
 ## Descarga
-Disponemos de un [manual de usuario](/Documentaci%C3%B3n/Manual%20de%20usuario.pdf) en el que explicamos los pasos a seguir 
+Disponemos de un [manual de usuario](/Documentaci%C3%B3n/Manual%20de%20Usuario.pdf) en el que explicamos los pasos a seguir 
 para la descarga y el funcionamiento de nuestra página web.
 
 ## Documentación
@@ -47,7 +47,7 @@ Documentación general del proyecto [aquí](/Documentaci%C3%B3n)
 | ------------- |
 | Seguimiento semanal: [Semana 1](/Documentaci%C3%B3n/Seguimiento%20Semana%201%20Software%20Beasts%20Reto%202.pdf), [Semana 2](/Documentaci%C3%B3n/Seguimiento%20Semana%202%20Software%20Beasts%20Reto%202.pdf), [Semana 3](/Documentaci%C3%B3n/Seguimiento%20Semana%203%20Software%20Beasts%20Reto%202.pdf)|
 | Guía de estilos [documento](/Documentaci%C3%B3n/Gu%C3%ADa%20de%20estilo.pdf) |
-| Plataforma de planificación que hemos usado de una forma diaria <a href="https://trello.com/b/96znWmkJ/" target="_blank">link a Trello</a>|
+| Plataforma de planificación que hemos usado de una forma diaria <a href="https://trello.com/b/96znWmkJ/" target="_blank">enlace a Trello</a>|
 | Version 0.0 de Sketch de todas las páginas [carpeta](/Documentaci%C3%B3n/Sketch%20v0.0) |
 | Web frame de todo el sitio web [carpeta](/Documentaci%C3%B3n/WebFrame) |
 
