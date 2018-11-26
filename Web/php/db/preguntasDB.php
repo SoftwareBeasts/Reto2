@@ -45,7 +45,7 @@ function selectMasVotadas($conexion)
     try {
         $consulta = $conexion->prepare("SELECT pregunta.* FROM pregunta WHERE pregunta.idPregunta IN (SELECT `idPre` FROM 
                                       (SELECT `contados`,`idPre` FROM
-                                        (SELECT COUNT(*) AS `contados`,Pregunta_idPregunta AS `idPre` FROM `votos_pregunta` WHERE tipo=1 GROUP BY Pregunta_idPregunta) AS contar1 ORDER BY `contados` DESC LIMIT 20
+                                        (SELECT COUNT(*) AS `contados`,Pregunta_idPregunta AS `idPre` FROM `voto_pregunta` WHERE tipo=1 GROUP BY Pregunta_idPregunta) AS contar1 ORDER BY `contados` DESC LIMIT 20
                                       ) AS contar2)");
         /*Esta select igual es mejor explicarla, lo que hace basicamente es buscar todos los datos de las preguntas cuyo
          id este dentro de otra busqueda, la cual recoge las ids de otra busqueda, la cual recoge la cantidad de votos contados
